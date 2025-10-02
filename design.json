@@ -1,0 +1,118 @@
+{
+  "colors": {
+    "primary": "#00FFFF",
+    "background": "#000000",
+    "text": "#FFFFFF"
+  },
+  "typography": {
+    "headline": "Orbitron, sans-serif",
+    "body": "Inter, sans-serif"
+  },
+  "sections": [
+    {
+      "id": "hero",
+      "layout": "asymmetrical-grid",
+      "elements": [
+        {
+          "type": "headline",
+          "position": "left",
+          "content": "Ignite Your Business with Wisp Technologies"
+        },
+        {
+          "type": "subheading",
+          "position": "right"
+        },
+        {
+          "type": "cta-button",
+          "effect": "click-spark"
+        },
+        {
+          "type": "background",
+          "component": "LiquidEther",
+          "colors": ["#000000", "#00FFFF"]
+        }
+      ]
+    },
+    {
+      "id": "about",
+      "layout": "asymmetrical-grid",
+      "elements": [
+        {
+          "type": "text-block",
+          "position": "left",
+          "animation": "fade-in"
+        },
+        {
+          "type": "svg-illustration",
+          "position": "right"
+        }
+      ]
+    },
+    {
+      "id": "services",
+      "layout": "staggered-card-grid",
+      "elements": [
+        {
+          "type": "card",
+          "icon": "cyan",
+          "effect": "hover-card"
+        }
+      ]
+    },
+    {
+      "id": "case-studies",
+      "layout": "asymmetrical-alternating",
+      "elements": [
+        {
+          "type": "case-study",
+          "text": "left",
+          "graphic": "right"
+        }
+      ]
+    },
+    {
+      "id": "testimonials",
+      "layout": "carousel",
+      "elements": [
+        {
+          "type": "testimonial",
+          "effect": "typewriter"
+        }
+      ]
+    },
+    {
+      "id": "performance",
+      "layout": "stat-grid",
+      "elements": [
+        {
+          "type": "highlight-stat",
+          "color": "cyan"
+        }
+      ]
+    },
+    {
+      "id": "contact",
+      "layout": "asymmetrical-form",
+      "elements": [
+        {
+          "type": "form",
+          "position": "left",
+          "effect": "ripple"
+        },
+        {
+          "type": "info-links",
+          "position": "right"
+        },
+        {
+          "type": "background",
+          "component": "ParticleBackground"
+        }
+      ]
+    }
+  ],
+  "global": {
+    "responsive": true,
+    "asymmetry": "offset-left-right",
+    "interactions": "isolated-effects"
+  }
+}
