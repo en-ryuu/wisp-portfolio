@@ -7,9 +7,9 @@ export default function Hero() {
     <section className="min-h-screen dark-bg circuit-pattern flex items-center justify-center">
       <div style={{ width: "100%", height: "100vh", position: "relative" }}>
         <LiquidEther
-          colors={["#00E0FF", "#00BFFF", "#0099CC", "#0077AA"]}
+          colors={["#00D1FF", "#40E0D0", "#00CED1", "#48D1CC"]}
           mouseForce={20}
-          cursorSize={100}
+          cursorSize={140}
           isViscous={false}
           viscous={30}
           iterationsViscous={32}
