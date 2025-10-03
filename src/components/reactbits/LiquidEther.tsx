@@ -133,6 +133,11 @@ export default function LiquidEther({
       init(container: HTMLElement) {
         this.container = container;
         this.pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+        this.isMobile =
+          window.innerWidth <= this.breakpoint ||
+          /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+            navigator.userAgent
+          );
         this.resize();
         this.renderer = new THREE.WebGLRenderer({
           antialias: true,
@@ -248,7 +253,7 @@ export default function LiquidEther({
         this.hasUserControl = true;
       }
       onDocumentTouchStart(event: TouchEvent) {
-        if (event.touches.length === 1) {
+        if (event.touches.length === 1 && !Common.isMobile) {
           const t = event.touches[0];
           if (this.onInteract) this.onInteract();
           this.setCoords(t.pageX, t.pageY);
@@ -256,7 +261,7 @@ export default function LiquidEther({
         }
       }
       onDocumentTouchMove(event: TouchEvent) {
-        if (event.touches.length === 1) {
+        if (event.touches.length === 1 && !Common.isMobile) {
           const t = event.touches[0];
           if (this.onInteract) this.onInteract();
           this.setCoords(t.pageX, t.pageY);
@@ -1058,7 +1063,7 @@ export default function LiquidEther({
           if (this.autoDriver) this.autoDriver.forceStop();
         };
         this.autoDriver = new AutoDriver(Mouse, this as any, {
-          enabled: props.autoDemo,
+          enabled: props.autoDemo && !Common.isMobile,
           speed: props.autoSpeed,
           resumeDelay: props.autoResumeDelay,
           rampDuration: props.autoRampDuration,
@@ -1131,6 +1136,7 @@ export default function LiquidEther({
     const container = mountRef.current;
     container.style.position = container.style.position || "relative";
     container.style.overflow = container.style.overflow || "hidden";
+    container.style.pointerEvents = Common.isMobile ? "none" : "auto";
 
     const webgl = new WebGLManager({
       $wrapper: container,
@@ -1285,10 +1291,14 @@ export default function LiquidEther({
   return (
     <div
       ref={mountRef}
-      className={`w-full h-full relative overflow-hidden touch-none ${
-        className || ""
-      }`}
-      style={style}
+      className={`w-full h-full relative overflow-hidden ${className || ""}`}
+      style={{
+        ...style,
+        pointerEvents:
+          typeof window !== "undefined" && window.innerWidth <= 768
+            ? "none"
+            : "auto",
+      }}
     />
   );
 }
