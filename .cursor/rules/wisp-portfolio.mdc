@@ -1,0 +1,116 @@
+---
+alwaysApply: true
+---
+
+# Wisp Technologies Portfolio - Complete Development Guide
+
+## 🏗️ **Project Architecture**
+- **Framework**: Next.js 15 with App Router
+- **Styling**: Tailwind CSS with CSS variables for theming
+- **UI Components**: shadcn/ui components with custom styling
+- **Animations**: GSAP for text reveals and transitions
+- **Theme System**: next-themes for light/dark mode switching
+
+## 📁 **Key Files & Directories**
+- [src/app/layout.tsx](mdc:src/app/layout.tsx) - Root layout with theme provider
+- [src/app/providers.tsx](mdc:src/app/providers.tsx) - App providers and transition router
+- [src/app/globals.css](mdc:src/app/globals.css) - Global styles and CSS variables
+- [src/components/ui/](mdc:src/components/ui/) - shadcn/ui components
+- [src/hooks/useTextReveal.ts](mdc:src/hooks/useTextReveal.ts) - GSAP animation hooks
+- [DESIGN_SYSTEM.md](mdc:DESIGN_SYSTEM.md) - Complete design system documentation
+
+## 🎨 **Design System**
+- **Minimal & Clean**: No borders, lots of whitespace, crisp typography
+- **Modern & Futuristic**: Clean lines, subtle gradients, contemporary feel
+- **Professional**: No emojis, text-only approach
+- **Wisp Theme**: Light guiding through darkness, illuminating technology
+
+### **Color System**
+Use CSS variables from [src/app/globals.css](mdc:src/app/globals.css):
+- `--background` and `--foreground` for primary colors
+- Opacity variations: `/10`, `/20`, `/60`, `/70`, `/90`
+- Gradients: `bg-gradient-to-br from-background via-background to-muted/20`
+
+### **Typography**
+- **Headings**: Large, thin fonts with tight tracking
+- **Body**: Clean, readable text with proper line height
+- **Fonts**: Inter/SF Pro Display for headings, JetBrains Mono for technical text
+- **Hierarchy**: Clear visual hierarchy with size and weight variations
+
+### **Spacing & Layout**
+- **Generous whitespace**: Large margins and padding
+- **Grid layouts**: Clean grid systems with proper gaps
+- **Consistent spacing**: 6, 8, 12, 16, 20, 24px scale
+- **No borders**: Avoid border classes, use spacing instead
+
+## 🎭 **Animation Guidelines**
+- **GSAP Text Reveal**: Staggered text animations with clipPath masks
+- **Smooth transitions**: 300ms duration, power2 easing
+- **Hover effects**: Subtle scale (1.05x) and opacity changes
+- **Loading states**: Ultra-slow, meditative animations
+
+### **Animation Hooks**
+Use the established animation hooks from [src/hooks/useTextReveal.ts](mdc:src/hooks/useTextReveal.ts):
+```typescript
+const titleRef = useTextReveal({ delay: 0, duration: 0.8, from: "bottom" });
+const contentRefs = useStaggeredTextReveal<HTMLDivElement>(3, {
+  delay: 0.8,
+  stagger: 0.3,
+  from: "bottom",
+});
+```
+
+## 🧩 **Component Development**
+
+### **shadcn/ui Integration**
+- Always use shadcn/ui components as base: [src/components/ui/](mdc:src/components/ui/)
+- Install new components with: `npx shadcn@latest add [component-name]`
+- Customize using CSS variables and Tailwind classes
+- Maintain consistent theming across all components
+
+### **Theme Integration**
+- Use CSS variables for all colors: `text-foreground`, `bg-background`
+- Apply opacity variations: `text-foreground/60`, `bg-foreground/10`
+- Test both light and dark themes
+- Ensure proper contrast ratios
+
+### **Data-Driven Components**
+- Use arrays for repetitive content (like team members)
+- Create reusable component patterns
+- Maintain consistent data structures
+- Use TypeScript interfaces for type safety
+
+## 🌙 **Theme System**
+- Theme provider in [src/app/layout.tsx](mdc:src/app/layout.tsx)
+- Theme toggle component: [src/components/theme-toggle.tsx](mdc:src/components/theme-toggle.tsx)
+- CSS variables defined in [src/app/globals.css](mdc:src/app/globals.css)
+- Supports light/dark modes with system preference detection
+
+### **Theme-Aware Components**
+When creating new components:
+1. Use CSS variables instead of hardcoded colors
+2. Test in both light and dark modes
+3. Apply consistent opacity variations
+4. Ensure proper contrast and readability
+
+## 📱 **Responsive Design**
+- Mobile-first approach
+- Clean mobile layouts
+- Proper breakpoint usage: sm, md, lg, xl
+- Typography scaling for different screen sizes
+- Grid adaptations: Single column on mobile
+
+## 🔄 **Dynamic Requirements**
+**IMPORTANT**: When the user adds new requirements or mentions specific needs, update this rule file accordingly. For example:
+- If user says "use axios with best practices" → Add axios implementation guide to this rule
+- If user requests new design patterns → Add them to the design system section
+- If user wants new component patterns → Add them to the component development section
+- Always maintain this single rule file as the source of truth
+
+## ✅ **Quality Standards**
+- Test all changes in both light and dark themes
+- Verify responsive behavior
+- Check animation performance
+- Ensure accessibility standards
+- Maintain clean, professional appearance
+- Follow established patterns from [DESIGN_SYSTEM.md](mdc:DESIGN_SYSTEM.md)
