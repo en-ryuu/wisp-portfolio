@@ -141,7 +141,7 @@ export default function Loading({ isLoading }: LoadingProps) {
         <div
           className="absolute inset-0"
           style={{
-            backgroundImage: `linear-gradient(45deg, rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(-45deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
+            backgroundImage: `linear-gradient(45deg, hsl(var(--foreground) / 0.1) 1px, transparent 1px), linear-gradient(-45deg, hsl(var(--foreground) / 0.1) 1px, transparent 1px)`,
             backgroundSize: "20px 20px",
           }}
         ></div>

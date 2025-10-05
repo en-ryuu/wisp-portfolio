@@ -1,5 +1,6 @@
 "use client";
 
+import { ThemeToggle } from "@/components/theme-toggle";
 import { gsap } from "gsap";
 import { Link as TransitionLink } from "next-transition-router";
 import { useEffect, useRef } from "react";
@@ -56,7 +57,7 @@ export default function Navbar() {
           </div>
         </TransitionLink>
 
-        <div ref={linksRef} className="hidden md:flex space-x-8">
+        <div ref={linksRef} className="hidden md:flex items-center space-x-8">
           <TransitionLink
             href="/about"
             className="text-foreground/70 hover:text-foreground transition-colors duration-300 relative group"
@@ -85,6 +86,7 @@ export default function Navbar() {
             Contact
             <span className="absolute -bottom-1 left-0 w-0 h-px bg-foreground transition-all duration-300 group-hover:w-full"></span>
           </TransitionLink>
+          <ThemeToggle />
         </div>
 
         {/* Mobile menu button */}
