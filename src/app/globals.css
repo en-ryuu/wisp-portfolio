@@ -113,9 +113,23 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
+    cursor: none !important;
   }
   body {
     @apply bg-background text-foreground;
+    cursor: none !important;
+  }
+
+  /* Ensure cursor is hidden on all interactive elements */
+  a,
+  button,
+  [role="button"],
+  [onclick],
+  input,
+  select,
+  textarea,
+  [tabindex] {
+    cursor: none !important;
   }
 }
 
@@ -149,4 +163,17 @@
 .animate-slide-right-3 {
   animation: slide-right 5s linear infinite;
   animation-delay: 1s;
+}
+
+/* Wisp orb animations */
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
 }
