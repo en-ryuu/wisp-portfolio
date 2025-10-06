@@ -1,5 +1,6 @@
 "use client";
 import { Badge } from "@/components/ui/badge";
+import { useIntersectionReveal } from "@/hooks/useIntersectionReveal";
 import { useStaggeredTextReveal, useTextReveal } from "@/hooks/useTextReveal";
 import { Link as TransitionLink } from "next-transition-router";
 
@@ -86,6 +87,34 @@ export default function About() {
     from: "bottom",
   });
 
+  // Intersection observer animations for team section
+  const teamSectionTitleRef = useIntersectionReveal<HTMLHeadingElement>({
+    delay: 0.2,
+    duration: 0.8,
+    from: "bottom",
+    reverse: true,
+  });
+  const teamSectionSubtitleRef = useIntersectionReveal<HTMLParagraphElement>({
+    delay: 0.4,
+    duration: 0.8,
+    from: "bottom",
+    reverse: true,
+  });
+  const ceoCardRef = useIntersectionReveal<HTMLDivElement>({
+    delay: 0.6,
+    duration: 0.8,
+    from: "bottom",
+    reverse: true,
+  });
+  const teamGridRefs = useStaggeredTextReveal<HTMLDivElement>(
+    teamMembers.length - 1,
+    {
+      delay: 0.8,
+      stagger: 0.1,
+      from: "bottom",
+    }
+  );
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/10">
       <div className="container mx-auto px-6 py-20">
@@ -157,10 +186,16 @@ export default function About() {
         {/* Team Section */}
         <div className="mb-24">
           <div className="text-center mb-16">
-            <h2 className="text-5xl font-light text-foreground mb-6">
+            <h2
+              ref={teamSectionTitleRef}
+              className="text-5xl font-light text-foreground mb-6"
+            >
               MEET THE TEAM
             </h2>
-            <p className="text-xl text-foreground/60 max-w-2xl mx-auto">
+            <p
+              ref={teamSectionSubtitleRef}
+              className="text-xl text-foreground/60 max-w-2xl mx-auto"
+            >
               The brilliant minds behind Wisp Technologies, guiding innovation
               forward
             </p>
@@ -170,7 +205,7 @@ export default function About() {
           <div className="relative">
             {/* CEO - Centered and prominent */}
             <div className="flex justify-center mb-20">
-              <div ref={teamRefs[0]} className="text-center group">
+              <div ref={ceoCardRef} className="text-center group">
                 <div className="relative">
                   <div className="w-40 h-40 mx-auto bg-gradient-to-br from-foreground/30 to-foreground/10 rounded-full flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
                     <span className="text-3xl font-light text-foreground/70">
@@ -200,7 +235,7 @@ export default function About() {
               {teamMembers.slice(1).map((member, index) => (
                 <div
                   key={member.id}
-                  ref={teamRefs[index + 1]}
+                  ref={teamGridRefs[index]}
                   className="text-center group"
                 >
                   <div className="relative">

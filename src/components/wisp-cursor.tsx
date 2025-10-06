@@ -3,7 +3,7 @@
 import { gsap } from "gsap";
 import { useTheme } from "next-themes";
 import { useTransitionState } from "next-transition-router";
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 export interface WispCursorProps {
   targetSelector?: string;
@@ -21,9 +21,59 @@ const WispCursor: React.FC<WispCursorProps> = ({
   const glowRef = useRef<HTMLDivElement>(null);
   const { theme } = useTheme();
   const { stage } = useTransitionState();
+  const [mounted, setMounted] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [hasError, setHasError] = useState(false);
 
-  // Show in both light and dark modes
-  const shouldShow = true;
+  // Handle hydration and mobile detection
+  useEffect(() => {
+    setMounted(true);
+
+    // Check if mobile device
+    const checkMobile = () => {
+      const isMobileDevice =
+        window.innerWidth < 768 ||
+        /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+          navigator.userAgent
+        );
+      setIsMobile(isMobileDevice);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
+    // Check for Next.js errors
+    const checkForErrors = () => {
+      const errorElements = document.querySelectorAll(
+        "[data-nextjs-dialog-overlay], [data-nextjs-toast], .nextjs-container-build-error, .nextjs-container-runtime-error"
+      );
+      setHasError(errorElements.length > 0);
+    };
+
+    // Initial check
+    checkForErrors();
+
+    // Monitor for error changes
+    const observer = new MutationObserver(checkForErrors);
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+      attributes: true,
+      attributeFilter: [
+        "class",
+        "data-nextjs-dialog-overlay",
+        "data-nextjs-toast",
+      ],
+    });
+
+    return () => {
+      window.removeEventListener("resize", checkMobile);
+      observer.disconnect();
+    };
+  }, []);
+
+  // Show only on desktop and when no errors
+  const shouldShow = mounted && !isMobile && !hasError;
 
   const moveCursor = useCallback((x: number, y: number) => {
     if (!cursorRef.current) return;
@@ -321,7 +371,10 @@ const WispCursor: React.FC<WispCursorProps> = ({
     stage,
   ]);
 
-  if (!shouldShow) return null;
+  if (!shouldShow || !mounted) return null;
+
+  // Use consistent styles to prevent hydration mismatch
+  const isDark = theme === "dark";
 
   return (
     <div
@@ -336,16 +389,14 @@ const WispCursor: React.FC<WispCursorProps> = ({
       <div
         className="outer-aura absolute left-1/2 top-1/2 w-24 h-24 rounded-full transform -translate-x-1/2 -translate-y-1/2"
         style={{
-          backgroundColor:
-            theme === "dark"
-              ? "rgba(255, 255, 255, 0.08)"
-              : "rgba(34, 197, 197, 0.12)",
+          backgroundColor: isDark
+            ? "rgba(255, 255, 255, 0.08)"
+            : "rgba(34, 197, 197, 0.12)",
           filter: "blur(20px) brightness(1.4)",
           willChange: "transform",
-          boxShadow:
-            theme === "dark"
-              ? "0 0 25px rgba(255, 255, 255, 0.3), 0 0 50px rgba(255, 255, 255, 0.15)"
-              : "0 0 30px rgba(34, 197, 197, 0.25), 0 0 60px rgba(34, 197, 197, 0.12)",
+          boxShadow: isDark
+            ? "0 0 25px rgba(255, 255, 255, 0.3), 0 0 50px rgba(255, 255, 255, 0.15)"
+            : "0 0 30px rgba(34, 197, 197, 0.25), 0 0 60px rgba(34, 197, 197, 0.12)",
         }}
       />
 
@@ -354,14 +405,12 @@ const WispCursor: React.FC<WispCursorProps> = ({
         ref={wispRef}
         className="absolute left-1/2 top-1/2 w-8 h-8 rounded-full transform -translate-x-1/2 -translate-y-1/2"
         style={{
-          backgroundColor:
-            theme === "dark" ? "white" : "rgba(34, 197, 197, 0.7)",
+          backgroundColor: isDark ? "white" : "rgba(34, 197, 197, 0.7)",
           filter: "blur(6px) brightness(1.8)",
           willChange: "transform",
-          boxShadow:
-            theme === "dark"
-              ? "0 0 10px rgba(255, 255, 255, 0.6), 0 0 20px rgba(255, 255, 255, 0.3)"
-              : "0 0 12px rgba(34, 197, 197, 0.5), 0 0 24px rgba(34, 197, 197, 0.25)",
+          boxShadow: isDark
+            ? "0 0 10px rgba(255, 255, 255, 0.6), 0 0 20px rgba(255, 255, 255, 0.3)"
+            : "0 0 12px rgba(34, 197, 197, 0.5), 0 0 24px rgba(34, 197, 197, 0.25)",
         }}
       />
 
@@ -369,14 +418,12 @@ const WispCursor: React.FC<WispCursorProps> = ({
       <div
         className="absolute left-1/2 top-1/2 w-3 h-3 rounded-full transform -translate-x-1/2 -translate-y-1/2"
         style={{
-          backgroundColor:
-            theme === "dark" ? "white" : "rgba(34, 197, 197, 0.9)",
+          backgroundColor: isDark ? "white" : "rgba(34, 197, 197, 0.9)",
           filter: "blur(2px) brightness(2)",
           willChange: "transform",
-          boxShadow:
-            theme === "dark"
-              ? "0 0 4px rgba(255, 255, 255, 0.8), 0 0 8px rgba(255, 255, 255, 0.5)"
-              : "0 0 6px rgba(34, 197, 197, 0.7), 0 0 12px rgba(34, 197, 197, 0.4)",
+          boxShadow: isDark
+            ? "0 0 4px rgba(255, 255, 255, 0.8), 0 0 8px rgba(255, 255, 255, 0.5)"
+            : "0 0 6px rgba(34, 197, 197, 0.7), 0 0 12px rgba(34, 197, 197, 0.4)",
         }}
       />
 
@@ -385,16 +432,14 @@ const WispCursor: React.FC<WispCursorProps> = ({
         ref={glowRef}
         className="absolute left-1/2 top-1/2 w-20 h-20 rounded-full transform -translate-x-1/2 -translate-y-1/2"
         style={{
-          backgroundColor:
-            theme === "dark"
-              ? "rgba(255, 255, 255, 0.12)"
-              : "rgba(34, 197, 197, 0.15)",
+          backgroundColor: isDark
+            ? "rgba(255, 255, 255, 0.12)"
+            : "rgba(34, 197, 197, 0.15)",
           filter: "blur(16px) brightness(1.5)",
           willChange: "transform",
-          boxShadow:
-            theme === "dark"
-              ? "0 0 20px rgba(255, 255, 255, 0.25), 0 0 40px rgba(255, 255, 255, 0.12)"
-              : "0 0 25px rgba(34, 197, 197, 0.2), 0 0 50px rgba(34, 197, 197, 0.1)",
+          boxShadow: isDark
+            ? "0 0 20px rgba(255, 255, 255, 0.25), 0 0 40px rgba(255, 255, 255, 0.12)"
+            : "0 0 25px rgba(34, 197, 197, 0.2), 0 0 50px rgba(34, 197, 197, 0.1)",
         }}
       />
     </div>

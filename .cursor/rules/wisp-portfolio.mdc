@@ -100,6 +100,12 @@ When creating new components:
 - Typography scaling for different screen sizes
 - Grid adaptations: Single column on mobile
 
+### **Wisp Cursor Behavior**
+- **Desktop Only**: Cursor only appears on desktop devices (screen width ≥ 768px)
+- **Mobile Disabled**: Automatically disabled on mobile devices and touch interfaces
+- **Error Handling**: Disabled when Next.js errors are present (build errors, runtime errors)
+- **Hydration Safe**: Prevents hydration mismatches with proper mounting detection
+
 ## 🔄 **Dynamic Requirements**
 **IMPORTANT**: When the user adds new requirements or mentions specific needs, update this rule file accordingly. For example:
 - If user says "use axios with best practices" → Add axios implementation guide to this rule
