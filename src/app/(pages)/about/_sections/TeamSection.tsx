@@ -27,7 +27,7 @@ const teamMembers = [
   {
     id: "marketing",
     initials: "PS",
-    name: "Prasiddha Sakya",
+    name: "Prasiddha Shakya",
     title: "Marketing & Research Director",
     description: "Driving market strategy and research initiatives",
     isCEO: false,
@@ -45,7 +45,7 @@ const teamMembers = [
   {
     id: "product",
     initials: "JS",
-    name: "Jay Sakya",
+    name: "Jay Shakya",
     title: "Product Strategy Director",
     description: "Leading product vision, research, and strategic development",
     isCEO: false,
