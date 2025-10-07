@@ -141,11 +141,10 @@ export function useImageSlideIn<T extends HTMLElement = HTMLElement>(
 
     const element = ref.current;
 
-    // Set initial state immediately when component mounts
+    // Set initial state - image starts as a thin line at the top
     gsap.set(element, {
-      y: "-100%",
-      opacity: 0,
-      clipPath: "inset(100% 0 0 0)",
+      clipPath: "inset(0% 0% 100% 0%)", // Start with only top visible
+      opacity: 1,
     });
 
     const animateIn = () => {
@@ -154,9 +153,7 @@ export function useImageSlideIn<T extends HTMLElement = HTMLElement>(
       }
 
       animationRef.current = gsap.to(element, {
-        y: 0,
-        opacity: 1,
-        clipPath: "inset(0% 0 0 0)",
+        clipPath: "inset(0% 0% 0% 0%)", // Expand to fill entire container
         duration,
         delay,
         ease,
@@ -174,9 +171,7 @@ export function useImageSlideIn<T extends HTMLElement = HTMLElement>(
       }
 
       animationRef.current = gsap.to(element, {
-        y: "-100%",
-        opacity: 0,
-        clipPath: "inset(100% 0 0 0)",
+        clipPath: "inset(0% 0% 100% 0%)", // Collapse back to thin line
         duration,
         delay,
         ease,
