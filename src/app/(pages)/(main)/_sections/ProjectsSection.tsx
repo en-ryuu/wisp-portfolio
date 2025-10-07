@@ -55,7 +55,6 @@ const projects = [
 export default function ProjectsSection() {
   const projectsContainerRef = useRef<HTMLElement | null>(null);
   const { projectRefs, imageRefs, contentRefs } = useStickyParallaxProjects({
-    projects,
     containerRef: projectsContainerRef as React.RefObject<HTMLElement>,
   });
 

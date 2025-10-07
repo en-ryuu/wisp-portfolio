@@ -22,9 +22,8 @@ interface UseStickyParallaxProjectsOptions {
 }
 
 export function useStickyParallaxProjects({
-  projects,
   containerRef,
-}: UseStickyParallaxProjectsOptions) {
+}: Omit<UseStickyParallaxProjectsOptions, "projects">) {
   const projectRefs = useRef<(HTMLDivElement | null)[]>([]);
   const imageRefs = useRef<(HTMLDivElement | null)[]>([]);
   const contentRefs = useRef<(HTMLDivElement | null)[]>([]);

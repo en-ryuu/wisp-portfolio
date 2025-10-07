@@ -220,16 +220,14 @@ const WispCursor: React.FC<WispCursorProps> = ({
         const targetBottom = rect.bottom - cursorCenterY;
 
         // Add subtle parallax based on mouse position
-        let parallaxX = 0;
-        let parallaxY = 0;
-
         if (mouseX !== undefined && mouseY !== undefined) {
           const targetCenterX = rect.left + rect.width / 2;
           const targetCenterY = rect.top + rect.height / 2;
           const mouseOffsetX = (mouseX - targetCenterX) * 0.0001;
           const mouseOffsetY = (mouseY - targetCenterY) * 0.0001;
-          parallaxX = mouseOffsetX;
-          parallaxY = mouseOffsetY;
+          // Parallax values calculated but not currently used
+          // Could be used for future parallax effects
+          console.debug("Parallax values:", mouseOffsetX, mouseOffsetY);
         }
 
         // Position glow elements to snap to the target element

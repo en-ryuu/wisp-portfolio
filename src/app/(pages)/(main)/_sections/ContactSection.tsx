@@ -42,7 +42,7 @@ export default function ContactSection() {
             ref={sectionSubtitleRef}
             className="text-2xl md:text-3xl font-light tracking-wider text-foreground/70"
           >
-            Let's Illuminate Together
+            Let&apos;s Illuminate Together
           </h3>
         </div>
 
@@ -55,8 +55,8 @@ export default function ContactSection() {
                   Get In Touch
                 </h4>
                 <p className="text-lg text-foreground/70 leading-relaxed">
-                  Ready to illuminate your next digital project? We're here to
-                  guide you through the darkness of complex development
+                  Ready to illuminate your next digital project? We&apos;re here
+                  to guide you through the darkness of complex development
                   challenges.
                 </p>
               </div>
