@@ -45,7 +45,7 @@ export default function ProjectTimeline({
       );
 
       // Animate timeline items
-      itemRefs.current.forEach((item, index) => {
+      itemRefs.current.forEach((item) => {
         if (!item) return;
 
         // Initial state
@@ -74,25 +74,23 @@ export default function ProjectTimeline({
       });
 
       // Animate phase indicators
-      gsap.utils
-        .toArray(".phase-indicator")
-        .forEach((indicator: any, index) => {
-          gsap.fromTo(
-            indicator,
-            { scale: 0, rotation: -180 },
-            {
-              scale: 1,
-              rotation: 0,
-              duration: 0.6,
-              ease: "back.out(1.7)",
-              delay: index * 0.2,
-              scrollTrigger: {
-                trigger: indicator,
-                start: "top 80%",
-              },
-            }
-          );
-        });
+      gsap.utils.toArray(".phase-indicator").forEach((indicator: unknown) => {
+        const element = indicator as Element;
+        gsap.fromTo(
+          element,
+          { scale: 0, rotation: -180 },
+          {
+            scale: 1,
+            rotation: 0,
+            duration: 0.6,
+            ease: "back.out(1.7)",
+            scrollTrigger: {
+              trigger: element,
+              start: "top 80%",
+            },
+          }
+        );
+      });
     }, containerRef);
 
     return () => ctx.revert();

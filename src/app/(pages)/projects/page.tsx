@@ -49,9 +49,10 @@ export default function ProjectsPage() {
 
     // Animate project items on scroll
     if (containerRef.current) {
-      gsap.utils.toArray(".project-item").forEach((item: any, index) => {
+      gsap.utils.toArray(".project-item").forEach((item: unknown) => {
+        const element = item as Element;
         gsap.fromTo(
-          item,
+          element,
           { y: 100, opacity: 0 },
           {
             y: 0,
@@ -59,7 +60,7 @@ export default function ProjectsPage() {
             duration: 1,
             ease: "power2.out",
             scrollTrigger: {
-              trigger: item,
+              trigger: element,
               start: "top 85%",
               end: "bottom 15%",
               toggleActions: "play none none reverse",
@@ -247,8 +248,8 @@ export default function ProjectsPage() {
             Ready to Illuminate?
           </h2>
           <p className="text-xl text-foreground/70 mb-16 max-w-3xl mx-auto">
-            Let's discuss how we can bring your vision to life with innovative
-            technology and exceptional design.
+            Let&apos;s discuss how we can bring your vision to life with
+            innovative technology and exceptional design.
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <Link

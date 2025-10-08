@@ -44,17 +44,18 @@ export default function ModernProjectTimeline({
       );
 
       // Animate timeline items with stagger
-      gsap.utils.toArray(".timeline-item").forEach((item: any, index) => {
+      gsap.utils.toArray(".timeline-item").forEach((item: unknown) => {
+        const element = item as Element;
         gsap.fromTo(
-          item,
-          { x: index % 2 === 0 ? -100 : 100, opacity: 0 },
+          element,
+          { x: 0, opacity: 0 },
           {
             x: 0,
             opacity: 1,
             duration: 0.8,
             ease: "power2.out",
             scrollTrigger: {
-              trigger: item,
+              trigger: element,
               start: "top 80%",
               end: "bottom 20%",
               toggleActions: "play none none reverse",
@@ -64,18 +65,18 @@ export default function ModernProjectTimeline({
       });
 
       // Animate phase indicators
-      gsap.utils.toArray(".phase-dot").forEach((dot: any, index) => {
+      gsap.utils.toArray(".phase-dot").forEach((dot: unknown) => {
+        const element = dot as Element;
         gsap.fromTo(
-          dot,
+          element,
           { scale: 0, rotation: -180 },
           {
             scale: 1,
             rotation: 0,
             duration: 0.6,
             ease: "back.out(1.7)",
-            delay: index * 0.2,
             scrollTrigger: {
-              trigger: dot,
+              trigger: element,
               start: "top 80%",
             },
           }

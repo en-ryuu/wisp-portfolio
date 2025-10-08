@@ -26,25 +26,7 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
   const resolvedParams = use(params);
   const project = projects.find((p) => p.id === resolvedParams.id);
 
-  if (!project) {
-    return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-4xl font-thin text-foreground mb-4">
-            Project Not Found
-          </h1>
-          <Link
-            href="/projects"
-            className="inline-flex items-center px-6 py-3 border border-foreground/20 text-foreground hover:border-foreground/40 transition-all duration-300"
-          >
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to Projects
-          </Link>
-        </div>
-      </div>
-    );
-  }
-
+  // All hooks must be called at the top level
   const titleRef = useTextReveal<HTMLHeadingElement>({
     delay: 0,
     duration: 0.8,
@@ -64,7 +46,7 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!containerRef.current) return;
+    if (!containerRef.current || !project) return;
 
     const ctx = gsap.context(() => {
       // Animate project image
@@ -83,30 +65,11 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
         }
       );
 
-      // Animate content sections
-      gsap.utils.toArray(".content-section").forEach((section: any, index) => {
-        gsap.fromTo(
-          section,
-          { y: 50, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 0.8,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: section,
-              start: "top 80%",
-              end: "bottom 20%",
-              toggleActions: "play none none reverse",
-            },
-          }
-        );
-      });
-
-      // Animate stats with proper initial state
-      gsap.utils.toArray(".stat-item").forEach((stat: any) => {
-        const number = stat.querySelector(".stat-number");
-        const finalValue = parseInt(number.textContent);
+      // Animate project stats
+      gsap.utils.toArray(".stat-item").forEach((stat: unknown) => {
+        const element = stat as Element;
+        const number = element.querySelector(".stat-number");
+        const finalValue = parseInt(number?.textContent || "0");
 
         // Set initial state - hide the number and set to 0
         gsap.set(number, {
@@ -118,7 +81,7 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
         // Create animation timeline
         const tl = gsap.timeline({
           scrollTrigger: {
-            trigger: stat,
+            trigger: element,
             start: "top 80%",
             toggleActions: "play none none reverse",
           },
@@ -145,6 +108,25 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
 
     return () => ctx.revert();
   }, [project]);
+
+  if (!project) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-4xl font-thin text-foreground mb-4">
+            Project Not Found
+          </h1>
+          <Link
+            href="/projects"
+            className="inline-flex items-center px-6 py-3 border border-foreground/20 text-foreground hover:border-foreground/40 transition-all duration-300"
+          >
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            Back to Projects
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div ref={containerRef} className="min-h-screen bg-background">
@@ -440,7 +422,7 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
             Interested in Similar Projects?
           </h2>
           <p className="text-lg text-foreground/70 mb-12 max-w-2xl mx-auto">
-            Let's discuss how we can create innovative solutions for your
+            Let&apos;s discuss how we can create innovative solutions for your
             business needs.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

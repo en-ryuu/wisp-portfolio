@@ -26,9 +26,10 @@ export default function CardProjectTimeline({
 
     const ctx = gsap.context(() => {
       // Animate cards with stagger
-      gsap.utils.toArray(".timeline-card").forEach((card: any, index) => {
+      gsap.utils.toArray(".timeline-card").forEach((card: unknown) => {
+        const element = card as Element;
         gsap.fromTo(
-          card,
+          element,
           { y: 100, opacity: 0, scale: 0.95 },
           {
             y: 0,
@@ -36,9 +37,8 @@ export default function CardProjectTimeline({
             scale: 1,
             duration: 0.8,
             ease: "power2.out",
-            delay: index * 0.2,
             scrollTrigger: {
-              trigger: card,
+              trigger: element,
               start: "top 85%",
               end: "bottom 15%",
               toggleActions: "play none none reverse",
@@ -50,18 +50,18 @@ export default function CardProjectTimeline({
       // Animate progress indicators
       gsap.utils
         .toArray(".progress-indicator")
-        .forEach((indicator: any, index) => {
+        .forEach((indicator: unknown) => {
+          const element = indicator as Element;
           gsap.fromTo(
-            indicator,
+            element,
             { scale: 0, rotation: -90 },
             {
               scale: 1,
               rotation: 0,
               duration: 0.6,
               ease: "back.out(1.7)",
-              delay: index * 0.3,
               scrollTrigger: {
-                trigger: indicator,
+                trigger: element,
                 start: "top 80%",
               },
             }

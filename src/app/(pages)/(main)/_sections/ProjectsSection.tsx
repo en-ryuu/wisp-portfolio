@@ -1,7 +1,6 @@
 "use client";
 import { useStickyParallaxProjects } from "@/hooks/useStickyParallaxProjects";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useRef } from "react";
 
 // Sample projects data - only showing first 2 for homepage
@@ -44,7 +43,7 @@ export default function ProjectsSection() {
     containerRef: projectsContainerRef as React.RefObject<HTMLElement>,
   });
 
-  const router = useRouter();
+  // const router = useRouter(); // Removed unused variable
 
   return (
     <section ref={projectsContainerRef} className="relative">
