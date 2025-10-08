@@ -1,4 +1,5 @@
 "use client";
+import ScrollIndicator from "@/components/ScrollIndicator";
 import { HeroSection, StatsSection, TeamSection } from "./_sections";
 
 export default function About() {
@@ -9,6 +10,7 @@ export default function About() {
         <StatsSection />
         <TeamSection />
       </div>
+      <ScrollIndicator variant="arrow" />
     </div>
   );
 }

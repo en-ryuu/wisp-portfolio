@@ -79,7 +79,7 @@ export default function HeroSection() {
       </div>
 
       {/* Hero Section */}
-      <div className="relative z-10 flex items-center justify-center min-h-screen px-6 pt-20">
+      <div className="relative z-10 flex items-center justify-center min-h-screen px-6">
         <div className="text-center max-w-5xl">
           <h1
             ref={titleRef}

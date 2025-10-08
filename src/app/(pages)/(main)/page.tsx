@@ -1,4 +1,5 @@
 "use client";
+import ScrollIndicator from "@/components/ScrollIndicator";
 import {
   AboutSection,
   ContactSection,
@@ -13,6 +14,7 @@ export default function Home() {
       <AboutSection />
       <ProjectsSection />
       <ContactSection />
+      <ScrollIndicator variant="default" />
     </div>
   );
 }

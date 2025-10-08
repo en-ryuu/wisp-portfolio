@@ -1,9 +1,11 @@
 "use client";
 import { useStickyParallaxProjects } from "@/hooks/useStickyParallaxProjects";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useRef } from "react";
 
-// Sample projects data
-const projects = [
+// Sample projects data - only showing first 2 for homepage
+const featuredProjects = [
   {
     id: "1",
     title: "Naafa",
@@ -34,22 +36,6 @@ const projects = [
       "TypeScript",
     ],
   },
-  {
-    id: "3",
-    title: "E-Commerce Platform",
-    description:
-      "A modern, scalable e-commerce solution built with Next.js and microservices architecture. Features include real-time inventory management, AI-powered recommendations, and seamless payment processing.",
-    image: "/api/placeholder/800/600",
-    technologies: ["Next.js", "TypeScript", "PostgreSQL", "Redis", "Stripe"],
-  },
-  {
-    id: "4",
-    title: "AI Analytics Dashboard",
-    description:
-      "An intelligent analytics platform that processes millions of data points to provide actionable insights. Built with machine learning algorithms and real-time data visualization.",
-    image: "/api/placeholder/800/600",
-    technologies: ["React", "Python", "TensorFlow", "D3.js", "WebSocket"],
-  },
 ];
 
 export default function ProjectsSection() {
@@ -57,6 +43,8 @@ export default function ProjectsSection() {
   const { projectRefs, imageRefs, contentRefs } = useStickyParallaxProjects({
     containerRef: projectsContainerRef as React.RefObject<HTMLElement>,
   });
+
+  const router = useRouter();
 
   return (
     <section ref={projectsContainerRef} className="relative">
@@ -72,8 +60,8 @@ export default function ProjectsSection() {
         </div>
       </div>
 
-      {/* Projects with Sticky Parallax */}
-      {projects.map((project, index) => (
+      {/* Featured Projects with Sticky Parallax */}
+      {featuredProjects.map((project, index) => (
         <div
           key={project.id}
           ref={(el) => {
@@ -141,17 +129,33 @@ export default function ProjectsSection() {
               </div>
 
               <div className="pt-6 lg:pt-8">
-                <button className="group relative px-6 py-3 lg:px-8 lg:py-4 border border-foreground/20 text-foreground font-medium tracking-wide transition-all duration-300 hover:border-foreground/40 hover:bg-foreground/5">
-                  <span className="relative z-10 text-sm lg:text-base">
-                    VIEW PROJECT
-                  </span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-foreground/5 to-foreground/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                </button>
+                <Link href={`/projects/${project.id}`}>
+                  <button className="group relative px-6 py-3 lg:px-8 lg:py-4 border border-foreground/20 text-foreground font-medium tracking-wide transition-all duration-300 hover:border-foreground/40 hover:bg-foreground/5">
+                    <span className="relative z-10 text-sm lg:text-base">
+                      VIEW PROJECT
+                    </span>
+                    <div className="absolute inset-0 bg-gradient-to-r from-foreground/5 to-foreground/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  </button>
+                </Link>
               </div>
             </div>
           </div>
         </div>
       ))}
+
+      {/* View All Projects Button */}
+      <div className="py-24 px-6">
+        <div className="max-w-7xl mx-auto text-center">
+          <Link href="/projects">
+            <button className="group relative px-8 py-4 lg:px-12 lg:py-6 border border-foreground/20 text-foreground font-medium tracking-wide transition-all duration-300 hover:border-foreground/40 hover:bg-foreground/5">
+              <span className="relative z-10 text-lg lg:text-xl">
+                VIEW ALL PROJECTS
+              </span>
+              <div className="absolute inset-0 bg-gradient-to-r from-foreground/5 to-foreground/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </button>
+          </Link>
+        </div>
+      </div>
     </section>
   );
 }
