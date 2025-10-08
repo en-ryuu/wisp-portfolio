@@ -69,8 +69,6 @@ export default function ProjectTimeline({
             toggleActions: "play none none reverse",
           },
         });
-
-        // Removed hover animations for cleaner timeline experience
       });
 
       // Animate phase indicators
@@ -97,13 +95,13 @@ export default function ProjectTimeline({
   }, [timeline]);
 
   return (
-    <div ref={containerRef} className="relative py-16 px-6">
+    <div ref={containerRef} className="relative py-12 md:py-16 px-4 md:px-6">
       <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-thin tracking-tight text-foreground mb-4">
+        <div className="text-center mb-12 md:mb-16">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-thin tracking-tight text-foreground mb-4">
             Project Journey
           </h2>
-          <p className="text-lg text-foreground/70 max-w-2xl mx-auto">
+          <p className="text-base md:text-lg text-foreground/70 max-w-2xl mx-auto px-4">
             A detailed timeline of the {projectTitle} development process,
             showcasing challenges, solutions, and milestones.
           </p>
@@ -113,11 +111,11 @@ export default function ProjectTimeline({
         <div className="relative">
           <div
             ref={lineRef}
-            className="absolute left-8 top-0 w-px h-full bg-gradient-to-b from-foreground/20 via-foreground/40 to-foreground/20"
+            className="absolute left-4 md:left-8 top-0 w-px h-full bg-gradient-to-b from-foreground/20 via-foreground/40 to-foreground/20"
           ></div>
 
           {/* Timeline Items */}
-          <div className="space-y-16">
+          <div className="space-y-12 md:space-y-16">
             {timeline.map((item, index) => (
               <div
                 key={item.id}
@@ -127,26 +125,26 @@ export default function ProjectTimeline({
                 className="relative flex items-start group"
               >
                 {/* Phase Indicator */}
-                <div className="absolute left-6 w-4 h-4 bg-foreground rounded-full border-4 border-background shadow-lg phase-indicator z-10"></div>
+                <div className="absolute left-2 md:left-6 w-3 h-3 md:w-4 md:h-4 bg-foreground rounded-full border-2 md:border-4 border-background shadow-lg phase-indicator z-10"></div>
 
                 {/* Content Card */}
-                <div className="ml-16 flex-1">
-                  <div className="bg-background border border-foreground/10 rounded-2xl p-8 hover:border-foreground/20 transition-all duration-300">
+                <div className="ml-8 md:ml-16 flex-1">
+                  <div className="bg-background border border-foreground/10 rounded-xl md:rounded-2xl p-4 md:p-8 hover:border-foreground/20 transition-all duration-300">
                     {/* Phase Header */}
-                    <div className="flex items-center justify-between mb-6">
+                    <div className="flex flex-col md:flex-row md:items-center justify-between mb-4 md:mb-6 gap-2 md:gap-0">
                       <div>
-                        <span className="text-sm text-foreground/60 tracking-wider uppercase">
+                        <span className="text-xs md:text-sm text-foreground/60 tracking-wider uppercase">
                           Phase {index + 1}
                         </span>
-                        <h3 className="text-2xl font-thin tracking-wide text-foreground mt-1">
+                        <h3 className="text-lg md:text-2xl font-thin tracking-wide text-foreground mt-1">
                           {item.title}
                         </h3>
-                        <p className="text-foreground/70 mt-2">
+                        <p className="text-sm md:text-base text-foreground/70 mt-2">
                           {item.description}
                         </p>
                       </div>
-                      <div className="text-right">
-                        <div className="text-sm text-foreground/60">
+                      <div className="text-left md:text-right">
+                        <div className="text-xs md:text-sm text-foreground/60">
                           {item.duration}
                         </div>
                         <div className="text-xs text-foreground/50">
@@ -156,20 +154,20 @@ export default function ProjectTimeline({
                     </div>
 
                     {/* Phase Details */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
                       {/* Challenges */}
                       <div>
-                        <h4 className="text-lg font-medium text-foreground mb-4 flex items-center">
-                          <span className="w-2 h-2 bg-red-500 rounded-full mr-3"></span>
+                        <h4 className="text-base md:text-lg font-medium text-foreground mb-3 md:mb-4 flex items-center">
+                          <span className="w-1.5 h-1.5 md:w-2 md:h-2 bg-red-500 rounded-full mr-2 md:mr-3"></span>
                           Challenges
                         </h4>
                         <ul className="space-y-2">
                           {item.challenges.map((challenge, idx) => (
                             <li
                               key={idx}
-                              className="text-foreground/70 text-sm flex items-start"
+                              className="text-foreground/70 text-xs md:text-sm flex items-start"
                             >
-                              <span className="w-1.5 h-1.5 bg-red-500/60 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                              <span className="w-1 h-1 md:w-1.5 md:h-1.5 bg-red-500/60 rounded-full mt-1.5 md:mt-2 mr-2 md:mr-3 flex-shrink-0"></span>
                               {challenge}
                             </li>
                           ))}
@@ -178,17 +176,17 @@ export default function ProjectTimeline({
 
                       {/* Solutions */}
                       <div>
-                        <h4 className="text-lg font-medium text-foreground mb-4 flex items-center">
-                          <span className="w-2 h-2 bg-green-500 rounded-full mr-3"></span>
+                        <h4 className="text-base md:text-lg font-medium text-foreground mb-3 md:mb-4 flex items-center">
+                          <span className="w-1.5 h-1.5 md:w-2 md:h-2 bg-green-500 rounded-full mr-2 md:mr-3"></span>
                           Solutions
                         </h4>
                         <ul className="space-y-2">
                           {item.solutions.map((solution, idx) => (
                             <li
                               key={idx}
-                              className="text-foreground/70 text-sm flex items-start"
+                              className="text-foreground/70 text-xs md:text-sm flex items-start"
                             >
-                              <span className="w-1.5 h-1.5 bg-green-500/60 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                              <span className="w-1 h-1 md:w-1.5 md:h-1.5 bg-green-500/60 rounded-full mt-1.5 md:mt-2 mr-2 md:mr-3 flex-shrink-0"></span>
                               {solution}
                             </li>
                           ))}
@@ -197,15 +195,15 @@ export default function ProjectTimeline({
                     </div>
 
                     {/* Technologies Used */}
-                    <div className="mt-8 pt-6 border-t border-foreground/10">
-                      <h4 className="text-lg font-medium text-foreground mb-4">
+                    <div className="mt-6 md:mt-8 pt-4 md:pt-6 border-t border-foreground/10">
+                      <h4 className="text-base md:text-lg font-medium text-foreground mb-3 md:mb-4">
                         Technologies Used
                       </h4>
-                      <div className="flex flex-wrap gap-2">
+                      <div className="flex flex-wrap gap-1.5 md:gap-2">
                         {item.technologies.map((tech) => (
                           <span
                             key={tech}
-                            className="px-3 py-1 bg-foreground/10 text-foreground/70 text-xs rounded-full border border-foreground/20"
+                            className="px-2 md:px-3 py-1 bg-foreground/10 text-foreground/70 text-xs rounded-full border border-foreground/20"
                           >
                             {tech}
                           </span>

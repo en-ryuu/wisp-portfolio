@@ -65,44 +65,31 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
         }
       );
 
-      // Animate project stats
+      // Animate project stats - start immediately, no scroll trigger
       gsap.utils.toArray(".stat-item").forEach((stat: unknown) => {
         const element = stat as Element;
         const number = element.querySelector(".stat-number");
         const finalValue = parseInt(number?.textContent || "0");
 
-        // Set initial state - hide the number and set to 0
+        // Set initial state - show the number but start from 0
         gsap.set(number, {
           textContent: 0,
-          opacity: 0,
-          scale: 0.8,
-        });
-
-        // Create animation timeline
-        const tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: element,
-            start: "top 80%",
-            toggleActions: "play none none reverse",
-          },
-        });
-
-        // Animate in with number counting
-        tl.to(number, {
           opacity: 1,
           scale: 1,
-          duration: 0.5,
+        });
+
+        // Create animation timeline that starts immediately
+        const tl = gsap.timeline({
+          delay: 0.5, // Small delay to let the section fade in first
+        });
+
+        // Animate number counting
+        tl.to(number, {
+          textContent: finalValue,
+          duration: 1.5,
           ease: "power2.out",
-        }).to(
-          number,
-          {
-            textContent: finalValue,
-            duration: 1.5,
-            ease: "power2.out",
-            snap: { textContent: 1 },
-          },
-          "-=0.3"
-        );
+          snap: { textContent: 1 },
+        });
       });
     }, containerRef);
 
@@ -131,13 +118,14 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
   return (
     <div ref={containerRef} className="min-h-screen bg-background">
       {/* Back Button */}
-      <div className="fixed top-24 left-6 z-50">
+      <div className="fixed top-20 left-4 md:top-24 md:left-6 z-50">
         <Link
           href="/projects"
-          className="inline-flex items-center px-4 py-2 border border-foreground/20 text-foreground/70 hover:text-foreground hover:border-foreground/40 transition-all duration-300 bg-background/80 backdrop-blur-sm"
+          className="inline-flex items-center px-3 py-2 md:px-4 md:py-2 border border-foreground/20 text-foreground/70 hover:text-foreground hover:border-foreground/40 transition-all duration-300 bg-background/80 backdrop-blur-sm text-sm md:text-base"
         >
-          <ArrowLeft className="w-4 h-4 mr-2" />
-          Back to Projects
+          <ArrowLeft className="w-3 h-3 md:w-4 md:h-4 mr-2" />
+          <span className="hidden sm:inline">Back to Projects</span>
+          <span className="sm:hidden">Back</span>
         </Link>
       </div>
 
@@ -406,15 +394,21 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
       </section>
 
       {/* Project Timeline */}
-      <ProjectTimeline
-        timeline={project.timeline}
-        projectTitle={project.title}
-      />
+      {/* Timeline - Hide ModernProjectTimeline on mobile, use ProjectTimeline */}
+      <div className="hidden md:block">
+        <ModernProjectTimeline
+          timeline={project.timeline}
+          projectTitle={project.title}
+        />
+      </div>
 
-      <ModernProjectTimeline
-        timeline={project.timeline}
-        projectTitle={project.title}
-      />
+      {/* Mobile Timeline */}
+      <div className="block md:hidden">
+        <ProjectTimeline
+          timeline={project.timeline}
+          projectTitle={project.title}
+        />
+      </div>
       {/* Call to Action */}
       <section className="py-24 px-6">
         <div className="max-w-4xl mx-auto text-center">
