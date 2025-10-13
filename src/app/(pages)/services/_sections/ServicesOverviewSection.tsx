@@ -54,13 +54,15 @@ export default function ServicesOverviewSection() {
     reverse: true,
   });
 
-  const categoryRefs = useIntersectionReveal<HTMLDivElement[]>({
-    delay: 0.6,
-    duration: 0.8,
-    from: "bottom",
-    reverse: true,
-    stagger: 0.1,
-  });
+  // Create individual refs for each category
+  const categoryRef1 = useIntersectionReveal<HTMLDivElement>({ delay: 0.6, duration: 0.8, from: "bottom", reverse: true, stagger: 0.1 });
+  const categoryRef2 = useIntersectionReveal<HTMLDivElement>({ delay: 0.7, duration: 0.8, from: "bottom", reverse: true, stagger: 0.1 });
+  const categoryRef3 = useIntersectionReveal<HTMLDivElement>({ delay: 0.8, duration: 0.8, from: "bottom", reverse: true, stagger: 0.1 });
+  const categoryRef4 = useIntersectionReveal<HTMLDivElement>({ delay: 0.9, duration: 0.8, from: "bottom", reverse: true, stagger: 0.1 });
+  const categoryRef5 = useIntersectionReveal<HTMLDivElement>({ delay: 1.0, duration: 0.8, from: "bottom", reverse: true, stagger: 0.1 });
+  const categoryRef6 = useIntersectionReveal<HTMLDivElement>({ delay: 1.1, duration: 0.8, from: "bottom", reverse: true, stagger: 0.1 });
+  
+  const categoryRefs = [categoryRef1, categoryRef2, categoryRef3, categoryRef4, categoryRef5, categoryRef6];
 
   return (
     <section className="relative py-24 px-6">
@@ -86,11 +88,7 @@ export default function ServicesOverviewSection() {
           {serviceCategories.map((category, index) => (
             <div
               key={index}
-              ref={(el) => {
-                if (categoryRefs.current) {
-                  categoryRefs.current[index] = el;
-                }
-              }}
+              ref={categoryRefs[index]}
               className="group p-8 bg-gradient-to-br from-background via-background to-muted/20 rounded-lg hover:scale-105 transition-all duration-300 cursor-pointer"
             >
               <h4 className="text-2xl font-light tracking-wide text-foreground mb-4 group-hover:text-foreground/80 transition-colors duration-300">

@@ -103,13 +103,15 @@ export default function ServiceCategoriesSection() {
     reverse: true,
   });
 
-  const categoryRefs = useIntersectionReveal<HTMLDivElement[]>({
-    delay: 0.6,
-    duration: 0.8,
-    from: "bottom",
-    reverse: true,
-    stagger: 0.1,
-  });
+  // Create individual refs for each category
+  const categoryRef1 = useIntersectionReveal<HTMLDivElement>({ delay: 0.6, duration: 0.8, from: "bottom", reverse: true, stagger: 0.1 });
+  const categoryRef2 = useIntersectionReveal<HTMLDivElement>({ delay: 0.7, duration: 0.8, from: "bottom", reverse: true, stagger: 0.1 });
+  const categoryRef3 = useIntersectionReveal<HTMLDivElement>({ delay: 0.8, duration: 0.8, from: "bottom", reverse: true, stagger: 0.1 });
+  const categoryRef4 = useIntersectionReveal<HTMLDivElement>({ delay: 0.9, duration: 0.8, from: "bottom", reverse: true, stagger: 0.1 });
+  const categoryRef5 = useIntersectionReveal<HTMLDivElement>({ delay: 1.0, duration: 0.8, from: "bottom", reverse: true, stagger: 0.1 });
+  const categoryRef6 = useIntersectionReveal<HTMLDivElement>({ delay: 1.1, duration: 0.8, from: "bottom", reverse: true, stagger: 0.1 });
+  
+  const categoryRefs = [categoryRef1, categoryRef2, categoryRef3, categoryRef4, categoryRef5, categoryRef6];
 
   return (
     <section className="relative py-24 px-6 bg-gradient-to-br from-background via-background to-muted/10">
@@ -135,11 +137,7 @@ export default function ServiceCategoriesSection() {
           {detailedServices.map((category, index) => (
             <div
               key={index}
-              ref={(el) => {
-                if (categoryRefs.current) {
-                  categoryRefs.current[index] = el;
-                }
-              }}
+              ref={categoryRefs[index]}
               className="group"
             >
               <div className="grid lg:grid-cols-2 gap-12 items-center">

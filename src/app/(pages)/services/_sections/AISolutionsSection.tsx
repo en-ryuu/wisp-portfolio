@@ -106,13 +106,15 @@ export default function AISolutionsSection() {
     reverse: true,
   });
 
-  const solutionRefs = useIntersectionReveal<HTMLDivElement[]>({
-    delay: 0.6,
-    duration: 0.8,
-    from: "bottom",
-    reverse: true,
-    stagger: 0.1,
-  });
+  // Create individual refs for each solution
+  const solutionRef1 = useIntersectionReveal<HTMLDivElement>({ delay: 0.6, duration: 0.8, from: "bottom", reverse: true, stagger: 0.1 });
+  const solutionRef2 = useIntersectionReveal<HTMLDivElement>({ delay: 0.7, duration: 0.8, from: "bottom", reverse: true, stagger: 0.1 });
+  const solutionRef3 = useIntersectionReveal<HTMLDivElement>({ delay: 0.8, duration: 0.8, from: "bottom", reverse: true, stagger: 0.1 });
+  const solutionRef4 = useIntersectionReveal<HTMLDivElement>({ delay: 0.9, duration: 0.8, from: "bottom", reverse: true, stagger: 0.1 });
+  const solutionRef5 = useIntersectionReveal<HTMLDivElement>({ delay: 1.0, duration: 0.8, from: "bottom", reverse: true, stagger: 0.1 });
+  const solutionRef6 = useIntersectionReveal<HTMLDivElement>({ delay: 1.1, duration: 0.8, from: "bottom", reverse: true, stagger: 0.1 });
+  
+  const solutionRefs = [solutionRef1, solutionRef2, solutionRef3, solutionRef4, solutionRef5, solutionRef6];
 
   return (
     <section className="relative py-24 px-6">
@@ -138,11 +140,7 @@ export default function AISolutionsSection() {
           {aiSolutions.map((solution, index) => (
             <div
               key={index}
-              ref={(el) => {
-                if (solutionRefs.current) {
-                  solutionRefs.current[index] = el;
-                }
-              }}
+              ref={solutionRefs[index]}
               className="group p-8 bg-gradient-to-br from-background via-background to-muted/20 rounded-lg hover:scale-105 transition-all duration-300 cursor-pointer border border-foreground/10 hover:border-foreground/20"
             >
               <h4 className="text-2xl font-light tracking-wide text-foreground mb-4 group-hover:text-foreground/80 transition-colors duration-300">

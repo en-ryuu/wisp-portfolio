@@ -97,13 +97,15 @@ export default function ProcessSection() {
     reverse: true,
   });
 
-  const stepRefs = useIntersectionReveal<HTMLDivElement[]>({
-    delay: 0.6,
-    duration: 0.8,
-    from: "bottom",
-    reverse: true,
-    stagger: 0.1,
-  });
+  // Create individual refs for each step
+  const stepRef1 = useIntersectionReveal<HTMLDivElement>({ delay: 0.6, duration: 0.8, from: "bottom", reverse: true, stagger: 0.1 });
+  const stepRef2 = useIntersectionReveal<HTMLDivElement>({ delay: 0.7, duration: 0.8, from: "bottom", reverse: true, stagger: 0.1 });
+  const stepRef3 = useIntersectionReveal<HTMLDivElement>({ delay: 0.8, duration: 0.8, from: "bottom", reverse: true, stagger: 0.1 });
+  const stepRef4 = useIntersectionReveal<HTMLDivElement>({ delay: 0.9, duration: 0.8, from: "bottom", reverse: true, stagger: 0.1 });
+  const stepRef5 = useIntersectionReveal<HTMLDivElement>({ delay: 1.0, duration: 0.8, from: "bottom", reverse: true, stagger: 0.1 });
+  const stepRef6 = useIntersectionReveal<HTMLDivElement>({ delay: 1.1, duration: 0.8, from: "bottom", reverse: true, stagger: 0.1 });
+  
+  const stepRefs = [stepRef1, stepRef2, stepRef3, stepRef4, stepRef5, stepRef6];
 
   return (
     <section className="relative py-24 px-6 bg-gradient-to-br from-background via-background to-muted/10">
@@ -129,11 +131,7 @@ export default function ProcessSection() {
           {processSteps.map((step, index) => (
             <div
               key={index}
-              ref={(el) => {
-                if (stepRefs.current) {
-                  stepRefs.current[index] = el;
-                }
-              }}
+              ref={stepRefs[index]}
               className="group"
             >
               <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -191,7 +189,7 @@ export default function ProcessSection() {
             </h4>
             <p className="text-foreground/70 mb-6 max-w-3xl mx-auto">
               We believe in transparent communication and collaborative
-              development. Throughout the entire process, you'll have direct
+              development. Throughout the entire process, you&apos;ll have direct
               access to our team, regular progress updates, and the ability to
               provide feedback at every stage.
             </p>
