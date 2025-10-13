@@ -19,7 +19,7 @@ export default function HeroSection() {
   });
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-6 pt-24 bg-gradient-to-br from-background via-background to-muted/10">
+    <section className="relative min-h-screen flex items-center justify-center px-6 bg-gradient-to-br from-background via-background to-muted/10">
       <div className="max-w-6xl mx-auto text-center">
         <h1
           ref={titleRef}

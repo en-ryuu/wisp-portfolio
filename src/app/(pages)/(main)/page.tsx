@@ -1,11 +1,9 @@
 "use client";
 import ScrollIndicator from "@/components/ScrollIndicator";
-import {
-  AboutSection,
-  ContactSection,
-  HeroSection,
-  ProjectsSection,
-} from "./_sections";
+import AboutSection from "./_sections/AboutSection";
+import ContactSection from "./_sections/ContactSection";
+import HeroSection from "./_sections/HeroSection";
+import ProjectsSection from "./_sections/ProjectsSection";
 
 export default function Home() {
   return (

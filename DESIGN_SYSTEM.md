@@ -100,6 +100,7 @@ bg-gradient-to-tl from-background via-background to-muted/10
 - **Consistent spacing**: Use Tailwind spacing scale
 - **Animation timing**: 300ms for interactions, 800ms+ for reveals
 - **Loading states**: Always provide visual feedback
+- **Direct imports**: Always import components directly from their files, never use index.ts barrel exports
 
 ## 📝 **Content Guidelines**
 - **Professional tone**: Technical but accessible

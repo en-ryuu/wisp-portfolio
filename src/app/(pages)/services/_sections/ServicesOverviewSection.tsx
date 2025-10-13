@@ -1,68 +1,34 @@
 "use client";
-import { useIntersectionReveal } from "@/hooks/useIntersectionReveal";
-
-const serviceCategories = [
-  {
-    title: "Web Development",
-    description:
-      "Modern, responsive websites and web applications built with cutting-edge technologies.",
-    technologies: ["React", "Next.js", "Vue.js", "Node.js", "TypeScript"],
-  },
-  {
-    title: "Mobile Development",
-    description:
-      "Native and cross-platform mobile applications for iOS and Android.",
-    technologies: ["React Native", "Flutter", "Swift", "Kotlin", "Expo"],
-  },
-  {
-    title: "Backend Systems",
-    description:
-      "Robust server-side applications, APIs, and microservices architecture.",
-    technologies: ["Node.js", "Python", "Java", "Go", "PostgreSQL", "MongoDB"],
-  },
-  {
-    title: "Cloud Solutions",
-    description: "Scalable cloud infrastructure and deployment strategies.",
-    technologies: ["AWS", "Azure", "Google Cloud", "Docker", "Kubernetes"],
-  },
-  {
-    title: "AI & Machine Learning",
-    description:
-      "Intelligent solutions powered by artificial intelligence and data science.",
-    technologies: ["TensorFlow", "PyTorch", "OpenAI", "LangChain", "Python"],
-  },
-  {
-    title: "Enterprise Software",
-    description:
-      "Custom business applications, ERP systems, and enterprise integrations.",
-    technologies: ["Java", "C#", ".NET", "Oracle", "SAP", "Salesforce"],
-  },
-];
+import { serviceCategories } from "@/config/services";
+import { useGSAPStagger } from "@/hooks/useGSAPStagger";
+import { useSmoothReveal } from "@/hooks/useSmoothReveal";
 
 export default function ServicesOverviewSection() {
-  const sectionTitleRef = useIntersectionReveal<HTMLHeadingElement>({
+  const sectionTitleRef = useSmoothReveal<HTMLHeadingElement>({
+    delay: 0.2,
+    duration: 1.0,
+    from: "bottom",
+    reverse: true,
+  });
+
+  const sectionSubtitleRef = useSmoothReveal<HTMLHeadingElement>({
+    delay: 0.4,
+    duration: 1.0,
+    from: "bottom",
+    reverse: true,
+  });
+
+  // Use GSAP staggered animation for cards
+  const cardsContainerRef = useGSAPStagger<HTMLDivElement>({
     delay: 0.2,
     duration: 0.8,
     from: "bottom",
     reverse: true,
+    stagger: 0.08,
+    scale: 0.96,
+    threshold: 0.1,
+    y: 40,
   });
-
-  const sectionSubtitleRef = useIntersectionReveal<HTMLHeadingElement>({
-    delay: 0.4,
-    duration: 0.8,
-    from: "bottom",
-    reverse: true,
-  });
-
-  // Create individual refs for each category
-  const categoryRef1 = useIntersectionReveal<HTMLDivElement>({ delay: 0.6, duration: 0.8, from: "bottom", reverse: true, stagger: 0.1 });
-  const categoryRef2 = useIntersectionReveal<HTMLDivElement>({ delay: 0.7, duration: 0.8, from: "bottom", reverse: true, stagger: 0.1 });
-  const categoryRef3 = useIntersectionReveal<HTMLDivElement>({ delay: 0.8, duration: 0.8, from: "bottom", reverse: true, stagger: 0.1 });
-  const categoryRef4 = useIntersectionReveal<HTMLDivElement>({ delay: 0.9, duration: 0.8, from: "bottom", reverse: true, stagger: 0.1 });
-  const categoryRef5 = useIntersectionReveal<HTMLDivElement>({ delay: 1.0, duration: 0.8, from: "bottom", reverse: true, stagger: 0.1 });
-  const categoryRef6 = useIntersectionReveal<HTMLDivElement>({ delay: 1.1, duration: 0.8, from: "bottom", reverse: true, stagger: 0.1 });
-  
-  const categoryRefs = [categoryRef1, categoryRef2, categoryRef3, categoryRef4, categoryRef5, categoryRef6];
 
   return (
     <section className="relative py-24 px-6">
@@ -84,11 +50,14 @@ export default function ServicesOverviewSection() {
         </div>
 
         {/* Service Categories Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div
+          ref={cardsContainerRef}
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
           {serviceCategories.map((category, index) => (
             <div
               key={index}
-              ref={categoryRefs[index]}
+              data-stagger-item
               className="group p-8 bg-gradient-to-br from-background via-background to-muted/20 rounded-lg hover:scale-105 transition-all duration-300 cursor-pointer"
             >
               <h4 className="text-2xl font-light tracking-wide text-foreground mb-4 group-hover:text-foreground/80 transition-colors duration-300">

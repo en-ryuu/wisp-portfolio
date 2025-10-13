@@ -1,8 +1,9 @@
 "use client";
+import { stats } from "@/config/about";
 import { useStaggeredTextReveal } from "@/hooks/useTextReveal";
 
 export default function StatsSection() {
-  const statsRefs = useStaggeredTextReveal<HTMLDivElement>(3, {
+  const statsRefs = useStaggeredTextReveal<HTMLDivElement>(stats.length, {
     delay: 1.2,
     stagger: 0.2,
     from: "bottom",
@@ -10,18 +11,17 @@ export default function StatsSection() {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-24 text-center">
-      <div ref={statsRefs[0]}>
-        <div className="text-5xl font-light text-foreground mb-3">99.7%</div>
-        <div className="text-foreground/60 text-lg">ACCURACY</div>
-      </div>
-      <div ref={statsRefs[1]}>
-        <div className="text-5xl font-light text-foreground mb-3">10TB</div>
-        <div className="text-foreground/60 text-lg">DATA PROCESSED</div>
-      </div>
-      <div ref={statsRefs[2]}>
-        <div className="text-5xl font-light text-foreground mb-3">24/7</div>
-        <div className="text-foreground/60 text-lg">OPERATIONAL</div>
-      </div>
+      {stats.map((stat, index) => (
+        <div key={index} ref={statsRefs[index]}>
+          <div className="text-5xl font-light text-foreground mb-3">
+            {stat.value}
+          </div>
+          <div className="text-foreground/60 text-lg">{stat.label}</div>
+          <div className="text-foreground/40 text-sm mt-2">
+            {stat.description}
+          </div>
+        </div>
+      ))}
     </div>
   );
 }

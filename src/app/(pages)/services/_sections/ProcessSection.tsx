@@ -1,110 +1,66 @@
 "use client";
-import { useIntersectionReveal } from "@/hooks/useIntersectionReveal";
-
-const processSteps = [
-  {
-    step: "01",
-    title: "Discovery & Planning",
-    description:
-      "We begin by understanding your vision, requirements, and business objectives through comprehensive discovery sessions.",
-    activities: [
-      "Requirements Analysis",
-      "Technical Architecture Planning",
-      "Timeline & Resource Planning",
-      "Risk Assessment",
-      "Stakeholder Alignment",
-    ],
-  },
-  {
-    step: "02",
-    title: "Design & Prototyping",
-    description:
-      "Creating intuitive user experiences and technical blueprints that align with your brand and user needs.",
-    activities: [
-      "User Experience Design",
-      "Technical Architecture",
-      "Prototype Development",
-      "Design System Creation",
-      "User Testing",
-    ],
-  },
-  {
-    step: "03",
-    title: "Development & Integration",
-    description:
-      "Building robust, scalable solutions using modern technologies and best practices.",
-    activities: [
-      "Agile Development",
-      "Code Quality Assurance",
-      "Third-party Integrations",
-      "API Development",
-      "Database Design",
-    ],
-  },
-  {
-    step: "04",
-    title: "Testing & Quality Assurance",
-    description:
-      "Comprehensive testing to ensure reliability, performance, and security of your solution.",
-    activities: [
-      "Unit & Integration Testing",
-      "Performance Testing",
-      "Security Audits",
-      "User Acceptance Testing",
-      "Bug Fixing & Optimization",
-    ],
-  },
-  {
-    step: "05",
-    title: "Deployment & Launch",
-    description:
-      "Seamless deployment to production with monitoring and support for a successful launch.",
-    activities: [
-      "Production Deployment",
-      "Performance Monitoring",
-      "User Training",
-      "Documentation",
-      "Launch Support",
-    ],
-  },
-  {
-    step: "06",
-    title: "Maintenance & Growth",
-    description:
-      "Ongoing support, updates, and enhancements to ensure your solution continues to evolve with your business.",
-    activities: [
-      "24/7 Monitoring",
-      "Regular Updates",
-      "Feature Enhancements",
-      "Performance Optimization",
-      "Technical Support",
-    ],
-  },
-];
+import { processSteps } from "@/config/services";
+import { useSmoothReveal } from "@/hooks/useSmoothReveal";
 
 export default function ProcessSection() {
-  const sectionTitleRef = useIntersectionReveal<HTMLHeadingElement>({
+  const sectionTitleRef = useSmoothReveal<HTMLHeadingElement>({
     delay: 0.2,
-    duration: 0.8,
+    duration: 1.0,
     from: "bottom",
     reverse: true,
   });
 
-  const sectionSubtitleRef = useIntersectionReveal<HTMLHeadingElement>({
+  const sectionSubtitleRef = useSmoothReveal<HTMLHeadingElement>({
     delay: 0.4,
-    duration: 0.8,
+    duration: 1.0,
     from: "bottom",
     reverse: true,
   });
 
-  // Create individual refs for each step
-  const stepRef1 = useIntersectionReveal<HTMLDivElement>({ delay: 0.6, duration: 0.8, from: "bottom", reverse: true, stagger: 0.1 });
-  const stepRef2 = useIntersectionReveal<HTMLDivElement>({ delay: 0.7, duration: 0.8, from: "bottom", reverse: true, stagger: 0.1 });
-  const stepRef3 = useIntersectionReveal<HTMLDivElement>({ delay: 0.8, duration: 0.8, from: "bottom", reverse: true, stagger: 0.1 });
-  const stepRef4 = useIntersectionReveal<HTMLDivElement>({ delay: 0.9, duration: 0.8, from: "bottom", reverse: true, stagger: 0.1 });
-  const stepRef5 = useIntersectionReveal<HTMLDivElement>({ delay: 1.0, duration: 0.8, from: "bottom", reverse: true, stagger: 0.1 });
-  const stepRef6 = useIntersectionReveal<HTMLDivElement>({ delay: 1.1, duration: 0.8, from: "bottom", reverse: true, stagger: 0.1 });
-  
+  // Create individual refs for each step with smooth animations
+  const stepRef1 = useSmoothReveal<HTMLDivElement>({
+    delay: 0.4,
+    duration: 1.2,
+    from: "bottom",
+    reverse: true,
+    scale: 0.98,
+  });
+  const stepRef2 = useSmoothReveal<HTMLDivElement>({
+    delay: 0.5,
+    duration: 1.2,
+    from: "bottom",
+    reverse: true,
+    scale: 0.98,
+  });
+  const stepRef3 = useSmoothReveal<HTMLDivElement>({
+    delay: 0.6,
+    duration: 1.2,
+    from: "bottom",
+    reverse: true,
+    scale: 0.98,
+  });
+  const stepRef4 = useSmoothReveal<HTMLDivElement>({
+    delay: 0.7,
+    duration: 1.2,
+    from: "bottom",
+    reverse: true,
+    scale: 0.98,
+  });
+  const stepRef5 = useSmoothReveal<HTMLDivElement>({
+    delay: 0.8,
+    duration: 1.2,
+    from: "bottom",
+    reverse: true,
+    scale: 0.98,
+  });
+  const stepRef6 = useSmoothReveal<HTMLDivElement>({
+    delay: 0.9,
+    duration: 1.2,
+    from: "bottom",
+    reverse: true,
+    scale: 0.98,
+  });
+
   const stepRefs = [stepRef1, stepRef2, stepRef3, stepRef4, stepRef5, stepRef6];
 
   return (
@@ -129,11 +85,7 @@ export default function ProcessSection() {
         {/* Process Steps */}
         <div className="space-y-16">
           {processSteps.map((step, index) => (
-            <div
-              key={index}
-              ref={stepRefs[index]}
-              className="group"
-            >
+            <div key={index} ref={stepRefs[index]} className="group">
               <div className="grid lg:grid-cols-2 gap-12 items-center">
                 {/* Content */}
                 <div className={`${index % 2 === 1 ? "lg:order-2" : ""}`}>
@@ -167,10 +119,10 @@ export default function ProcessSection() {
 
                 {/* Visual Placeholder */}
                 <div className={`${index % 2 === 1 ? "lg:order-1" : ""}`}>
-                  <div className="relative h-80 bg-gradient-to-br from-foreground/10 via-foreground/5 to-transparent rounded-lg overflow-hidden group-hover:scale-105 transition-transform duration-500">
-                    <div className="absolute inset-0 bg-gradient-to-br from-foreground/20 to-transparent"></div>
+                  <div className="relative h-80 bg-gradient-to-br from-foreground/10 via-foreground/5 to-transparent rounded-lg overflow-hidden group-hover:scale-[1.02] transition-all duration-700 ease-out">
+                    <div className="absolute inset-0 bg-gradient-to-br from-foreground/20 to-transparent group-hover:from-foreground/30 transition-all duration-700"></div>
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="text-8xl font-thin text-foreground/20">
+                      <div className="text-8xl font-thin text-foreground/20 group-hover:text-foreground/30 transition-all duration-700">
                         {step.step}
                       </div>
                     </div>
@@ -189,9 +141,9 @@ export default function ProcessSection() {
             </h4>
             <p className="text-foreground/70 mb-6 max-w-3xl mx-auto">
               We believe in transparent communication and collaborative
-              development. Throughout the entire process, you&apos;ll have direct
-              access to our team, regular progress updates, and the ability to
-              provide feedback at every stage.
+              development. Throughout the entire process, you&apos;ll have
+              direct access to our team, regular progress updates, and the
+              ability to provide feedback at every stage.
             </p>
             <div className="flex flex-wrap justify-center gap-4 text-sm text-foreground/60">
               <span className="px-4 py-2 bg-foreground/10 rounded-full">

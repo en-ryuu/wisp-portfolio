@@ -1,3 +1,4 @@
+import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { ThemeProvider } from "@/components/theme-provider";
 import WispCursor from "@/components/wisp-cursor";
@@ -42,6 +43,7 @@ export default function RootLayout({
           <WispCursor />
           <Navbar />
           <Providers>{children}</Providers>
+          <Footer />
         </ThemeProvider>
       </body>
     </html>

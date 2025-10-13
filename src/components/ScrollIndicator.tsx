@@ -3,7 +3,7 @@
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 // Register GSAP plugins
 if (typeof window !== "undefined") {
@@ -21,11 +21,23 @@ export default function ScrollIndicator({
 }: ScrollIndicatorProps) {
   const indicatorRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(true);
+  const [hasScrolled, setHasScrolled] = useState(false);
+
+  // Reset scroll state when component mounts (new page)
+  useEffect(() => {
+    // Small delay to ensure smooth transition between pages
+    const timer = setTimeout(() => {
+      setHasScrolled(false);
+      setIsVisible(true);
+    }, 100);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   useGSAP(() => {
     if (!indicatorRef.current) return;
 
-    // Initial fade in animation
+    // Initial fade in animation with delay
     gsap.fromTo(
       indicatorRef.current,
       { opacity: 0, scale: 0.8, y: 20 },
@@ -33,8 +45,9 @@ export default function ScrollIndicator({
         opacity: 1,
         scale: 1,
         y: 0,
-        duration: 0.6,
-        ease: "power2.out",
+        duration: 0.8,
+        delay: 0.3,
+        ease: "power3.out",
       }
     );
 
@@ -53,11 +66,9 @@ export default function ScrollIndicator({
 
     // Hide indicator when user starts scrolling with smooth fade
     const hideOnScroll = () => {
-      if (window.scrollY > 100 && isVisible) {
+      if (window.scrollY > 50 && isVisible && !hasScrolled) {
+        setHasScrolled(true);
         fadeOutTl.play();
-      } else if (window.scrollY <= 100 && !isVisible) {
-        setIsVisible(true);
-        fadeOutTl.reverse();
       }
     };
 

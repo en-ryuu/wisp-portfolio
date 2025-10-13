@@ -1,13 +1,11 @@
 "use client";
 import ScrollIndicator from "@/components/ScrollIndicator";
-import {
-  AISolutionsSection,
-  CTASection,
-  HeroSection,
-  ProcessSection,
-  ServiceCategoriesSection,
-  ServicesOverviewSection,
-} from "./_sections";
+import AISolutionsSection from "./_sections/AISolutionsSection";
+import CTASection from "./_sections/CTASection";
+import HeroSection from "./_sections/HeroSection";
+import ProcessSection from "./_sections/ProcessSection";
+import ServiceCategoriesSection from "./_sections/ServiceCategoriesSection";
+import ServicesOverviewSection from "./_sections/ServicesOverviewSection";
 
 export default function Services() {
   return (

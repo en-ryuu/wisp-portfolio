@@ -1,117 +1,74 @@
 "use client";
-import { useIntersectionReveal } from "@/hooks/useIntersectionReveal";
-
-const detailedServices = [
-  {
-    category: "Financial Technology",
-    icon: "💰",
-    services: [
-      "Payment Processing Systems",
-      "Digital Banking Platforms",
-      "Cryptocurrency Exchanges",
-      "Risk Management Tools",
-      "Regulatory Compliance Systems",
-      "Trading Platforms",
-    ],
-    description:
-      "Secure, scalable fintech solutions that handle complex financial operations with precision and reliability.",
-  },
-  {
-    category: "E-Commerce & Retail",
-    icon: "🛒",
-    services: [
-      "Online Marketplaces",
-      "Inventory Management Systems",
-      "Point of Sale (POS) Systems",
-      "Customer Relationship Management",
-      "Supply Chain Optimization",
-      "Analytics Dashboards",
-    ],
-    description:
-      "Complete e-commerce ecosystems that drive sales and optimize business operations.",
-  },
-  {
-    category: "Healthcare & Life Sciences",
-    icon: "🏥",
-    services: [
-      "Electronic Health Records (EHR)",
-      "Telemedicine Platforms",
-      "Medical Device Integration",
-      "Patient Management Systems",
-      "Clinical Trial Management",
-      "Health Analytics Platforms",
-    ],
-    description:
-      "HIPAA-compliant healthcare solutions that improve patient care and streamline medical workflows.",
-  },
-  {
-    category: "Education & E-Learning",
-    icon: "🎓",
-    services: [
-      "Learning Management Systems (LMS)",
-      "Virtual Classrooms",
-      "Student Information Systems",
-      "Assessment Platforms",
-      "Content Management Systems",
-      "Educational Analytics",
-    ],
-    description:
-      "Interactive learning platforms that enhance educational experiences and track student progress.",
-  },
-  {
-    category: "Manufacturing & IoT",
-    icon: "🏭",
-    services: [
-      "Industrial IoT Solutions",
-      "Manufacturing Execution Systems",
-      "Quality Control Systems",
-      "Predictive Maintenance",
-      "Supply Chain Management",
-      "Real-time Monitoring Dashboards",
-    ],
-    description:
-      "Smart manufacturing solutions that optimize production processes and reduce operational costs.",
-  },
-  {
-    category: "Real Estate & Property",
-    icon: "🏠",
-    services: [
-      "Property Management Systems",
-      "Real Estate Portals",
-      "Virtual Property Tours",
-      "Tenant Management Platforms",
-      "Property Valuation Tools",
-      "Investment Analytics",
-    ],
-    description:
-      "Comprehensive property management solutions that streamline real estate operations and enhance user experiences.",
-  },
-];
+import { detailedServices } from "@/config/services";
+import { useSmoothReveal } from "@/hooks/useSmoothReveal";
 
 export default function ServiceCategoriesSection() {
-  const sectionTitleRef = useIntersectionReveal<HTMLHeadingElement>({
+  const sectionTitleRef = useSmoothReveal<HTMLHeadingElement>({
     delay: 0.2,
-    duration: 0.8,
+    duration: 1.0,
     from: "bottom",
     reverse: true,
   });
 
-  const sectionSubtitleRef = useIntersectionReveal<HTMLHeadingElement>({
+  const sectionSubtitleRef = useSmoothReveal<HTMLHeadingElement>({
     delay: 0.4,
-    duration: 0.8,
+    duration: 1.0,
     from: "bottom",
     reverse: true,
   });
 
-  // Create individual refs for each category
-  const categoryRef1 = useIntersectionReveal<HTMLDivElement>({ delay: 0.6, duration: 0.8, from: "bottom", reverse: true, stagger: 0.1 });
-  const categoryRef2 = useIntersectionReveal<HTMLDivElement>({ delay: 0.7, duration: 0.8, from: "bottom", reverse: true, stagger: 0.1 });
-  const categoryRef3 = useIntersectionReveal<HTMLDivElement>({ delay: 0.8, duration: 0.8, from: "bottom", reverse: true, stagger: 0.1 });
-  const categoryRef4 = useIntersectionReveal<HTMLDivElement>({ delay: 0.9, duration: 0.8, from: "bottom", reverse: true, stagger: 0.1 });
-  const categoryRef5 = useIntersectionReveal<HTMLDivElement>({ delay: 1.0, duration: 0.8, from: "bottom", reverse: true, stagger: 0.1 });
-  const categoryRef6 = useIntersectionReveal<HTMLDivElement>({ delay: 1.1, duration: 0.8, from: "bottom", reverse: true, stagger: 0.1 });
-  
-  const categoryRefs = [categoryRef1, categoryRef2, categoryRef3, categoryRef4, categoryRef5, categoryRef6];
+  // Create individual refs for each category with smooth animations
+  const categoryRef1 = useSmoothReveal<HTMLDivElement>({
+    delay: 0.4,
+    duration: 1.2,
+    from: "bottom",
+    reverse: true,
+    scale: 0.98,
+  });
+  const categoryRef2 = useSmoothReveal<HTMLDivElement>({
+    delay: 0.5,
+    duration: 1.2,
+    from: "bottom",
+    reverse: true,
+    scale: 0.98,
+  });
+  const categoryRef3 = useSmoothReveal<HTMLDivElement>({
+    delay: 0.6,
+    duration: 1.2,
+    from: "bottom",
+    reverse: true,
+    scale: 0.98,
+  });
+  const categoryRef4 = useSmoothReveal<HTMLDivElement>({
+    delay: 0.7,
+    duration: 1.2,
+    from: "bottom",
+    reverse: true,
+    scale: 0.98,
+  });
+  const categoryRef5 = useSmoothReveal<HTMLDivElement>({
+    delay: 0.8,
+    duration: 1.2,
+    from: "bottom",
+    reverse: true,
+    scale: 0.98,
+  });
+  const categoryRef6 = useSmoothReveal<HTMLDivElement>({
+    delay: 0.9,
+    duration: 1.2,
+    from: "bottom",
+    reverse: true,
+    scale: 0.98,
+  });
+
+  const categoryRefs = [
+    categoryRef1,
+    categoryRef2,
+    categoryRef3,
+    categoryRef4,
+    categoryRef5,
+    categoryRef6,
+  ];
 
   return (
     <section className="relative py-24 px-6 bg-gradient-to-br from-background via-background to-muted/10">
@@ -135,11 +92,7 @@ export default function ServiceCategoriesSection() {
         {/* Service Categories */}
         <div className="space-y-16">
           {detailedServices.map((category, index) => (
-            <div
-              key={index}
-              ref={categoryRefs[index]}
-              className="group"
-            >
+            <div key={index} ref={categoryRefs[index]} className="group">
               <div className="grid lg:grid-cols-2 gap-12 items-center">
                 {/* Content */}
                 <div className={`${index % 2 === 1 ? "lg:order-2" : ""}`}>
@@ -171,10 +124,12 @@ export default function ServiceCategoriesSection() {
 
                 {/* Visual Placeholder */}
                 <div className={`${index % 2 === 1 ? "lg:order-1" : ""}`}>
-                  <div className="relative h-80 bg-gradient-to-br from-foreground/10 via-foreground/5 to-transparent rounded-lg overflow-hidden group-hover:scale-105 transition-transform duration-500">
-                    <div className="absolute inset-0 bg-gradient-to-br from-foreground/20 to-transparent"></div>
+                  <div className="relative h-80 bg-gradient-to-br from-foreground/10 via-foreground/5 to-transparent rounded-lg overflow-hidden group-hover:scale-[1.02] transition-all duration-700 ease-out">
+                    <div className="absolute inset-0 bg-gradient-to-br from-foreground/20 to-transparent group-hover:from-foreground/30 transition-all duration-700"></div>
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="text-6xl opacity-20">{category.icon}</div>
+                      <div className="text-6xl opacity-20 group-hover:opacity-30 transition-opacity duration-700">
+                        {category.icon}
+                      </div>
                     </div>
                   </div>
                 </div>

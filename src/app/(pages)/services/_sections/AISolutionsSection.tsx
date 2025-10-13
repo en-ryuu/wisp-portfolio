@@ -1,120 +1,34 @@
 "use client";
-import { useIntersectionReveal } from "@/hooks/useIntersectionReveal";
-
-const aiSolutions = [
-  {
-    title: "Natural Language Processing",
-    description:
-      "Intelligent text analysis, chatbots, and language understanding systems.",
-    applications: [
-      "Customer Support Automation",
-      "Content Generation",
-      "Sentiment Analysis",
-      "Language Translation",
-      "Document Processing",
-    ],
-    technologies: ["OpenAI GPT", "LangChain", "Hugging Face", "spaCy", "NLTK"],
-  },
-  {
-    title: "Computer Vision",
-    description:
-      "Image and video analysis for automated recognition and processing.",
-    applications: [
-      "Object Detection",
-      "Facial Recognition",
-      "Medical Image Analysis",
-      "Quality Control",
-      "Augmented Reality",
-    ],
-    technologies: ["TensorFlow", "PyTorch", "OpenCV", "YOLO", "MediaPipe"],
-  },
-  {
-    title: "Predictive Analytics",
-    description:
-      "Machine learning models for forecasting and decision support.",
-    applications: [
-      "Sales Forecasting",
-      "Risk Assessment",
-      "Demand Planning",
-      "Fraud Detection",
-      "Market Analysis",
-    ],
-    technologies: ["Scikit-learn", "XGBoost", "Pandas", "NumPy", "Matplotlib"],
-  },
-  {
-    title: "Recommendation Systems",
-    description: "Personalized content and product recommendations.",
-    applications: [
-      "E-commerce Recommendations",
-      "Content Curation",
-      "Personalized Marketing",
-      "Music & Video Streaming",
-      "News Feed Optimization",
-    ],
-    technologies: [
-      "Collaborative Filtering",
-      "Matrix Factorization",
-      "Deep Learning",
-      "Apache Spark",
-      "Redis",
-    ],
-  },
-  {
-    title: "Process Automation",
-    description: "Intelligent automation of business processes and workflows.",
-    applications: [
-      "Document Automation",
-      "Workflow Optimization",
-      "Data Entry Automation",
-      "Report Generation",
-      "Process Monitoring",
-    ],
-    technologies: ["RPA", "Workflow Engines", "API Integration", "OCR", "NLP"],
-  },
-  {
-    title: "Conversational AI",
-    description: "Advanced chatbot and virtual assistant solutions.",
-    applications: [
-      "Virtual Assistants",
-      "Voice Interfaces",
-      "Multi-language Support",
-      "Context Awareness",
-      "Integration APIs",
-    ],
-    technologies: [
-      "Dialogflow",
-      "Rasa",
-      "Microsoft Bot Framework",
-      "Amazon Lex",
-      "Custom NLP",
-    ],
-  },
-];
+import { aiSolutions } from "@/config/services";
+import { useGSAPStagger } from "@/hooks/useGSAPStagger";
+import { useSmoothReveal } from "@/hooks/useSmoothReveal";
 
 export default function AISolutionsSection() {
-  const sectionTitleRef = useIntersectionReveal<HTMLHeadingElement>({
+  const sectionTitleRef = useSmoothReveal<HTMLHeadingElement>({
+    delay: 0.2,
+    duration: 1.0,
+    from: "bottom",
+    reverse: true,
+  });
+
+  const sectionSubtitleRef = useSmoothReveal<HTMLHeadingElement>({
+    delay: 0.4,
+    duration: 1.0,
+    from: "bottom",
+    reverse: true,
+  });
+
+  // Use GSAP staggered animation for AI solution cards
+  const cardsContainerRef = useGSAPStagger<HTMLDivElement>({
     delay: 0.2,
     duration: 0.8,
     from: "bottom",
     reverse: true,
+    stagger: 0.06,
+    scale: 0.96,
+    threshold: 0.1,
+    y: 40,
   });
-
-  const sectionSubtitleRef = useIntersectionReveal<HTMLHeadingElement>({
-    delay: 0.4,
-    duration: 0.8,
-    from: "bottom",
-    reverse: true,
-  });
-
-  // Create individual refs for each solution
-  const solutionRef1 = useIntersectionReveal<HTMLDivElement>({ delay: 0.6, duration: 0.8, from: "bottom", reverse: true, stagger: 0.1 });
-  const solutionRef2 = useIntersectionReveal<HTMLDivElement>({ delay: 0.7, duration: 0.8, from: "bottom", reverse: true, stagger: 0.1 });
-  const solutionRef3 = useIntersectionReveal<HTMLDivElement>({ delay: 0.8, duration: 0.8, from: "bottom", reverse: true, stagger: 0.1 });
-  const solutionRef4 = useIntersectionReveal<HTMLDivElement>({ delay: 0.9, duration: 0.8, from: "bottom", reverse: true, stagger: 0.1 });
-  const solutionRef5 = useIntersectionReveal<HTMLDivElement>({ delay: 1.0, duration: 0.8, from: "bottom", reverse: true, stagger: 0.1 });
-  const solutionRef6 = useIntersectionReveal<HTMLDivElement>({ delay: 1.1, duration: 0.8, from: "bottom", reverse: true, stagger: 0.1 });
-  
-  const solutionRefs = [solutionRef1, solutionRef2, solutionRef3, solutionRef4, solutionRef5, solutionRef6];
 
   return (
     <section className="relative py-24 px-6">
@@ -136,11 +50,14 @@ export default function AISolutionsSection() {
         </div>
 
         {/* AI Solutions Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div
+          ref={cardsContainerRef}
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
           {aiSolutions.map((solution, index) => (
             <div
               key={index}
-              ref={solutionRefs[index]}
+              data-stagger-item
               className="group p-8 bg-gradient-to-br from-background via-background to-muted/20 rounded-lg hover:scale-105 transition-all duration-300 cursor-pointer border border-foreground/10 hover:border-foreground/20"
             >
               <h4 className="text-2xl font-light tracking-wide text-foreground mb-4 group-hover:text-foreground/80 transition-colors duration-300">

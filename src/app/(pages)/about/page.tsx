@@ -1,6 +1,8 @@
 "use client";
 import ScrollIndicator from "@/components/ScrollIndicator";
-import { HeroSection, StatsSection, TeamSection } from "./_sections";
+import HeroSection from "./_sections/HeroSection";
+import StatsSection from "./_sections/StatsSection";
+import TeamSection from "./_sections/TeamSection";
 
 export default function About() {
   return (

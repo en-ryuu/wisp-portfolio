@@ -1,57 +1,8 @@
 "use client";
 import { Badge } from "@/components/ui/badge";
+import { teamMembers } from "@/config/about";
 import { useIntersectionReveal } from "@/hooks/useIntersectionReveal";
 import { Link as TransitionLink } from "next-transition-router";
-
-// Team data array
-const teamMembers = [
-  {
-    id: "ceo",
-    initials: "DA",
-    name: "Diwakar Adhikari",
-    title: "Chief Executive Officer",
-    description:
-      "Visionary leader driving strategic direction and company growth",
-    isCEO: true,
-    isCoFounder: true,
-  },
-  {
-    id: "cto",
-    initials: "AP",
-    name: "Abhishek Pandey",
-    title: "Chief Technology Officer",
-    description: "Leading technical architecture and development excellence",
-    isCEO: false,
-    isCoFounder: true,
-  },
-  {
-    id: "marketing",
-    initials: "PS",
-    name: "Prasiddha Shakya",
-    title: "Marketing & Research Director",
-    description: "Driving market strategy and research initiatives",
-    isCEO: false,
-    isCoFounder: true,
-  },
-  {
-    id: "finance",
-    initials: "HC",
-    name: "Harsh Chachan",
-    title: "Head of Finance",
-    description: "Managing financial strategy and operational excellence",
-    isCEO: false,
-    isCoFounder: true,
-  },
-  {
-    id: "product",
-    initials: "JS",
-    name: "Jay Shakya",
-    title: "Product Strategy Director",
-    description: "Leading product vision, research, and strategic development",
-    isCEO: false,
-    isCoFounder: true,
-  },
-];
 
 export default function TeamSection() {
   // Intersection observer animations for team section with delayed start
