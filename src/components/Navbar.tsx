@@ -3,12 +3,15 @@
 import { ThemeToggle } from "@/components/theme-toggle";
 import { gsap } from "gsap";
 import { Link as TransitionLink } from "next-transition-router";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef } from "react";
 
 export default function Navbar() {
   const navRef = useRef<HTMLElement>(null);
   const logoRef = useRef<HTMLDivElement>(null);
   const linksRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
     const tl = gsap.timeline();
@@ -41,6 +44,18 @@ export default function Navbar() {
       tl.kill();
     };
   }, []);
+
+  // Handle hash navigation
+  useEffect(() => {
+    if (pathname === "/" && window.location.hash === "#contact") {
+      setTimeout(() => {
+        const contactSection = document.getElementById("contact");
+        if (contactSection) {
+          contactSection.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 1000); // Wait for page animations to complete
+    }
+  }, [pathname]);
 
   return (
     <nav
@@ -79,13 +94,24 @@ export default function Navbar() {
             Projects
             <span className="absolute -bottom-1 left-0 w-0 h-px bg-foreground transition-all duration-300 group-hover:w-full"></span>
           </TransitionLink>
-          <TransitionLink
-            href="/contact"
+          <button
+            onClick={() => {
+              if (pathname === "/") {
+                // If on home page, scroll to contact section
+                const contactSection = document.getElementById("contact");
+                if (contactSection) {
+                  contactSection.scrollIntoView({ behavior: "smooth" });
+                }
+              } else {
+                // If on other pages, navigate to home page with contact hash
+                router.push("/#contact");
+              }
+            }}
             className="text-foreground/70 hover:text-foreground transition-colors duration-300 relative group"
           >
             Contact
             <span className="absolute -bottom-1 left-0 w-0 h-px bg-foreground transition-all duration-300 group-hover:w-full"></span>
-          </TransitionLink>
+          </button>
           <ThemeToggle />
         </div>
 
