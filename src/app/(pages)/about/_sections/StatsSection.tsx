@@ -10,7 +10,7 @@ export default function StatsSection() {
   });
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-24 text-center">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-24 text-center">
       {stats.map((stat, index) => (
         <div key={index} ref={statsRefs[index]}>
           <div className="text-5xl font-light text-foreground mb-3">
