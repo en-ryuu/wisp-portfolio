@@ -23,22 +23,22 @@ export default function HeroSection() {
       <div className="max-w-6xl mx-auto text-center">
         <h1
           ref={titleRef}
-          className="text-6xl md:text-7xl lg:text-8xl font-thin tracking-tight text-foreground mb-8"
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-thin tracking-tight text-foreground mb-6 sm:mb-8"
         >
           SERVICES
         </h1>
 
         <h2
           ref={subtitleRef}
-          className="text-2xl md:text-3xl lg:text-4xl font-light tracking-wider text-foreground/70 mb-12"
+          className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-light tracking-wider text-foreground/70 mb-8 sm:mb-12"
         >
           Comprehensive Software Solutions
         </h2>
 
-        <div className="max-w-4xl mx-auto space-y-6">
+        <div className="max-w-4xl mx-auto space-y-4 sm:space-y-6">
           <p
             ref={descriptionRefs[0]}
-            className="text-lg md:text-xl text-foreground/80 leading-relaxed"
+            className="text-sm sm:text-base md:text-lg lg:text-xl text-foreground/80 leading-relaxed"
           >
             From fintech applications to static websites, from complex ledgers
             to interactive dashboards, from content management systems to
@@ -48,7 +48,7 @@ export default function HeroSection() {
 
           <p
             ref={descriptionRefs[1]}
-            className="text-lg md:text-xl text-foreground/80 leading-relaxed"
+            className="text-sm sm:text-base md:text-lg lg:text-xl text-foreground/80 leading-relaxed"
           >
             Our expertise spans across all industries and technologies,
             delivering cutting-edge solutions that transform your business

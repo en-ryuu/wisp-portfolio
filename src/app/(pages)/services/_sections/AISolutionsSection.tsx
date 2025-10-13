@@ -37,7 +37,7 @@ export default function AISolutionsSection() {
         <div className="text-center mb-20">
           <h2
             ref={sectionTitleRef}
-            className="text-5xl md:text-6xl lg:text-7xl font-thin tracking-tight text-foreground mb-8"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-thin tracking-tight text-foreground mb-6 sm:mb-8"
           >
             AI SOLUTIONS
           </h2>

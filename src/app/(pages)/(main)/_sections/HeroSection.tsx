@@ -83,19 +83,19 @@ export default function HeroSection() {
         <div className="text-center max-w-5xl">
           <h1
             ref={titleRef}
-            className="text-8xl md:text-9xl lg:text-[12rem] font-thin tracking-tight text-foreground mb-8"
+            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-thin tracking-tight text-foreground mb-6 sm:mb-8"
           >
             WISP
           </h1>
           <h2
             ref={subtitleRef}
-            className="text-3xl md:text-4xl lg:text-5xl font-light tracking-wider text-foreground/80 mb-12"
+            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-light tracking-wider text-foreground/80 mb-8 sm:mb-12"
           >
             Technologies
           </h2>
           <p
             ref={descriptionRef}
-            className="text-xl md:text-2xl lg:text-3xl text-foreground/60 max-w-4xl mx-auto leading-relaxed mb-16"
+            className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-foreground/60 max-w-4xl mx-auto leading-relaxed mb-12 sm:mb-16"
           >
             The light that guides you through the darkness of complex software
             development. We illuminate the path to digital excellence.

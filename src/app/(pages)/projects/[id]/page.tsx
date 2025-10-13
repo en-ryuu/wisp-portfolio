@@ -158,7 +158,7 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
 
               <h1
                 ref={titleRef}
-                className="text-5xl md:text-6xl lg:text-7xl font-thin tracking-tight text-foreground mb-8"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-thin tracking-tight text-foreground mb-6 sm:mb-8"
               >
                 {project.title}
               </h1>

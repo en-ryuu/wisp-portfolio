@@ -37,13 +37,13 @@ export default function CTASection() {
         <div className="text-center mb-20">
           <h2
             ref={sectionTitleRef}
-            className="text-5xl md:text-6xl lg:text-7xl font-thin tracking-tight text-foreground mb-8"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-thin tracking-tight text-foreground mb-6 sm:mb-8"
           >
             LET&apos;S BUILD
           </h2>
           <h3
             ref={sectionSubtitleRef}
-            className="text-2xl md:text-3xl font-light tracking-wider text-foreground/70"
+            className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-light tracking-wider text-foreground/70"
           >
             Your Vision, Our Expertise
           </h3>
@@ -54,10 +54,10 @@ export default function CTASection() {
           {/* Left Content */}
           <div ref={ctaRef} className="space-y-8">
             <div>
-              <h4 className="text-3xl font-light tracking-wide text-foreground mb-6">
+              <h4 className="text-xl sm:text-2xl md:text-3xl font-light tracking-wide text-foreground mb-4 sm:mb-6">
                 Ready to Illuminate Your Next Project?
               </h4>
-              <p className="text-lg text-foreground/70 leading-relaxed mb-8">
+              <p className="text-sm sm:text-base md:text-lg text-foreground/70 leading-relaxed mb-6 sm:mb-8">
                 Whether you need a simple website, a complex enterprise system,
                 or cutting-edge AI solutions, we have the expertise to bring
                 your vision to life. Let&apos;s discuss how we can help

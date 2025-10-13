@@ -17,7 +17,7 @@ export default function ProjectsSection() {
       {/* Section Title */}
       <div className="py-24 px-6">
         <div className="max-w-7xl mx-auto text-center">
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-thin tracking-tight text-foreground mb-8">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-thin tracking-tight text-foreground mb-6 sm:mb-8">
             PROJECTS
           </h2>
           <h3 className="text-2xl md:text-3xl font-light tracking-wider text-foreground/70">
