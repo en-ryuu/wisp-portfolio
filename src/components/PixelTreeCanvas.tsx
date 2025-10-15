@@ -18,6 +18,8 @@ const PixelTreeCanvas: React.FC = () => {
   const [currentSettings, setCurrentSettings] = useState<TreeSettings>(
     treeSettings.get("Oak")!
   );
+
+  // Keep default tree as Oak for both themes
   const treeCanvasRef = useRef<HTMLCanvasElement>(null);
   const particleCanvasRef = useRef<HTMLCanvasElement>(null);
   const plantersListRef = useRef<Planter[]>([]);
@@ -278,8 +280,8 @@ const PixelTreeCanvas: React.FC = () => {
     console.log("[handleClearCanvas] Lists cleared. Removed", oldPlantersCount, "planters and", oldParticlesCount, "particles");
   };
 
-  // Only show in light mode
-  if (!mounted || resolvedTheme === "dark") {
+  // Show in both light and dark modes
+  if (!mounted) {
     return null;
   }
 
