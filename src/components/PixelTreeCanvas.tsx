@@ -25,6 +25,7 @@ const PixelTreeCanvas: React.FC = () => {
   const dimRef = useRef({ x: 512, y: 216 });
   const animationFrameRef = useRef<number>();
   const planterIntervalRef = useRef<NodeJS.Timeout>();
+  const planterUpdateRef = useRef<(() => void) | null>(null);
 
   useEffect(() => {
     setMounted(true);
@@ -58,19 +59,15 @@ const PixelTreeCanvas: React.FC = () => {
     console.log("[PixelTreeCanvas] Contexts obtained successfully");
 
     const resize = () => {
-      const scaleRatioY = window.innerHeight / 300;
-      const scaleRatioX = window.innerWidth / 180;
-      const scaleRatio = Math.min(scaleRatioX, scaleRatioY);
-
+      // Use full viewport dimensions for the canvas
       dimRef.current = {
-        x: Math.floor(window.innerWidth / scaleRatio),
-        y: Math.floor(window.innerHeight / scaleRatio),
+        x: window.innerWidth,
+        y: window.innerHeight,
       };
 
       console.log("[PixelTreeCanvas] Canvas resized", {
         windowSize: { w: window.innerWidth, h: window.innerHeight },
-        canvasSize: dimRef.current,
-        scaleRatio
+        canvasSize: dimRef.current
       });
 
       treeCanvas.width = dimRef.current.x;
@@ -146,8 +143,10 @@ const PixelTreeCanvas: React.FC = () => {
       update();
     };
 
-    console.log("[PixelTreeCanvas] Setting up planter interval");
-    planterIntervalRef.current = setInterval(planterUpdate, 10);
+    // Store planterUpdate function for use in handleClick
+    planterUpdateRef.current = planterUpdate;
+
+    // Planter interval will be started when first tree is generated
 
     return () => {
       console.log("[PixelTreeCanvas] Cleanup - removing event listeners and intervals");
@@ -169,18 +168,13 @@ const PixelTreeCanvas: React.FC = () => {
       return;
     }
 
-    const rect = treeCanvas.getBoundingClientRect();
-    const scaleX = dimRef.current.x / rect.width;
-    const scaleY = dimRef.current.y / rect.height;
-
-    const x = (event.clientX - rect.left) * scaleX;
-    const y = (event.clientY - rect.top) * scaleY;
+    // Since canvas matches viewport exactly, use clientX/Y directly
+    const x = event.clientX;
+    const y = event.clientY;
 
     console.log("[handleClick] Click detected at:", {
       clientX: event.clientX,
       clientY: event.clientY,
-      rect: { left: rect.left, top: rect.top, width: rect.width, height: rect.height },
-      scale: { scaleX, scaleY },
       calculatedPos: { x, y },
       dimRef: dimRef.current
     });
@@ -222,6 +216,12 @@ const PixelTreeCanvas: React.FC = () => {
       enabled: newPlanter.enabled,
       gen: newPlanter.gen
     });
+
+    // Start planter interval if this is the first tree
+    if (plantersListRef.current.length === 1 && !planterIntervalRef.current && planterUpdateRef.current) {
+      console.log("[handleClick] Starting planter interval for first tree");
+      planterIntervalRef.current = setInterval(planterUpdateRef.current, 10);
+    }
   };
 
   const handleGenerateAtCenter = () => {
@@ -285,7 +285,7 @@ const PixelTreeCanvas: React.FC = () => {
 
   return (
     <>
-      <div className="fixed inset-0 pointer-events-none" style={{ zIndex: 1 }}>
+      <div className="fixed inset-0 pointer-events-auto" style={{ zIndex: 1 }}>
         <canvas
           ref={treeCanvasRef}
           className="absolute inset-0 w-full h-full pointer-events-none"
@@ -313,7 +313,6 @@ const PixelTreeCanvas: React.FC = () => {
       <TreeControlPanel
         currentSettings={currentSettings}
         onSettingsChange={setCurrentSettings}
-        onGenerateTree={handleGenerateAtCenter}
         onClearCanvas={handleClearCanvas}
         isOpen={isPanelOpen}
         onClose={() => setIsPanelOpen(false)}

@@ -20,7 +20,6 @@ import { useState } from "react";
 interface TreeControlPanelProps {
   currentSettings: TreeSettings;
   onSettingsChange: (settings: TreeSettings) => void;
-  onGenerateTree: () => void;
   onClearCanvas: () => void;
   isOpen: boolean;
   onClose: () => void;
@@ -29,7 +28,6 @@ interface TreeControlPanelProps {
 export function TreeControlPanel({
   currentSettings,
   onSettingsChange,
-  onGenerateTree,
   onClearCanvas,
   isOpen,
   onClose,
@@ -301,12 +299,9 @@ export function TreeControlPanel({
 
           {/* Action Buttons */}
           <div className="space-y-3 pt-2">
-            <Button
-              onClick={onGenerateTree}
-              className="w-full bg-foreground text-background hover:bg-foreground/90 transition-all duration-300"
-            >
-              Generate Tree at Center
-            </Button>
+            <div className="text-sm text-foreground/70 text-center py-2">
+              Click anywhere on the canvas to generate trees
+            </div>
             <Button
               onClick={onClearCanvas}
               variant="outline"
