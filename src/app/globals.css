@@ -177,3 +177,9 @@
     transform: translate(-50%, -50%) scale(1.1);
   }
 }
+
+/* Vertical text writing mode */
+.writing-mode-vertical-rl {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}

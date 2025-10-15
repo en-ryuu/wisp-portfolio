@@ -1,5 +1,5 @@
 "use client";
-import PlaceholderImage from "@/components/PlaceholderImage";
+import ProjectImage from "@/components/ProjectImage";
 import { useCustomImageReveal } from "@/hooks/useCustomImageReveal";
 import { useIntersectionReveal } from "@/hooks/useIntersectionReveal";
 
@@ -76,7 +76,12 @@ export default function AboutSection() {
                 ref={sectionImageRef}
                 className="absolute inset-0 bg-gradient-to-br from-foreground/10 via-foreground/5 to-background"
               >
-                <PlaceholderImage title="Digital Excellence" size="md" />
+                <ProjectImage
+                  title="Digital Excellence"
+                  size="md"
+                  src="/abstract-1.png"
+                  alt="Digital Excellence"
+                />
 
                 {/* Subtle overlay for depth */}
                 <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent"></div>
