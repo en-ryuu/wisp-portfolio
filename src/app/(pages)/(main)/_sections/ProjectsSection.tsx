@@ -1,5 +1,7 @@
 "use client";
+import ProjectImage from "@/components/ProjectImage";
 import { featuredProjects } from "@/config/main";
+import { ImagePosition } from "@/data/projects";
 import { useStickyParallaxProjects } from "@/hooks/useStickyParallaxProjects";
 import Link from "next/link";
 import { useRef } from "react";
@@ -45,17 +47,15 @@ export default function ProjectsSection() {
               }}
               className="absolute inset-0 bg-gradient-to-br from-foreground/10 via-foreground/5 to-background"
             >
-              {/* Project Image Placeholder */}
-              <div className="absolute inset-0 bg-gradient-to-br from-foreground/20 to-foreground/5 flex items-center justify-center">
-                <div className="text-center">
-                  <div className="w-24 h-24 lg:w-32 lg:h-32 mx-auto mb-4 lg:mb-6 bg-foreground/20 rounded-full flex items-center justify-center">
-                    <div className="w-8 h-8 lg:w-12 lg:h-12 bg-foreground/40 rounded-full"></div>
-                  </div>
-                  <p className="text-foreground/60 text-lg lg:text-xl font-light">
-                    {project.title}
-                  </p>
-                </div>
-              </div>
+              <ProjectImage
+                src={project.image}
+                alt={project.title}
+                title={project.title}
+                size="lg"
+                objectPosition={
+                  (project.imagePosition as ImagePosition) || "center"
+                }
+              />
 
               {/* Subtle overlay for depth */}
               <div className="absolute inset-0 bg-gradient-to-t from-background/30 to-transparent"></div>

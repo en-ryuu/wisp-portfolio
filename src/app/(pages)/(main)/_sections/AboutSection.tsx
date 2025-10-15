@@ -1,8 +1,7 @@
 "use client";
-import {
-  useImageSlideIn,
-  useIntersectionReveal,
-} from "@/hooks/useIntersectionReveal";
+import PlaceholderImage from "@/components/PlaceholderImage";
+import { useCustomImageReveal } from "@/hooks/useCustomImageReveal";
+import { useIntersectionReveal } from "@/hooks/useIntersectionReveal";
 
 export default function AboutSection() {
   const sectionTitleRef = useIntersectionReveal<HTMLHeadingElement>({
@@ -17,7 +16,7 @@ export default function AboutSection() {
     from: "bottom",
     reverse: true,
   });
-  const sectionImageRef = useImageSlideIn<HTMLDivElement>({
+  const sectionImageRef = useCustomImageReveal<HTMLDivElement>({
     delay: 0.8,
     duration: 1.2,
     reverse: true,
@@ -77,17 +76,7 @@ export default function AboutSection() {
                 ref={sectionImageRef}
                 className="absolute inset-0 bg-gradient-to-br from-foreground/10 via-foreground/5 to-background"
               >
-                {/* Placeholder for image - you can replace this with an actual image */}
-                <div className="absolute inset-0 bg-gradient-to-br from-foreground/20 to-foreground/5 flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="w-24 h-24 mx-auto mb-4 bg-foreground/20 rounded-full flex items-center justify-center">
-                      <div className="w-8 h-8 bg-foreground/40 rounded-full"></div>
-                    </div>
-                    <p className="text-foreground/60 text-lg">
-                      Image Placeholder
-                    </p>
-                  </div>
-                </div>
+                <PlaceholderImage title="Digital Excellence" size="md" />
 
                 {/* Subtle overlay for depth */}
                 <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent"></div>

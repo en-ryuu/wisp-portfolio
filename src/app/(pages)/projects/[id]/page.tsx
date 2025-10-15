@@ -1,6 +1,7 @@
 "use client";
 
 import ModernProjectTimeline from "@/components/ModernProjectTimeline";
+import ProjectImage from "@/components/ProjectImage";
 import ProjectTimeline from "@/components/ProjectTimeline";
 import ScrollIndicator from "@/components/ScrollIndicator";
 import { projects } from "@/data/projects";
@@ -200,18 +201,13 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
             {/* Project Image */}
             <div className="project-hero-image relative">
               <div className="relative h-96 lg:h-[500px] rounded-2xl overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-foreground/10 via-foreground/5 to-background">
-                  <div className="absolute inset-0 bg-gradient-to-br from-foreground/20 to-foreground/5 flex items-center justify-center">
-                    <div className="text-center">
-                      <div className="w-24 h-24 lg:w-32 lg:h-32 mx-auto mb-6 bg-foreground/20 rounded-full flex items-center justify-center">
-                        <div className="w-12 h-12 lg:w-16 lg:h-16 bg-foreground/40 rounded-full"></div>
-                      </div>
-                      <p className="text-foreground/60 text-2xl font-light">
-                        {project.title}
-                      </p>
-                    </div>
-                  </div>
-                </div>
+                <ProjectImage
+                  src={project.image}
+                  alt={project.title}
+                  title={project.title}
+                  size="lg"
+                  objectPosition={project.imagePosition || "center"}
+                />
               </div>
             </div>
           </div>

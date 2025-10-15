@@ -1,9 +1,11 @@
+export type ImagePosition = "left" | "center" | "right" | "top" | "bottom";
 export interface Project {
   id: string;
   title: string;
   description: string;
   longDescription: string;
   image: string;
+  imagePosition?: ImagePosition;
   technologies: string[];
   category: string;
   status: "completed" | "in-progress" | "planned";
@@ -43,7 +45,8 @@ export const projects: Project[] = [
       "An innovative stock market analysis platform tailored for the Nepali context, offering real-time buy/sell recommendations and market insights powered by AI algorithms.",
     longDescription:
       "Naafa is a comprehensive stock market analysis platform designed specifically for the Nepali market. It combines real-time data processing, machine learning algorithms, and intuitive user interfaces to help local investors make informed decisions. The platform features advanced charting capabilities, predictive analytics, and personalized recommendations based on market trends and individual investment patterns.",
-    image: "/api/placeholder/800/600",
+    image: "/naafa-demo.png",
+    imagePosition: "left",
     technologies: [
       "React",
       "Node.js",
@@ -136,12 +139,13 @@ export const projects: Project[] = [
   },
   {
     id: "2",
-    title: "LLMForge",
+    title: "ForgeLM",
     description:
       "A one-click deployment solution for large language models, simplifying the process of hosting and scaling AI models on cloud infrastructure.",
     longDescription:
-      "LLMForge is a comprehensive platform that streamlines the deployment and management of large language models. It provides developers with a simple interface to deploy, scale, and monitor LLMs across different cloud providers. The platform handles infrastructure provisioning, model optimization, and automatic scaling based on demand.",
-    image: "/api/placeholder/800/600",
+      "ForgeLM is a comprehensive platform that streamlines the deployment and management of large language models. It provides developers with a simple interface to deploy, scale, and monitor LLMs across different cloud providers. The platform handles infrastructure provisioning, model optimization, and automatic scaling based on demand.",
+    image: "/forgelm-demo.png",
+    imagePosition: "right",
     technologies: [
       "Docker",
       "Kubernetes",
@@ -215,8 +219,8 @@ export const projects: Project[] = [
       },
     ],
     links: {
-      github: "https://github.com/wisp/llmforge",
-      demo: "https://demo.llmforge.com",
+      github: "https://github.com/wisp/ForgeLM",
+      demo: "https://demo.ForgeLM.com",
     },
   },
   // {

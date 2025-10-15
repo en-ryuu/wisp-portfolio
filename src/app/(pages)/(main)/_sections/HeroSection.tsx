@@ -1,9 +1,6 @@
 "use client";
 import { useTextReveal } from "@/hooks/useTextReveal";
-import { useGSAP } from "@gsap/react";
-import { gsap } from "gsap";
 import { Link as TransitionLink } from "next-transition-router";
-import { useRef } from "react";
 
 export default function HeroSection() {
   const titleRef = useTextReveal<HTMLHeadingElement>({
@@ -26,37 +23,11 @@ export default function HeroSection() {
     duration: 0.8,
     from: "bottom",
   });
-  const particlesRef = useRef<HTMLDivElement>(null);
-
-  useGSAP(() => {
-    // Animate floating particles
-    if (particlesRef.current) {
-      gsap.to(particlesRef.current.children, {
-        y: "random(-20, 20)",
-        x: "random(-10, 10)",
-        duration: "random(3, 6)",
-        repeat: -1,
-        yoyo: true,
-        ease: "power2.inOut",
-        stagger: 0.5,
-      });
-    }
-  });
 
   return (
     <>
       {/* Background Graphics */}
       <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-muted/10">
-        {/* Floating light particles */}
-        <div ref={particlesRef} className="absolute inset-0">
-          <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-foreground/20 rounded-full"></div>
-          <div className="absolute top-1/3 right-1/3 w-1 h-1 bg-foreground/30 rounded-full"></div>
-          <div className="absolute bottom-1/3 left-1/3 w-1.5 h-1.5 bg-foreground/15 rounded-full"></div>
-          <div className="absolute top-2/3 right-1/4 w-1 h-1 bg-foreground/25 rounded-full"></div>
-          <div className="absolute top-1/2 left-1/5 w-0.5 h-0.5 bg-foreground/40 rounded-full"></div>
-          <div className="absolute bottom-1/4 right-1/5 w-1.5 h-1.5 bg-foreground/10 rounded-full"></div>
-        </div>
-
         {/* Subtle grid pattern */}
         <div className="absolute inset-0 opacity-5">
           <div

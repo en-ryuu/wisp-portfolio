@@ -1,5 +1,6 @@
 "use client";
 
+import ProjectImage from "@/components/ProjectImage";
 import ScrollIndicator from "@/components/ScrollIndicator";
 import { projects } from "@/data/projects";
 import { useTextReveal } from "@/hooks/useTextReveal";
@@ -30,23 +31,9 @@ export default function ProjectsPage() {
     duration: 0.8,
     from: "bottom",
   });
-  const particlesRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    // Animate floating particles
-    if (particlesRef.current) {
-      gsap.to(particlesRef.current.children, {
-        y: "random(-20, 20)",
-        x: "random(-10, 10)",
-        duration: "random(3, 6)",
-        repeat: -1,
-        yoyo: true,
-        ease: "power2.inOut",
-        stagger: 0.5,
-      });
-    }
-
     // Animate project items on scroll
     if (containerRef.current) {
       gsap.utils.toArray(".project-item").forEach((item: unknown) => {
@@ -75,16 +62,6 @@ export default function ProjectsPage() {
     <>
       {/* Background Graphics */}
       <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-muted/10">
-        {/* Floating light particles */}
-        <div ref={particlesRef} className="absolute inset-0">
-          <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-foreground/20"></div>
-          <div className="absolute top-1/3 right-1/3 w-1 h-1 bg-foreground/30"></div>
-          <div className="absolute bottom-1/3 left-1/3 w-1.5 h-1.5 bg-foreground/15"></div>
-          <div className="absolute top-2/3 right-1/4 w-1 h-1 bg-foreground/25"></div>
-          <div className="absolute top-1/2 left-1/5 w-0.5 h-0.5 bg-foreground/40"></div>
-          <div className="absolute bottom-1/4 right-1/5 w-1.5 h-1.5 bg-foreground/10"></div>
-        </div>
-
         {/* Subtle grid pattern */}
         <div className="absolute inset-0 opacity-5">
           <div
@@ -143,16 +120,13 @@ export default function ProjectsPage() {
                   <div className={`${index % 2 === 1 ? "lg:order-2" : ""}`}>
                     <div className="relative h-96 lg:h-[500px] overflow-hidden">
                       <div className="absolute inset-0 bg-gradient-to-br from-foreground/10 via-foreground/5 to-background">
-                        <div className="absolute inset-0 bg-gradient-to-br from-foreground/20 to-foreground/5 flex items-center justify-center">
-                          <div className="text-center">
-                            <div className="w-24 h-24 lg:w-32 lg:h-32 mx-auto mb-6 bg-foreground/20 flex items-center justify-center">
-                              <div className="w-12 h-12 lg:w-16 lg:h-16 bg-foreground/40"></div>
-                            </div>
-                            <p className="text-foreground/60 text-2xl font-light">
-                              {project.title}
-                            </p>
-                          </div>
-                        </div>
+                        <ProjectImage
+                          src={project.image}
+                          alt={project.title}
+                          title={project.title}
+                          size="lg"
+                          objectPosition={project.imagePosition || "center"}
+                        />
                       </div>
                     </div>
                   </div>
