@@ -21,6 +21,7 @@ interface TreeControlPanelProps {
   currentSettings: TreeSettings;
   onSettingsChange: (settings: TreeSettings) => void;
   onClearCanvas: () => void;
+  onGenerateForest: (forestType: string, count: number) => void;
   isOpen: boolean;
   onClose: () => void;
 }
@@ -29,10 +30,13 @@ export function TreeControlPanel({
   currentSettings,
   onSettingsChange,
   onClearCanvas,
+  onGenerateForest,
   isOpen,
   onClose,
 }: TreeControlPanelProps) {
   const [showDocs, setShowDocs] = useState(false);
+  const [forestType, setForestType] = useState("Sakura");
+  const [treeCount, setTreeCount] = useState(30);
 
   if (!isOpen) return null;
 
@@ -297,19 +301,69 @@ export function TreeControlPanel({
             </div>
           </div>
 
-          {/* Action Buttons */}
-          <div className="space-y-3 pt-2">
-            <div className="text-sm text-foreground/70 text-center py-2">
-              Click anywhere on the canvas to generate trees
-            </div>
-            <Button
-              onClick={onClearCanvas}
-              variant="outline"
-              className="w-full transition-all duration-300"
-            >
-              Clear Canvas
-            </Button>
-          </div>
+           {/* Forest Generation Settings */}
+           <div className="space-y-4">
+             <h3 className="text-base font-light text-foreground">
+               Forest Generation
+             </h3>
+
+             {/* Forest Type */}
+             <div className="space-y-2">
+               <Label className="text-sm text-foreground/70">Forest Type</Label>
+               <Select value={forestType} onValueChange={setForestType}>
+                 <SelectTrigger className="w-full">
+                   <SelectValue placeholder="Select forest type" />
+                 </SelectTrigger>
+                 <SelectContent>
+                   <SelectItem value="Sakura">Sakura Forest</SelectItem>
+                   <SelectItem value="Oak">Oak Forest</SelectItem>
+                   <SelectItem value="Palm">Palm Forest</SelectItem>
+                   <SelectItem value="OakWinter">Winter Forest</SelectItem>
+                   <SelectItem value="Birch">Birch Forest</SelectItem>
+                 </SelectContent>
+               </Select>
+             </div>
+
+             {/* Tree Count */}
+             <div className="space-y-2">
+               <div className="flex justify-between items-center">
+                 <Label className="text-sm text-foreground/70">
+                   Tree Count
+                 </Label>
+                 <span className="text-xs text-foreground/60">
+                   {treeCount}
+                 </span>
+               </div>
+               <Slider
+                 value={[treeCount]}
+                 onValueChange={(value) => setTreeCount(value[0])}
+                 min={1}
+                 max={100}
+                 step={1}
+                 className="w-full"
+               />
+             </div>
+           </div>
+
+           {/* Action Buttons */}
+           <div className="space-y-3 pt-2">
+             <div className="text-sm text-foreground/70 text-center py-2">
+               Click anywhere on the canvas to generate trees
+             </div>
+             <Button
+               onClick={() => onGenerateForest(forestType, treeCount)}
+               className="w-full bg-foreground text-background hover:bg-foreground/90 transition-all duration-300"
+             >
+               Generate {forestType} Forest ({treeCount} trees)
+             </Button>
+             <Button
+               onClick={onClearCanvas}
+               variant="outline"
+               className="w-full transition-all duration-300"
+             >
+               Clear Canvas
+             </Button>
+           </div>
 
           {/* Documentation Toggle */}
           <div className="pt-2">
