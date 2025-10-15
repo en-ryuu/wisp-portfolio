@@ -1,5 +1,6 @@
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
+import PixelTreeCanvas from "@/components/PixelTreeCanvas";
 import { ThemeProvider } from "@/components/theme-provider";
 import WispCursor from "@/components/wisp-cursor";
 import type { Metadata } from "next";
@@ -40,6 +41,7 @@ export default function RootLayout({
           disableTransitionOnChange={false}
           storageKey="wisp-theme"
         >
+          <PixelTreeCanvas />
           <WispCursor />
           <Navbar />
           <Providers>{children}</Providers>

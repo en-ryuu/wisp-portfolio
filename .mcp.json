@@ -1,0 +1,17 @@
+{
+  "mcpServers": {
+    "puppeteer": {
+      "command": "cmd",
+      "args": [
+        "/c",
+        "npx",
+        "-y",
+        "@smithery/cli@latest",
+        "run",
+        "@smithery-ai/puppeteer",
+        "--key",
+        "412c749e-ad5b-4fcb-bda7-7ddded16cd6f"
+      ]
+    }
+  }
+}
