@@ -41,7 +41,7 @@ export const serviceCategories = [
 export const detailedServices = [
   {
     category: "Financial Technology",
-    icon: "💰",
+    image: "/finance.webp",
     services: [
       "Payment Processing Systems",
       "Digital Banking Platforms",
@@ -55,7 +55,7 @@ export const detailedServices = [
   },
   {
     category: "E-Commerce & Retail",
-    icon: "🛒",
+    image: "/ecom.webp",
     services: [
       "Online Marketplaces",
       "Inventory Management Systems",
@@ -69,7 +69,7 @@ export const detailedServices = [
   },
   {
     category: "Healthcare & Life Sciences",
-    icon: "🏥",
+    image: "/health.webp",
     services: [
       "Electronic Health Records (EHR)",
       "Telemedicine Platforms",
@@ -83,7 +83,7 @@ export const detailedServices = [
   },
   {
     category: "Education & E-Learning",
-    icon: "🎓",
+    image: "/education.webp",
     services: [
       "Learning Management Systems (LMS)",
       "Virtual Classrooms",
@@ -97,7 +97,7 @@ export const detailedServices = [
   },
   {
     category: "Manufacturing & IoT",
-    icon: "🏭",
+    image: "/iot.webp",
     services: [
       "Industrial IoT Solutions",
       "Manufacturing Execution Systems",
@@ -111,7 +111,7 @@ export const detailedServices = [
   },
   {
     category: "Real Estate & Property",
-    icon: "🏠",
+    image: "/real-estate.webp",
     services: [
       "Property Management Systems",
       "Real Estate Portals",

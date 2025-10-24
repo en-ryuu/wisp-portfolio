@@ -40,7 +40,7 @@ export function useStickyParallaxProjects({
       if (!projects.length) return;
 
       // Set initial states
-      gsap.set(images, { scale: 1.1, opacity: 0 });
+      gsap.set(images, { scale: 1.1 });
       gsap.set(contents, { opacity: 0, y: 100 });
 
       // Create sticky parallax effect for each project
@@ -53,10 +53,9 @@ export function useStickyParallaxProjects({
         // Sticky image with parallax scaling
         gsap.fromTo(
           image,
-          { scale: 1.1, opacity: 0 },
+          { scale: 1.1 },
           {
             scale: 1,
-            opacity: 1,
             scrollTrigger: {
               trigger: project,
               start: "top bottom",

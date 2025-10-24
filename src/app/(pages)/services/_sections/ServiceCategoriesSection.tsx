@@ -96,8 +96,7 @@ export default function ServiceCategoriesSection() {
               <div className="grid lg:grid-cols-2 gap-12 items-center">
                 {/* Content */}
                 <div className={`${index % 2 === 1 ? "lg:order-2" : ""}`}>
-                  <div className="flex items-center mb-6">
-                    <span className="text-4xl mr-4">{category.icon}</span>
+                  <div className="mb-6">
                     <h4 className="text-3xl font-light tracking-wide text-foreground">
                       {category.category}
                     </h4>
@@ -122,15 +121,15 @@ export default function ServiceCategoriesSection() {
                   </div>
                 </div>
 
-                {/* Visual Placeholder */}
+                {/* Service Image */}
                 <div className={`${index % 2 === 1 ? "lg:order-1" : ""}`}>
-                  <div className="relative h-80 bg-gradient-to-br from-foreground/10 via-foreground/5 to-transparent rounded-lg overflow-hidden group-hover:scale-[1.02] transition-all duration-700 ease-out">
+                  <div className="relative h-80 rounded-lg overflow-hidden group-hover:scale-[1.02] transition-all duration-700 ease-out">
+                    <img
+                      src={category.image}
+                      alt={`${category.category} services`}
+                      className="w-full h-full object-cover"
+                    />
                     <div className="absolute inset-0 bg-gradient-to-br from-foreground/20 to-transparent group-hover:from-foreground/30 transition-all duration-700"></div>
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="text-6xl opacity-20 group-hover:opacity-30 transition-opacity duration-700">
-                        {category.icon}
-                      </div>
-                    </div>
                   </div>
                 </div>
               </div>

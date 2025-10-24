@@ -97,9 +97,19 @@ const WispCursor: React.FC<WispCursorProps> = ({
         // Reset glow back to circular shape
         gsap.to(glow, {
           borderRadius: "50%",
+          opacity: isDark ? 0.6 : 1, // Proper opacity for each mode
           duration: 0.2,
           ease: "power2.out",
         });
+
+        // For light mode, restore outlined circle with normal blur
+        if (!isDark) {
+          gsap.set(glow, {
+            backgroundColor: "transparent",
+            border: "2px solid black",
+            filter: "blur(12px)",
+          });
+        }
 
         gsap.to(outerAura, {
           borderRadius: "50%",
@@ -236,11 +246,20 @@ const WispCursor: React.FC<WispCursorProps> = ({
           y: (targetTop + targetBottom) / 2, // Center on target
           width: rect.width + 20, // Add padding
           height: rect.height + 20,
-          borderRadius: "8px", // Make it more rectangular
-          opacity: 0.8,
+          borderRadius: isDark ? "8px" : "4px", // More rectangular for light mode
+          opacity: isDark ? 0.8 : 0.3, // Transparent for light mode
           duration: 0.3,
           ease: "power2.out",
         });
+
+        // For light mode, ensure glow is outlined and transparent with ultra blur
+        if (!isDark) {
+          gsap.set(glow, {
+            backgroundColor: "transparent",
+            border: "2px solid black",
+            filter: "blur(20px)",
+          });
+        }
 
         // Position outer aura to snap to target element
         gsap.to(cursor.querySelector(".outer-aura"), {
@@ -295,13 +314,22 @@ const WispCursor: React.FC<WispCursorProps> = ({
         gsap.to(glow, {
           x: 0, // Back to cursor center
           y: 0, // Back to cursor center
-          width: 80, // Original size (20 * 4)
-          height: 80,
+          width: 32, // Original size (8 * 4)
+          height: 32,
           borderRadius: "50%", // Back to circular
-          opacity: 0.6,
+          opacity: isDark ? 0.6 : 1, // Proper opacity for each mode
           duration: 0.4,
           ease: "power3.out",
         });
+
+        // For light mode, restore outlined circle with normal blur
+        if (!isDark) {
+          gsap.set(glow, {
+            backgroundColor: "transparent",
+            border: "2px solid black",
+            filter: "blur(12px)",
+          });
+        }
 
         // Reset outer aura back to cursor center
         gsap.to(cursor.querySelector(".outer-aura"), {
@@ -383,61 +411,45 @@ const WispCursor: React.FC<WispCursorProps> = ({
         transform: "translate(-50%, -50%)",
       }}
     >
-      {/* Outer aura - more spread out and mildly defined */}
-      <div
-        className="outer-aura absolute left-1/2 top-1/2 w-24 h-24 rounded-full transform -translate-x-1/2 -translate-y-1/2"
-        style={{
-          backgroundColor: isDark
-            ? "rgba(255, 255, 255, 0.08)"
-            : "rgba(34, 197, 197, 0.12)",
-          filter: "blur(20px) brightness(1.4)",
-          willChange: "transform",
-          boxShadow: isDark
-            ? "0 0 25px rgba(255, 255, 255, 0.3), 0 0 50px rgba(255, 255, 255, 0.15)"
-            : "0 0 30px rgba(34, 197, 197, 0.25), 0 0 60px rgba(34, 197, 197, 0.12)",
-        }}
-      />
+      {/* Small black cursor - only for light mode */}
+      {!isDark && (
+        <div
+          className="absolute left-1/2 top-1/2 w-4 h-4 rounded-full transform -translate-x-1/2 -translate-y-1/2"
+          style={{
+            backgroundColor: "black",
+            mixBlendMode: "difference",
+            willChange: "transform",
+          }}
+        />
+      )}
 
-      {/* Main wisp orb - pure white center */}
-      <div
-        ref={wispRef}
-        className="absolute left-1/2 top-1/2 w-8 h-8 rounded-full transform -translate-x-1/2 -translate-y-1/2"
-        style={{
-          backgroundColor: isDark ? "white" : "rgba(34, 197, 197, 0.7)",
-          filter: "blur(6px) brightness(1.8)",
-          willChange: "transform",
-          boxShadow: isDark
-            ? "0 0 10px rgba(255, 255, 255, 0.6), 0 0 20px rgba(255, 255, 255, 0.3)"
-            : "0 0 12px rgba(34, 197, 197, 0.5), 0 0 24px rgba(34, 197, 197, 0.25)",
-        }}
-      />
+      {/* Main cursor - small white wisp for dark mode only */}
+      {isDark && (
+        <div
+          ref={wispRef}
+          className="absolute left-1/2 top-1/2 w-6 h-6 rounded-full transform -translate-x-1/2 -translate-y-1/2"
+          style={{
+            backgroundColor: "white",
+            filter: "blur(4px) brightness(1.8)",
+            willChange: "transform",
+            boxShadow:
+              "0 0 8px rgba(255, 255, 255, 0.6), 0 0 16px rgba(255, 255, 255, 0.3)",
+          }}
+        />
+      )}
 
-      {/* Inner core - pure white bright point */}
-      <div
-        className="absolute left-1/2 top-1/2 w-3 h-3 rounded-full transform -translate-x-1/2 -translate-y-1/2"
-        style={{
-          backgroundColor: isDark ? "white" : "rgba(34, 197, 197, 0.9)",
-          filter: "blur(2px) brightness(2)",
-          willChange: "transform",
-          boxShadow: isDark
-            ? "0 0 4px rgba(255, 255, 255, 0.8), 0 0 8px rgba(255, 255, 255, 0.5)"
-            : "0 0 6px rgba(34, 197, 197, 0.7), 0 0 12px rgba(34, 197, 197, 0.4)",
-        }}
-      />
-
-      {/* Magnetic glow - more spread out and mildly defined */}
+      {/* Glow section - outlined circle for light mode, blurry white for dark mode */}
       <div
         ref={glowRef}
-        className="absolute left-1/2 top-1/2 w-20 h-20 rounded-full transform -translate-x-1/2 -translate-y-1/2"
+        className="absolute left-1/2 top-1/2 w-8 h-8 rounded-full transform -translate-x-1/2 -translate-y-1/2"
         style={{
-          backgroundColor: isDark
-            ? "rgba(255, 255, 255, 0.12)"
-            : "rgba(34, 197, 197, 0.15)",
-          filter: "blur(16px) brightness(1.5)",
+          backgroundColor: isDark ? "rgba(255, 255, 255, 0.12)" : "transparent",
+          filter: isDark ? "blur(12px) brightness(1.5)" : "blur(12px)",
           willChange: "transform",
           boxShadow: isDark
-            ? "0 0 20px rgba(255, 255, 255, 0.25), 0 0 40px rgba(255, 255, 255, 0.12)"
-            : "0 0 25px rgba(34, 197, 197, 0.2), 0 0 50px rgba(34, 197, 197, 0.1)",
+            ? "0 0 15px rgba(255, 255, 255, 0.25), 0 0 30px rgba(255, 255, 255, 0.12)"
+            : "none",
+          border: isDark ? "none" : "2px solid black",
         }}
       />
     </div>
