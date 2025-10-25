@@ -25,7 +25,11 @@ export function Providers({ children }: { children: React.ReactNode }) {
         setIsLoading(true);
 
         // Fade out current content
-        const tl = gsap.timeline();
+        const tl = gsap.timeline({
+          onComplete: () => {
+            next();
+          }
+        });
 
         if (contentRef.current) {
           tl.to(contentRef.current, {
@@ -34,11 +38,10 @@ export function Providers({ children }: { children: React.ReactNode }) {
             duration: 0.4,
             ease: "power2.in",
           });
-        }
-
-        tl.call(() => {
+        } else {
+          // If no content ref, immediately proceed
           next();
-        });
+        }
 
         return () => {
           tl.kill();
@@ -46,7 +49,11 @@ export function Providers({ children }: { children: React.ReactNode }) {
       }}
       enter={(next) => {
         // Slide in content from bottom
-        const tl = gsap.timeline();
+        const tl = gsap.timeline({
+          onComplete: () => {
+            next();
+          }
+        });
 
         if (contentRef.current) {
           tl.fromTo(
@@ -54,13 +61,10 @@ export function Providers({ children }: { children: React.ReactNode }) {
             { y: "100vh", opacity: 0 },
             { y: 0, opacity: 1, duration: 1.2, ease: "power2.out" }
           );
+        } else {
+          // If no content ref, immediately proceed
+          next();
         }
-
-        tl.call(() => {
-          requestAnimationFrame(() => {
-            startTransition(next);
-          });
-        });
 
         return () => {
           tl.kill();
