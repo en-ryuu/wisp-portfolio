@@ -21,6 +21,14 @@ export const metadata: Metadata = {
   title: "Wisp Technologies",
   description:
     "The light that guides you through the void of software development",
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
+  },
+  manifest: "/site.webmanifest",
 };
 
 export default function RootLayout({
