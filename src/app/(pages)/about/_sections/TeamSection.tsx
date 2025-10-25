@@ -55,7 +55,7 @@ function TeamMemberCard({ member, ref }: TeamMemberCardProps) {
       {member.resume && (
         <TransitionLink href={`/about/team/${member.id}`}>
           <Button variant="outline" size="sm" className="mt-4 text-xs">
-            View Resume
+            Know More
           </Button>
         </TransitionLink>
       )}
