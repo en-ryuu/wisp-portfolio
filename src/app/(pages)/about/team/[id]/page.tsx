@@ -30,13 +30,13 @@ export default function TeamMemberResume({ params }: PageProps) {
   const { resume } = member;
 
   // Animation refs
-  const headerRef = useSmoothReveal({ delay: 0.2, duration: 1.0, from: "bottom" });
-  const summaryRef = useSmoothReveal({ delay: 0.4, duration: 0.8, from: "bottom" });
-  const experienceRef = useSmoothReveal({ delay: 0.5, duration: 0.8, from: "bottom" });
-  const educationRef = useSmoothReveal({ delay: 0.6, duration: 0.8, from: "bottom" });
-  const skillsRef = useSmoothReveal({ delay: 0.7, duration: 0.8, from: "bottom" });
-  const projectsRef = useSmoothReveal({ delay: 0.8, duration: 0.8, from: "bottom" });
-  const awardsRef = useSmoothReveal({ delay: 0.9, duration: 0.8, from: "bottom" });
+  const headerRef = useSmoothReveal<HTMLDivElement>({ delay: 0.2, duration: 1.0, from: "bottom" });
+  const summaryRef = useSmoothReveal<HTMLDivElement>({ delay: 0.4, duration: 0.8, from: "bottom" });
+  const experienceRef = useSmoothReveal<HTMLDivElement>({ delay: 0.5, duration: 0.8, from: "bottom" });
+  const educationRef = useSmoothReveal<HTMLDivElement>({ delay: 0.6, duration: 0.8, from: "bottom" });
+  const skillsRef = useSmoothReveal<HTMLDivElement>({ delay: 0.7, duration: 0.8, from: "bottom" });
+  const projectsRef = useSmoothReveal<HTMLDivElement>({ delay: 0.8, duration: 0.8, from: "bottom" });
+  const awardsRef = useSmoothReveal<HTMLDivElement>({ delay: 0.9, duration: 0.8, from: "bottom" });
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/10">

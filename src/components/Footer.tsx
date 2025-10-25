@@ -18,10 +18,13 @@ export default function Footer() {
     >
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
-          {/* Copyright */}
-          <div className="text-center md:text-left">
+          {/* Copyright & Address */}
+          <div className="text-center md:text-left space-y-2">
             <p className="text-sm text-foreground/60 font-light">
               © {currentYear} Wisp Technologies. All rights reserved.
+            </p>
+            <p className="text-xs text-foreground/50 font-light">
+              Tinthana-15, Chandragiri, Kathmandu, Nepal
             </p>
           </div>
 
