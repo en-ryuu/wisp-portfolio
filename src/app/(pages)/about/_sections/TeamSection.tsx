@@ -90,70 +90,100 @@ export default function TeamSection() {
         {/* Top Row - 3 team members */}
         <div className="flex justify-center mb-16">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16">
-            {teamMembers.slice(0, 3).map((member, index) => (
-              <div
-                key={member.id}
-                ref={index === 0 ? ceoCardRef : teamMemberRefs[index - 1]}
-                className="text-center group"
-              >
-                <div className="relative">
-                  <div className="w-32 h-32 mx-auto bg-gradient-to-br from-foreground/25 to-foreground/5 rounded-full flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
-                    <span className="text-2xl font-light text-foreground/70">
-                      {member.initials}
-                    </span>
+            {teamMembers.slice(0, 3).map((member, index) => {
+              const CardContent = (
+                <div
+                  key={member.id}
+                  ref={index === 0 ? ceoCardRef : teamMemberRefs[index - 1]}
+                  className="text-center group"
+                >
+                  <div className="relative">
+                    <div className="w-32 h-32 mx-auto bg-gradient-to-br from-foreground/25 to-foreground/5 rounded-full flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+                      <span className="text-2xl font-light text-foreground/70">
+                        {member.initials}
+                      </span>
+                    </div>
+                    {/* Subtle glow effect */}
+                    <div className="absolute inset-0 w-32 h-32 mx-auto bg-gradient-to-br from-foreground/10 to-transparent rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </div>
-                  {/* Subtle glow effect */}
-                  <div className="absolute inset-0 w-32 h-32 mx-auto bg-gradient-to-br from-foreground/10 to-transparent rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <h3 className="text-xl font-light text-foreground mt-4 mb-2">
+                    {member.name}
+                  </h3>
+                  <p className="text-foreground/60 text-sm mb-2">
+                    {member.title}
+                  </p>
+                  <Badge variant="secondary" className="mb-3 text-xs">
+                    Co-Founder
+                  </Badge>
+                  <p className="text-foreground/50 text-sm max-w-xs mx-auto leading-relaxed">
+                    {member.description}
+                  </p>
+                  {member.resume && (
+                    <p className="text-foreground/40 text-xs mt-3 group-hover:text-foreground/60 transition-colors duration-300">
+                      Click to view resume
+                    </p>
+                  )}
                 </div>
-                <h3 className="text-xl font-light text-foreground mt-4 mb-2">
-                  {member.name}
-                </h3>
-                <p className="text-foreground/60 text-sm mb-2">
-                  {member.title}
-                </p>
-                <Badge variant="secondary" className="mb-3 text-xs">
-                  Co-Founder
-                </Badge>
-                <p className="text-foreground/50 text-sm max-w-xs mx-auto leading-relaxed">
-                  {member.description}
-                </p>
-              </div>
-            ))}
+              );
+
+              return member.resume ? (
+                <TransitionLink key={member.id} href={`/about/team/${member.id}`}>
+                  {CardContent}
+                </TransitionLink>
+              ) : (
+                CardContent
+              );
+            })}
           </div>
         </div>
 
         {/* Bottom Row - 2 team members centered */}
         <div className="flex justify-center">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16 max-w-2xl">
-            {teamMembers.slice(3).map((member, index) => (
-              <div
-                key={member.id}
-                ref={teamMemberRefs[index + 2]}
-                className="text-center group"
-              >
-                <div className="relative">
-                  <div className="w-32 h-32 mx-auto bg-gradient-to-br from-foreground/25 to-foreground/5 rounded-full flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
-                    <span className="text-2xl font-light text-foreground/70">
-                      {member.initials}
-                    </span>
+            {teamMembers.slice(3).map((member, index) => {
+              const CardContent = (
+                <div
+                  key={member.id}
+                  ref={teamMemberRefs[index + 2]}
+                  className="text-center group"
+                >
+                  <div className="relative">
+                    <div className="w-32 h-32 mx-auto bg-gradient-to-br from-foreground/25 to-foreground/5 rounded-full flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+                      <span className="text-2xl font-light text-foreground/70">
+                        {member.initials}
+                      </span>
+                    </div>
+                    {/* Subtle glow effect */}
+                    <div className="absolute inset-0 w-32 h-32 mx-auto bg-gradient-to-br from-foreground/10 to-transparent rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </div>
-                  {/* Subtle glow effect */}
-                  <div className="absolute inset-0 w-32 h-32 mx-auto bg-gradient-to-br from-foreground/10 to-transparent rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <h3 className="text-xl font-light text-foreground mt-4 mb-2">
+                    {member.name}
+                  </h3>
+                  <p className="text-foreground/60 text-sm mb-2">
+                    {member.title}
+                  </p>
+                  <Badge variant="secondary" className="mb-3 text-xs">
+                    Co-Founder
+                  </Badge>
+                  <p className="text-foreground/50 text-sm max-w-xs mx-auto leading-relaxed">
+                    {member.description}
+                  </p>
+                  {member.resume && (
+                    <p className="text-foreground/40 text-xs mt-3 group-hover:text-foreground/60 transition-colors duration-300">
+                      Click to view resume
+                    </p>
+                  )}
                 </div>
-                <h3 className="text-xl font-light text-foreground mt-4 mb-2">
-                  {member.name}
-                </h3>
-                <p className="text-foreground/60 text-sm mb-2">
-                  {member.title}
-                </p>
-                <Badge variant="secondary" className="mb-3 text-xs">
-                  Co-Founder
-                </Badge>
-                <p className="text-foreground/50 text-sm max-w-xs mx-auto leading-relaxed">
-                  {member.description}
-                </p>
-              </div>
-            ))}
+              );
+
+              return member.resume ? (
+                <TransitionLink key={member.id} href={`/about/team/${member.id}`}>
+                  {CardContent}
+                </TransitionLink>
+              ) : (
+                CardContent
+              );
+            })}
           </div>
         </div>
       </div>

@@ -127,9 +127,8 @@ export default function ServiceCategoriesSection() {
                     <img
                       src={category.image}
                       alt={`${category.category} services`}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-contain scale-[1.35]"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-br from-foreground/20 to-transparent group-hover:from-foreground/30 transition-all duration-700"></div>
                   </div>
                 </div>
               </div>

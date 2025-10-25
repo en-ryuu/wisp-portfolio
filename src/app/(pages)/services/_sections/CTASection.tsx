@@ -1,7 +1,9 @@
 "use client";
+import { useContactNavigation } from "@/hooks/useContactNavigation";
 import { useIntersectionReveal } from "@/hooks/useIntersectionReveal";
 
 export default function CTASection() {
+  const navigateToContact = useContactNavigation();
   const sectionTitleRef = useIntersectionReveal<HTMLHeadingElement>({
     delay: 0.2,
     duration: 0.8,
@@ -66,12 +68,18 @@ export default function CTASection() {
             </div>
 
             <div className="space-y-6">
-              <button className="group relative px-8 py-4 bg-foreground text-background font-medium tracking-wide transition-all duration-300 hover:bg-foreground/90 hover:scale-105 w-full lg:w-auto">
+              <button
+                onClick={navigateToContact}
+                className="group relative px-8 py-4 bg-foreground text-background font-medium tracking-wide transition-all duration-300 hover:bg-foreground/90 hover:scale-105 w-full lg:w-auto"
+              >
                 <span className="relative z-10">START YOUR PROJECT</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-foreground to-foreground/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </button>
 
-              <button className="group relative px-8 py-4 border border-foreground/20 text-foreground font-medium tracking-wide transition-all duration-300 hover:border-foreground/60 hover:bg-foreground/5 w-full lg:w-auto">
+              <button
+                onClick={navigateToContact}
+                className="group relative px-8 py-4 border border-foreground/20 text-foreground font-medium tracking-wide transition-all duration-300 hover:border-foreground/60 hover:bg-foreground/5 w-full lg:w-auto"
+              >
                 <span className="relative z-10">SCHEDULE CONSULTATION</span>
               </button>
             </div>
@@ -90,7 +98,7 @@ export default function CTASection() {
                     Email
                   </p>
                   <p className="text-foreground font-light text-lg">
-                    hello@wisptechnologies.com
+                    wisptech.np@gmail.com
                   </p>
                 </div>
 
@@ -121,7 +129,9 @@ export default function CTASection() {
                 </h6>
                 <div className="flex space-x-8">
                   <a
-                    href="#"
+                    href="https://x.com/wisptech_np"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="text-foreground/60 hover:text-foreground transition-colors duration-300"
                   >
                     <span className="text-sm tracking-wider uppercase">
@@ -129,7 +139,9 @@ export default function CTASection() {
                     </span>
                   </a>
                   <a
-                    href="#"
+                    href="https://www.linkedin.com/company/wisp-tech"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="text-foreground/60 hover:text-foreground transition-colors duration-300"
                   >
                     <span className="text-sm tracking-wider uppercase">
@@ -137,7 +149,9 @@ export default function CTASection() {
                     </span>
                   </a>
                   <a
-                    href="#"
+                    href="https://github.com/wisptech-np"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="text-foreground/60 hover:text-foreground transition-colors duration-300"
                   >
                     <span className="text-sm tracking-wider uppercase">
@@ -161,7 +175,10 @@ export default function CTASection() {
               team to discuss your project requirements and explore the best
               solutions for your needs.
             </p>
-            <button className="px-8 py-4 bg-foreground text-background font-medium tracking-wide transition-all duration-300 hover:bg-foreground/90 hover:scale-105">
+            <button
+              onClick={navigateToContact}
+              className="px-8 py-4 bg-foreground text-background font-medium tracking-wide transition-all duration-300 hover:bg-foreground/90 hover:scale-105"
+            >
               BOOK FREE CONSULTATION
             </button>
           </div>

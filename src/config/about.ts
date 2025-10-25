@@ -2,7 +2,7 @@
 
 export const teamMembers = [
   {
-    id: "ceo",
+    id: "diwakar-adhikari",
     initials: "DA",
     name: "Diwakar Adhikari",
     title: "Chief Executive Officer",
@@ -10,6 +10,77 @@ export const teamMembers = [
       "Visionary leader driving strategic direction and company growth",
     isCEO: true,
     isCoFounder: true,
+    resume: {
+      location: "Pune",
+      phone: "9378067880",
+      email: "diwakar.adhikari0@gmail.com",
+      summary:
+        "Lead Engineer at Bajaj Finserv Direct Ltd (outsourced to Bajaj Allianz) specializing in AI/ML innovations for the insurance sector. Passionate about deploying large language models (LLMs) and agent-based systems to enhance risk assessment, claims automation, and customer personalization. Skilled in Python, deep learning frameworks (e.g., PyTorch via Hugging Face), AWS services, and leading cross-functional teams to architect scalable AI infrastructures. Proven track record in full-stack development (Angular, Node.js) integrated with AI/ML for performance optimization and security, with active research in quantized LLMs for edge computing to advance conversational AI in financial services.",
+      experience: [
+        {
+          title: "Dev Lead",
+          company: "Bajaj Finserv Direct Ltd",
+          period: "June 2022 – Present",
+          location: "Pune, India",
+          achievements: [
+            "Promoted to Dev Lead, managing a 10-member development team delivering multiple critical digital journeys (related to term-insurances) with significant revenue impact.",
+            "Collaborate cross-functionally with AEM and Java teams at the Bajaj Allianz client office, aligning requirements and streamlining end-to-end integration efforts.",
+            "Lead API design and deployment, enhancing system integration and operational efficiency by 25% (Deployment Star Award recipient).",
+            "Develop and optimize Angular components, boosting application performance by 30%; integrated Angular Universal for server-side rendering, improving SEO and organic traffic by 15%.",
+            "Directed multiple high-impact projects using agile methodologies, including new Angular components for motor and mutual fund modules, resulting in a 20% increase in user engagement.",
+            "Enhance system scalability and code quality (35% improvement) to support high-traffic user loads and strengthen security architecture.",
+            "Remediate critical security vulnerabilities (authentication/authorization) through VAPT fixes, improving system security by 45%.",
+            "Contribute to the launch of Bajaj Finserv Asset Management's NFO platform, increasing user adoption by 50% and earning the Esteemed Contributor to Financial Innovation award.",
+          ],
+        },
+      ],
+      education: [
+        {
+          degree: "Bachelor of Technology in Computer Science Engineering",
+          institution: "SRM University",
+          period: "Apr 2018 - May 2022",
+          gpa: "8.8 CGPA",
+        },
+      ],
+      skills: [
+        "Java",
+        "Angular",
+        "Next.js",
+        "Vite",
+        "Docker",
+        "API Design & Integration",
+        "Redis & Apache Kafka",
+        "Python",
+        "LangChain",
+        "Hugging Face Transformers",
+        "PyTorch",
+      ],
+      projects: [
+        {
+          name: "NgrokF2P",
+          description:
+            "A web-based local file transfer system that allows users on the same WiFi network to easily share files between devices.",
+        },
+        {
+          name: "Ollama Bridge Extension",
+          description:
+            "Creates a secure communication channel between web applications and a locally running Ollama LLM server.",
+        },
+        {
+          name: "Teeny: LLM Quantization Research",
+          description: "Research project focused on LLM quantization techniques.",
+        },
+      ],
+      awards: [
+        "International Recognition for Excellence in Sustainable Energy Research - California State University, USA, and the International Association of Academicians (IAASSE), USA",
+        "Deployment Star Award",
+        "Esteemed Contributor to Financial Innovation Award",
+        "COMPEX Scholarship Scheme Awardee",
+      ],
+      certifications: [
+        "Full-Stack Java Developer - 3 Months - Bajaj Finserv",
+      ],
+    },
   },
   {
     id: "cto",
@@ -39,13 +110,105 @@ export const teamMembers = [
     isCoFounder: true,
   },
   {
-    id: "product",
+    id: "jay-shakya",
     initials: "JS",
     name: "Jay Shakya",
     title: "Product Strategy Director",
     description: "Leading product vision, research, and strategic development",
     isCEO: false,
     isCoFounder: true,
+    resume: {
+      location: "Nagbahal, Lalitpur, Nepal",
+      phone: "",
+      email: "shakyajay321@gmail.com",
+      summary:
+        "I am a highly motivated individual with a Bachelor's in Business Administration degree seeking a job opportunity. I am a detail-oriented professional with experience in financial documentation, compliance, and loan processing. I am skilled in analyzing data, ensuring accuracy, and adhering to regulatory standards. I seek to apply my strong attention to detail and problem-solving skills in a dynamic role.",
+      experience: [
+        {
+          title: "IO Retail Agent",
+          company: "Invisible Technologies",
+          period: "Oct 2024 - Present",
+          location: "",
+          achievements: [
+            "Structured and Enriched vendor data, item IDs, and metrics using Excel Online",
+            "Ensured compliance with high standards according to the project requirement",
+            "To help process refinement and coordinate with a global team",
+          ],
+        },
+        {
+          title: "Loan Processing Trainee",
+          company: "Outsolu Nepal",
+          period: "July 2024 - Nov 2024",
+          location: "",
+          achievements: [
+            "Gained hands-on experience in reviewing and processing loan applications for international clients",
+            "Assisted in verifying applicant information to ensure data accuracy and compliance",
+            "Supported the team in streamlining processes, leading to improved workflow efficiency",
+            "Developed a strong understanding of financial documentation and client communication",
+            "Performed data entry of client information into CRM software",
+          ],
+        },
+        {
+          title: "Data Quality Reviewer",
+          company: "Pallon Ltd",
+          period: "Sept 2023 - Present",
+          location: "",
+          achievements: [
+            "To perform Image annotation according to the project needs",
+            "To maintain clear and organized data for machine learning purposes",
+            "To participate in feedback sessions and implement feedback effectively to improve task completion quality",
+          ],
+        },
+        {
+          title: "Data Specialist",
+          company: "CloudFactory Ltd",
+          period: "Sep 2021 - July 2024",
+          location: "",
+          achievements: [
+            "Ensured accuracy and consistency in annotations to enhance the quality of training data",
+            "Provide feedback to ensure the desired results are achieved",
+            "Collaborate closely with other teams, and used to communicate insights and recommendations to facilitate the data process effectively",
+            "To articulate issues and errors found on tasks",
+          ],
+        },
+        {
+          title: "Cashier",
+          company: "Koto Restaurant",
+          period: "June 2019 - Apr 2021",
+          location: "",
+          achievements: [
+            "Managed daily cash receipts and performed cash reconciliations to ensure accurate financial reporting",
+            "Assisted in maintaining financial records, including invoices and expense tracking",
+            "Supported vendor payment processing and collaborated with management to monitor expenses",
+            "Developed strong organizational skills and attention to detail in a fast-paced environment",
+          ],
+        },
+      ],
+      education: [
+        {
+          degree: "Bachelors in Business Administration (BBA)",
+          institution: "",
+          period: "",
+          gpa: "3.20 GPA",
+        },
+      ],
+      skills: [
+        "Word",
+        "Excel",
+        "Financial Documentation",
+        "Compliance",
+        "Machine Learning",
+        "Image/Video/Data Annotation",
+        "Internet Research",
+        "AI Model Training",
+      ],
+      projects: [],
+      awards: [],
+      certifications: [
+        "Local Tour Guide Training Program - NATHM (2017)",
+        "Tourism Business Centric Entrepreneurship Training Program - Outlines Research and Development (2017)",
+      ],
+    },
   },
 ];
 

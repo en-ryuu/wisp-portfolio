@@ -1,8 +1,10 @@
 "use client";
+import { useContactNavigation } from "@/hooks/useContactNavigation";
 import { useTextReveal } from "@/hooks/useTextReveal";
 import { Link as TransitionLink } from "next-transition-router";
 
 export default function HeroSection() {
+  const navigateToContact = useContactNavigation();
   const titleRef = useTextReveal<HTMLHeadingElement>({
     delay: 0.2,
     duration: 1.2,
@@ -82,8 +84,11 @@ export default function HeroSection() {
                 <div className="absolute inset-0 bg-gradient-to-r from-foreground to-foreground/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </button>
             </TransitionLink>
-            <button className="px-8 py-4 border border-foreground/20 text-foreground font-medium tracking-wide transition-all duration-300 hover:border-foreground/40 hover:bg-foreground/5">
-              VIEW PORTFOLIO
+            <button
+              onClick={navigateToContact}
+              className="px-8 py-4 border border-foreground/20 text-foreground font-medium tracking-wide transition-all duration-300 hover:border-foreground/40 hover:bg-foreground/5"
+            >
+              GET IN TOUCH
             </button>
           </div>
         </div>

@@ -3,6 +3,7 @@
 import ProjectImage from "@/components/ProjectImage";
 import ScrollIndicator from "@/components/ScrollIndicator";
 import { projects } from "@/data/projects";
+import { useContactNavigation } from "@/hooks/useContactNavigation";
 import { useTextReveal } from "@/hooks/useTextReveal";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
@@ -16,6 +17,7 @@ if (typeof window !== "undefined") {
 }
 
 export default function ProjectsPage() {
+  const navigateToContact = useContactNavigation();
   const titleRef = useTextReveal<HTMLHeadingElement>({
     delay: 0.2,
     duration: 1.2,
@@ -226,13 +228,13 @@ export default function ProjectsPage() {
             innovative technology and exceptional design.
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
-            <Link
-              href="/contact"
+            <button
+              onClick={navigateToContact}
               className="group relative px-8 py-4 bg-foreground text-background font-medium tracking-wide transition-all duration-300 hover:bg-foreground/90 hover:scale-105"
             >
               <span className="relative z-10">START A PROJECT</span>
               <div className="absolute inset-0 bg-gradient-to-r from-foreground to-foreground/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            </Link>
+            </button>
             <Link
               href="/about"
               className="px-8 py-4 border border-foreground/20 text-foreground font-medium tracking-wide transition-all duration-300 hover:border-foreground/40 hover:bg-foreground/5"

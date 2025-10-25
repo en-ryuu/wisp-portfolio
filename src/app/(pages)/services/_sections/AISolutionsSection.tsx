@@ -1,9 +1,11 @@
 "use client";
 import { aiSolutions } from "@/config/services";
+import { useContactNavigation } from "@/hooks/useContactNavigation";
 import { useGSAPStagger } from "@/hooks/useGSAPStagger";
 import { useSmoothReveal } from "@/hooks/useSmoothReveal";
 
 export default function AISolutionsSection() {
+  const navigateToContact = useContactNavigation();
   const sectionTitleRef = useSmoothReveal<HTMLHeadingElement>({
     delay: 0.2,
     duration: 1.0,
@@ -114,7 +116,10 @@ export default function AISolutionsSection() {
               your business operations and unlock new possibilities for growth
               and innovation.
             </p>
-            <button className="px-8 py-4 bg-foreground text-background font-medium tracking-wide transition-all duration-300 hover:bg-foreground/90 hover:scale-105">
+            <button
+              onClick={navigateToContact}
+              className="px-8 py-4 bg-foreground text-background font-medium tracking-wide transition-all duration-300 hover:bg-foreground/90 hover:scale-105"
+            >
               DISCUSS AI PROJECT
             </button>
           </div>

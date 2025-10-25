@@ -132,7 +132,7 @@ export const projects: Project[] = [
       },
     ],
     links: {
-      live: "https://naafa.com",
+      live: "https://naafa.vercel.app",
       github: "https://github.com/wisp/naafa",
       demo: "https://demo.naafa.com",
     },

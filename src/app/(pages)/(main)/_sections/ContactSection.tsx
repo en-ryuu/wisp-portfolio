@@ -67,7 +67,7 @@ export default function ContactSection() {
                     Email
                   </p>
                   <p className="text-foreground font-light text-lg">
-                    hello@wisptechnologies.com
+                    wisptech.np@gmail.com
                   </p>
                 </div>
 
@@ -97,7 +97,9 @@ export default function ContactSection() {
                   </h5>
                   <div className="flex space-x-8">
                     <a
-                      href="#"
+                      href="https://x.com/wisptech_np"
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="text-foreground/60 hover:text-foreground transition-colors duration-300"
                     >
                       <span className="text-sm tracking-wider uppercase">
@@ -105,7 +107,9 @@ export default function ContactSection() {
                       </span>
                     </a>
                     <a
-                      href="#"
+                      href="https://www.linkedin.com/company/wisp-tech"
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="text-foreground/60 hover:text-foreground transition-colors duration-300"
                     >
                       <span className="text-sm tracking-wider uppercase">
@@ -113,7 +117,9 @@ export default function ContactSection() {
                       </span>
                     </a>
                     <a
-                      href="#"
+                      href="https://github.com/wisptech-np"
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="text-foreground/60 hover:text-foreground transition-colors duration-300"
                     >
                       <span className="text-sm tracking-wider uppercase">

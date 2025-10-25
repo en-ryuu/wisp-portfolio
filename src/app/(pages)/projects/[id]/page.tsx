@@ -5,6 +5,7 @@ import ProjectImage from "@/components/ProjectImage";
 import ProjectTimeline from "@/components/ProjectTimeline";
 import ScrollIndicator from "@/components/ScrollIndicator";
 import { projects } from "@/data/projects";
+import { useContactNavigation } from "@/hooks/useContactNavigation";
 import { useStaggeredTextReveal, useTextReveal } from "@/hooks/useTextReveal";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -28,6 +29,7 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
   const project = projects.find((p) => p.id === resolvedParams.id);
 
   // All hooks must be called at the top level
+  const navigateToContact = useContactNavigation();
   const titleRef = useTextReveal<HTMLHeadingElement>({
     delay: 0,
     duration: 0.8,
@@ -416,12 +418,12 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
             business needs.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/contact"
+            <button
+              onClick={navigateToContact}
               className="px-8 py-4 border border-foreground/20 text-foreground font-medium tracking-wide transition-all duration-300 hover:border-foreground/40 hover:bg-foreground/5"
             >
               Start a Project
-            </Link>
+            </button>
             <Link
               href="/projects"
               className="px-8 py-4 border border-foreground/20 text-foreground/70 hover:text-foreground hover:border-foreground/40 transition-all duration-300"

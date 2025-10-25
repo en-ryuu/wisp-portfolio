@@ -28,19 +28,25 @@ export default function Footer() {
           {/* Social Links */}
           <div className="flex items-center space-x-6">
             <a
-              href="#"
+              href="https://x.com/wisptech_np"
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-sm text-foreground/60 hover:text-foreground/80 transition-colors duration-300 font-light tracking-wider uppercase"
             >
               Twitter
             </a>
             <a
-              href="#"
+              href="https://www.linkedin.com/company/wisp-tech"
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-sm text-foreground/60 hover:text-foreground/80 transition-colors duration-300 font-light tracking-wider uppercase"
             >
               LinkedIn
             </a>
             <a
-              href="#"
+              href="https://github.com/wisptech-np"
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-sm text-foreground/60 hover:text-foreground/80 transition-colors duration-300 font-light tracking-wider uppercase"
             >
               GitHub

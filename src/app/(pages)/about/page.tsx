@@ -1,7 +1,6 @@
 "use client";
 import ScrollIndicator from "@/components/ScrollIndicator";
 import HeroSection from "./_sections/HeroSection";
-import StatsSection from "./_sections/StatsSection";
 import TeamSection from "./_sections/TeamSection";
 
 export default function About() {
@@ -9,7 +8,6 @@ export default function About() {
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/10">
       <div className="container mx-auto px-6 py-20">
         <HeroSection />
-        <StatsSection />
         <TeamSection />
       </div>
       <ScrollIndicator variant="arrow" />

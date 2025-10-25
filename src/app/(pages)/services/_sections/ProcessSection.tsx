@@ -119,8 +119,7 @@ export default function ProcessSection() {
 
                 {/* Visual Placeholder */}
                 <div className={`${index % 2 === 1 ? "lg:order-1" : ""}`}>
-                  <div className="relative h-80 bg-gradient-to-br from-foreground/10 via-foreground/5 to-transparent rounded-lg overflow-hidden group-hover:scale-[1.02] transition-all duration-700 ease-out">
-                    <div className="absolute inset-0 bg-gradient-to-br from-foreground/20 to-transparent group-hover:from-foreground/30 transition-all duration-700"></div>
+                  <div className="relative h-80 rounded-lg overflow-hidden group-hover:scale-[1.02] transition-all duration-700 ease-out">
                     <div className="absolute inset-0 flex items-center justify-center">
                       <div className="text-8xl font-thin text-foreground/20 group-hover:text-foreground/30 transition-all duration-700">
                         {step.step}
