@@ -45,7 +45,7 @@ export default function ProjectsSection() {
               ref={(el) => {
                 imageRefs.current[index] = el;
               }}
-              className="absolute inset-0 bg-gradient-to-br from-black/20 via-black/10 to-black/5"
+              className="absolute inset-0 lg:bg-gradient-to-br lg:from-black/20 lg:via-black/10 lg:to-black/5"
             >
               <ProjectImage
                 src={project.image}
@@ -57,20 +57,20 @@ export default function ProjectsSection() {
                 }
               />
 
-              {/* Subtle overlay for depth */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+              {/* Subtle overlay for depth - desktop only */}
+              <div className="absolute inset-0 hidden lg:block bg-gradient-to-t from-black/20 to-transparent"></div>
             </div>
           </div>
 
           {/* Content Container */}
-          <div className="w-full lg:w-1/2 flex items-center justify-center p-8 lg:p-12 xl:p-24">
+          <div className="w-full lg:w-1/2 flex items-center justify-center p-4 sm:p-6 lg:p-12 xl:p-24">
             <div
               ref={(el) => {
                 contentRefs.current[index] = el;
               }}
-              className="max-w-lg space-y-6 lg:space-y-8"
+              className="max-w-lg space-y-4 sm:space-y-6 lg:space-y-8"
             >
-              <div className="space-y-3 lg:space-y-4">
+              <div className="space-y-2 sm:space-y-3 lg:space-y-4">
                 <span className="text-sm text-foreground/60 tracking-wider uppercase">
                   Project {String(index + 1).padStart(2, "0")}
                 </span>
@@ -94,7 +94,7 @@ export default function ProjectsSection() {
                 ))}
               </div>
 
-              <div className="pt-6 lg:pt-8">
+              <div className="pt-4 sm:pt-6 lg:pt-8">
                 <Link href={`/projects/${project.id}`}>
                   <button className="group relative px-6 py-3 lg:px-8 lg:py-4 border border-foreground/20 text-foreground font-medium tracking-wide transition-all duration-300 hover:border-foreground/40 hover:bg-foreground/5">
                     <span className="relative z-10 text-sm lg:text-base">

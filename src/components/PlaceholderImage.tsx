@@ -27,7 +27,7 @@ export default function PlaceholderImage({
 
   return (
     <div
-      className={`absolute inset-0 bg-gradient-to-br from-foreground/20 to-foreground/5 flex items-center justify-center ${className}`}
+      className={`absolute inset-0 lg:bg-gradient-to-br lg:from-foreground/20 lg:to-foreground/5 flex items-center justify-center ${className}`}
     >
       <div className="text-center">
         <div

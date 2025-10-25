@@ -71,21 +71,17 @@ export default function AboutSection() {
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Image Container */}
           <div className="order-2 lg:order-1">
-            <div className="relative h-96 lg:h-[500px] overflow-hidden">
-              <div
-                ref={sectionImageRef}
-                className="absolute inset-0 bg-gradient-to-br from-foreground/10 via-foreground/5 to-background"
-              >
-                <ProjectImage
-                  title="Digital Excellence"
-                  size="md"
-                  src="/abstract-1.png"
-                  alt="Digital Excellence"
-                />
-
-                {/* Subtle overlay for depth */}
-                <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent"></div>
-              </div>
+            <div
+              ref={sectionImageRef}
+              className="relative h-96 lg:h-[500px] overflow-hidden rounded-lg"
+            >
+              <ProjectImage
+                title="Digital Excellence"
+                size="lg"
+                src="/digital-excellence.webp"
+                alt="Digital Excellence"
+                objectPosition="center"
+              />
             </div>
           </div>
 
@@ -129,9 +125,9 @@ export default function AboutSection() {
               </div>
 
               <div ref={craftingButtonRef} className="pt-8">
-                <button className="group relative px-8 py-4 border border-foreground/20 text-foreground font-medium tracking-wide transition-all duration-300 hover:border-foreground/40 hover:bg-foreground/5">
+                <button className="group relative px-8 py-4 border border-foreground/20 text-foreground font-medium tracking-wide transition-all duration-300 hover:border-foreground/40 lg:hover:bg-foreground/5">
                   <span className="relative z-10">LEARN MORE</span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-foreground/5 to-foreground/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 hidden lg:block bg-gradient-to-r from-foreground/5 to-foreground/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </button>
               </div>
             </div>

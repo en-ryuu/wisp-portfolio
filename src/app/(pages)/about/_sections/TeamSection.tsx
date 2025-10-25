@@ -3,6 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { teamMembers } from "@/config/about";
 import { useIntersectionReveal } from "@/hooks/useIntersectionReveal";
+import Image from "next/image";
 import { Link as TransitionLink } from "next-transition-router";
 
 export default function TeamSection() {
@@ -98,10 +99,20 @@ export default function TeamSection() {
                 className="text-center group"
               >
                 <div className="relative">
-                  <div className="w-32 h-32 mx-auto bg-gradient-to-br from-foreground/25 to-foreground/5 rounded-full flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
-                    <span className="text-2xl font-light text-foreground/70">
-                      {member.initials}
-                    </span>
+                  <div className="w-32 h-32 mx-auto bg-gradient-to-br from-foreground/25 to-foreground/5 rounded-full flex items-center justify-center group-hover:scale-105 transition-transform duration-300 overflow-hidden">
+                    {member.image ? (
+                      <Image
+                        src={member.image}
+                        alt={member.name}
+                        width={128}
+                        height={128}
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <span className="text-2xl font-light text-foreground/70">
+                        {member.initials}
+                      </span>
+                    )}
                   </div>
                   {/* Subtle glow effect */}
                   <div className="absolute inset-0 w-32 h-32 mx-auto bg-gradient-to-br from-foreground/10 to-transparent rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -144,10 +155,20 @@ export default function TeamSection() {
                 className="text-center group"
               >
                 <div className="relative">
-                  <div className="w-32 h-32 mx-auto bg-gradient-to-br from-foreground/25 to-foreground/5 rounded-full flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
-                    <span className="text-2xl font-light text-foreground/70">
-                      {member.initials}
-                    </span>
+                  <div className="w-32 h-32 mx-auto bg-gradient-to-br from-foreground/25 to-foreground/5 rounded-full flex items-center justify-center group-hover:scale-105 transition-transform duration-300 overflow-hidden">
+                    {member.image ? (
+                      <Image
+                        src={member.image}
+                        alt={member.name}
+                        width={128}
+                        height={128}
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <span className="text-2xl font-light text-foreground/70">
+                        {member.initials}
+                      </span>
+                    )}
                   </div>
                   {/* Subtle glow effect */}
                   <div className="absolute inset-0 w-32 h-32 mx-auto bg-gradient-to-br from-foreground/10 to-transparent rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>

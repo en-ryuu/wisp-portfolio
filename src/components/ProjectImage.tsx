@@ -40,17 +40,17 @@ export default function ProjectImage({
   if (!isMounted) {
     return (
       <div
-        className={`absolute inset-0 bg-gradient-to-br from-foreground/10 via-foreground/5 to-background ${className}`}
+        className={`absolute inset-0 lg:bg-gradient-to-br lg:from-foreground/10 lg:via-foreground/5 lg:to-background ${className}`}
       >
         <PlaceholderImage title={title} size={size} />
-        <div className="absolute inset-0 bg-gradient-to-t from-background/30 to-transparent"></div>
+        <div className="absolute inset-0 hidden lg:block bg-gradient-to-t from-background/30 to-transparent"></div>
       </div>
     );
   }
 
   return (
     <div
-      className={`absolute inset-0 bg-gradient-to-br from-foreground/10 via-foreground/5 to-background ${className}`}
+      className={`absolute inset-0 lg:bg-gradient-to-br lg:from-foreground/10 lg:via-foreground/5 lg:to-background ${className}`}
     >
       {/* Real Image */}
       {!imageError && (
@@ -72,8 +72,8 @@ export default function ProjectImage({
         <PlaceholderImage title={title} size={size} />
       )}
 
-      {/* Subtle overlay for depth */}
-      <div className="absolute inset-0 bg-gradient-to-t from-background/30 to-transparent"></div>
+      {/* Subtle overlay for depth - desktop only */}
+      <div className="absolute inset-0 hidden lg:block bg-gradient-to-t from-background/30 to-transparent"></div>
     </div>
   );
 }

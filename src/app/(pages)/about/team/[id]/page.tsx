@@ -1,9 +1,10 @@
 "use client";
 
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { teamMembers } from "@/config/about";
 import { useSmoothReveal } from "@/hooks/useSmoothReveal";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { ArrowLeft, Mail, MapPin, Phone } from "lucide-react";
 import { Link as TransitionLink } from "next-transition-router";
 import { notFound } from "next/navigation";
 import { use } from "react";
@@ -40,6 +41,16 @@ export default function TeamMemberResume({ params }: PageProps) {
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/10">
       <div className="container mx-auto px-6 py-20 max-w-5xl">
+        {/* Back Button */}
+        <div className="mb-8">
+          <TransitionLink href="/about">
+            <Button variant="ghost" className="group">
+              <ArrowLeft className="w-4 h-4 mr-2 transition-transform group-hover:-translate-x-1 duration-300" />
+              Back to Team
+            </Button>
+          </TransitionLink>
+        </div>
+
         {/* Header Section */}
         <div ref={headerRef} className="mb-16">
           <div className="text-center mb-8">

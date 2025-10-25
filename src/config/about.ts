@@ -1,6 +1,45 @@
 // About page configuration data
 
-export const teamMembers = [
+interface Resume {
+  location: string;
+  phone: string;
+  email: string;
+  summary: string;
+  experience: Array<{
+    title: string;
+    company: string;
+    period: string;
+    location: string;
+    achievements: string[];
+  }>;
+  education: Array<{
+    degree: string;
+    institution: string;
+    period: string;
+    gpa?: string;
+  }>;
+  skills: string[];
+  projects: Array<{
+    name: string;
+    description: string;
+  }>;
+  awards: string[];
+  certifications: string[];
+}
+
+interface TeamMember {
+  id: string;
+  initials: string;
+  name: string;
+  title: string;
+  description: string;
+  isCEO: boolean;
+  isCoFounder: boolean;
+  image?: string;
+  resume?: Resume;
+}
+
+export const teamMembers: TeamMember[] = [
   {
     id: "diwakar-adhikari",
     initials: "DA",
@@ -10,6 +49,7 @@ export const teamMembers = [
       "Visionary leader driving strategic direction and company growth",
     isCEO: true,
     isCoFounder: true,
+    image: "/diwakar.png",
     resume: {
       location: "Pune",
       phone: "9378067880",
@@ -90,6 +130,7 @@ export const teamMembers = [
     description: "Leading technical architecture and development excellence",
     isCEO: false,
     isCoFounder: true,
+    image: "/abhisekh.jpg",
   },
   {
     id: "marketing",
@@ -99,6 +140,59 @@ export const teamMembers = [
     description: "Driving market strategy and research initiatives",
     isCEO: false,
     isCoFounder: true,
+    image: "/prassidha.jpg",
+    resume: {
+      location: "Lalitpur, Nepal",
+      phone: "9840265924",
+      email: "shakyaprasiddha8@gmail.com",
+      summary:
+        "Senior Support Assistant at Worldlink Communications Pvt Ltd specializing in System Engineering and Computer Networking. Motivated and technically skilled professional with hands on experience in email infrastructure management, Virtualization platforms like VMware and HyperV, Backup Solutions and Windows Server with Active Directory.",
+      experience: [
+        {
+          title: "Enterprise Support Representative",
+          company: "Worldlink Communications",
+          period: "December 2023 – Present",
+          location: "Jamal, Nepal",
+          achievements: [
+            "Administer and maintain Microsoft Exchange Server 2019, including mailbox management, SSL certificates, and transport rules to ensure secure email delivery.",
+            "Manage and optimize Barracuda Email Security Gateway (ESG) for advanced spam and phishing protection, including email filtering, quarantine management, and threat investigation.",
+            "Oversee virtualization environments using VMware vCenter and ESXi, performing VM deployment, snapshot management, and resource allocation for efficient infrastructure performance.",
+            "Configure and monitor networking devices including firewalls, switches, and wireless access points, ensuring secure and stable connectivity.",
+            "Utilize PRTG Network Monitor for real-time performance tracking, alert configuration, and uptime analysis of servers and network components.",
+            "Troubleshoot complex email flow and connectivity issues involving DNS, SMTP, and TLS; collaborate with users and vendors to resolve escalations.",
+            "Maintain accurate documentation of configurations, network layouts, and incident resolutions to support operational continuity and audits.",
+            "Provide end-user support and contribute to IT security awareness by guiding users on identifying phishing and suspicious emails.",
+          ],
+        },
+      ],
+      education: [
+        {
+          degree: "Bachelor of Engineering in Information Technology",
+          institution: "NCIT College",
+          period: "Apr 2018 - May 2022",
+        },
+      ],
+      skills: [
+        "Microsoft Exchange Server",
+        "Barracuda Email Security Gateway",
+        "VMware vCenter & ESXi",
+        "Windows Server",
+        "Active Directory",
+        "Network Administration",
+        "Firewalls & Security",
+        "PRTG Network Monitor",
+        "DNS, SMTP, TLS",
+        "Backup Solutions",
+        "Virtualization",
+      ],
+      projects: [],
+      awards: [],
+      certifications: [
+        "Barracuda Email Protection – Email Gateway Defense",
+        "Fortinet Certified Fundamentals",
+        "Fortinet Certified Associate",
+      ],
+    },
   },
   {
     id: "finance",
@@ -108,6 +202,7 @@ export const teamMembers = [
     description: "Managing financial strategy and operational excellence",
     isCEO: false,
     isCoFounder: true,
+    image: "/harsh.jpg",
   },
   {
     id: "jay-shakya",
@@ -117,6 +212,7 @@ export const teamMembers = [
     description: "Leading product vision, research, and strategic development",
     isCEO: false,
     isCoFounder: true,
+    image: "/jay.jpg",
     resume: {
       location: "Nagbahal, Lalitpur, Nepal",
       phone: "",

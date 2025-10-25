@@ -28,8 +28,8 @@ export default function HeroSection() {
 
   return (
     <>
-      {/* Background Graphics */}
-      <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-muted/10">
+      {/* Background Graphics - Desktop only */}
+      <div className="absolute inset-0 hidden lg:block bg-gradient-to-br from-background via-background to-muted/10">
         {/* Subtle grid pattern */}
         <div className="absolute inset-0 opacity-5">
           <div
@@ -81,12 +81,12 @@ export default function HeroSection() {
             <TransitionLink href="/about">
               <button className="group relative px-8 py-4 bg-foreground text-background font-medium tracking-wide transition-all duration-300 hover:bg-foreground/90 hover:scale-105">
                 <span className="relative z-10">EXPLORE OUR LIGHT</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-foreground to-foreground/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute inset-0 hidden lg:block bg-gradient-to-r from-foreground to-foreground/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </button>
             </TransitionLink>
             <button
               onClick={navigateToContact}
-              className="px-8 py-4 border border-foreground/20 text-foreground font-medium tracking-wide transition-all duration-300 hover:border-foreground/40 hover:bg-foreground/5"
+              className="px-8 py-4 border border-foreground/20 text-foreground font-medium tracking-wide transition-all duration-300 hover:border-foreground/40 lg:hover:bg-foreground/5"
             >
               GET IN TOUCH
             </button>
