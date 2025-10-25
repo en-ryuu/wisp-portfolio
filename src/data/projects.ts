@@ -76,10 +76,10 @@ export const projects: Project[] = [
       "Established comprehensive security protocols and data encryption",
     ],
     results: [
-      "40% improvement in user investment decisions",
-      "95% accuracy in short-term predictions",
-      "10,000+ active users within 6 months",
-      "Featured in major Nepali financial publications",
+      "Real-time data processing with <100ms latency",
+      "Supports 1,000+ concurrent users simultaneously",
+      "99.5% uptime across 6 months of operation",
+      "Direct Integration with Nepal Stock Exchange APIs",
     ],
     timeline: [
       {
@@ -175,10 +175,10 @@ export const projects: Project[] = [
       "Designed fault-tolerant architecture with auto-recovery",
     ],
     results: [
-      "90% reduction in deployment time",
-      "60% cost savings through optimization",
-      "99.9% uptime achieved",
-      "Support for 50+ different model architectures",
+      "Deployment time reduced from hours to <15 minutes",
+      "Automated scaling supports 100-10,000 requests/minute",
+      "Container orchestration across 3 cloud providers",
+      "Support for popular LLM frameworks (Hugging Face, OpenAI API)",
     ],
     timeline: [
       {
