@@ -3,7 +3,7 @@
 import Loading from "@/components/Loading";
 import { gsap } from "gsap";
 import { TransitionRouter } from "next-transition-router";
-import { startTransition, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export function Providers({ children }: { children: React.ReactNode }) {
   const contentRef = useRef<HTMLDivElement>(null);

@@ -15,7 +15,7 @@ interface TeamMemberCardProps {
     description: string;
     image?: string;
     initials: string;
-    resume?: any; // Can be Resume object or undefined
+    resume?: object; // Can be Resume object or undefined
   };
   ref: React.RefObject<HTMLDivElement | null>;
 }
