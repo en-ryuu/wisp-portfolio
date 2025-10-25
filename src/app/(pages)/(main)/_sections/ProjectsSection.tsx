@@ -45,7 +45,7 @@ export default function ProjectsSection() {
               ref={(el) => {
                 imageRefs.current[index] = el;
               }}
-              className="absolute inset-0 lg:bg-gradient-to-br lg:from-black/20 lg:via-black/10 lg:to-black/5"
+              className="absolute inset-0"
             >
               <ProjectImage
                 src={project.image}
@@ -56,9 +56,6 @@ export default function ProjectsSection() {
                   (project.imagePosition as ImagePosition) || "center"
                 }
               />
-
-              {/* Subtle overlay for depth - desktop only */}
-              <div className="absolute inset-0 hidden lg:block bg-gradient-to-t from-black/20 to-transparent"></div>
             </div>
           </div>
 
