@@ -161,10 +161,12 @@ export default function ScrollIndicator({
         <button
           ref={goToTopRef}
           onClick={scrollToTop}
-          className="fixed right-8 bottom-8 z-40 group transition-all duration-300 hover:scale-105"
+          className="fixed right-8 bottom-8 z-[100] group transition-all duration-300 hover:scale-105"
+          aria-label="Scroll to top"
+          style={{ position: 'fixed' }}
         >
-          <div className="w-8 h-8 bg-gradient-to-br from-foreground/10 via-foreground/5 to-background rounded-lg flex items-center justify-center group-hover:from-foreground/20 group-hover:via-foreground/10 group-hover:to-foreground/5 transition-all duration-300">
-            <div className="w-3 h-3 border-l border-t border-foreground/60 transform rotate-45 group-hover:border-foreground/80 transition-colors duration-300"></div>
+          <div className="w-12 h-12 bg-gradient-to-br from-foreground/10 via-foreground/5 to-background rounded-full flex items-center justify-center group-hover:from-foreground/20 group-hover:via-foreground/10 group-hover:to-foreground/5 transition-all duration-300 shadow-lg backdrop-blur-sm">
+            <div className="w-4 h-4 border-l-2 border-t-2 border-foreground/60 transform rotate-45 group-hover:border-foreground/80 transition-colors duration-300"></div>
           </div>
         </button>
       )}

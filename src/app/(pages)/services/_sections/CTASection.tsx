@@ -149,6 +149,16 @@ export default function CTASection() {
                     </span>
                   </a>
                   <a
+                    href="https://www.instagram.com/wisp.technology/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-foreground/60 hover:text-foreground transition-colors duration-300"
+                  >
+                    <span className="text-sm tracking-wider uppercase">
+                      Instagram
+                    </span>
+                  </a>
+                  <a
                     href="https://github.com/wisptech-np"
                     target="_blank"
                     rel="noopener noreferrer"

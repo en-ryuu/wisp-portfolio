@@ -47,6 +47,14 @@ export default function Footer() {
               LinkedIn
             </a>
             <a
+              href="https://www.instagram.com/wisp.technology/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-foreground/60 hover:text-foreground/80 transition-colors duration-300 font-light tracking-wider uppercase"
+            >
+              Instagram
+            </a>
+            <a
               href="https://github.com/wisptech-np"
               target="_blank"
               rel="noopener noreferrer"
