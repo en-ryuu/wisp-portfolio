@@ -1,6 +1,5 @@
 "use client";
 import ProjectImage from "@/components/ProjectImage";
-import { useCustomImageReveal } from "@/hooks/useCustomImageReveal";
 import { useIntersectionReveal } from "@/hooks/useIntersectionReveal";
 
 export default function AboutSection() {
@@ -8,18 +7,20 @@ export default function AboutSection() {
     delay: 0.2,
     duration: 0.8,
     from: "bottom",
-    reverse: true,
+    reverse: false,
   });
   const sectionSubtitleRef = useIntersectionReveal<HTMLHeadingElement>({
     delay: 0.4,
     duration: 0.8,
     from: "bottom",
-    reverse: true,
+    reverse: false,
   });
-  const sectionImageRef = useCustomImageReveal<HTMLDivElement>({
-    delay: 0.8,
-    duration: 1.2,
-    reverse: true,
+  const sectionImageRef = useIntersectionReveal<HTMLDivElement>({
+    delay: 0.6,
+    duration: 1.0,
+    from: "bottom",
+    reverse: false,
+    threshold: 0.2,
   });
 
   // Content sequence refs for "Crafting Digital Solutions"
@@ -27,25 +28,25 @@ export default function AboutSection() {
     delay: 0.2,
     duration: 0.8,
     from: "bottom",
-    reverse: true,
+    reverse: false,
   });
   const craftingDescriptionRef = useIntersectionReveal<HTMLParagraphElement>({
     delay: 0.4,
     duration: 0.8,
     from: "bottom",
-    reverse: true,
+    reverse: false,
   });
   const craftingListRef = useIntersectionReveal<HTMLDivElement>({
     delay: 0.6,
     duration: 0.8,
     from: "bottom",
-    reverse: true,
+    reverse: false,
   });
   const craftingButtonRef = useIntersectionReveal<HTMLDivElement>({
     delay: 0.8,
     duration: 0.8,
     from: "bottom",
-    reverse: true,
+    reverse: false,
   });
 
   return (

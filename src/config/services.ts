@@ -228,6 +228,7 @@ export const processSteps = [
       "Risk Assessment",
       "Stakeholder Alignment",
     ],
+    image: "/discovery.png",
   },
   {
     step: "02",
@@ -241,6 +242,7 @@ export const processSteps = [
       "Design System Creation",
       "User Testing",
     ],
+    image: "/design.png",
   },
   {
     step: "03",
@@ -254,6 +256,7 @@ export const processSteps = [
       "API Development",
       "Database Design",
     ],
+    image: "/development.png",
   },
   {
     step: "04",
@@ -267,6 +270,7 @@ export const processSteps = [
       "User Acceptance Testing",
       "Bug Fixing & Optimization",
     ],
+    image: "/testing.png",
   },
   {
     step: "05",
@@ -280,6 +284,7 @@ export const processSteps = [
       "Documentation",
       "Launch Support",
     ],
+    image: "/deployment.png",
   },
   {
     step: "06",
@@ -293,5 +298,6 @@ export const processSteps = [
       "Performance Optimization",
       "Technical Support",
     ],
+    image: "/maintainence.png",
   },
 ];

@@ -1,6 +1,7 @@
 "use client";
 import { processSteps } from "@/config/services";
 import { useSmoothReveal } from "@/hooks/useSmoothReveal";
+import Image from "next/image";
 
 export default function ProcessSection() {
   const sectionTitleRef = useSmoothReveal<HTMLHeadingElement>({
@@ -117,14 +118,18 @@ export default function ProcessSection() {
                   </div>
                 </div>
 
-                {/* Visual Placeholder */}
+                {/* Process Image */}
                 <div className={`${index % 2 === 1 ? "lg:order-1" : ""}`}>
                   <div className="relative h-80 rounded-lg overflow-hidden group-hover:scale-[1.02] transition-all duration-700 ease-out">
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="text-8xl font-thin text-foreground/20 group-hover:text-foreground/30 transition-all duration-700">
-                        {step.step}
-                      </div>
-                    </div>
+                    {step.image && (
+                      <Image
+                        src={step.image}
+                        alt={step.title}
+                        fill
+                        className="object-contain"
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                      />
+                    )}
                   </div>
                 </div>
               </div>
