@@ -1,5 +1,6 @@
 "use client";
 import ProjectImage from "@/components/ProjectImage";
+import { useCustomImageReveal } from "@/hooks/useCustomImageReveal";
 import { useIntersectionReveal } from "@/hooks/useIntersectionReveal";
 
 export default function AboutSection() {
@@ -15,12 +16,10 @@ export default function AboutSection() {
     from: "bottom",
     reverse: false,
   });
-  const sectionImageRef = useIntersectionReveal<HTMLDivElement>({
+  const sectionImageRef = useCustomImageReveal<HTMLDivElement>({
     delay: 0.6,
-    duration: 1.0,
-    from: "bottom",
+    duration: 1.2,
     reverse: false,
-    threshold: 0.2,
   });
 
   // Content sequence refs for "Crafting Digital Solutions"
