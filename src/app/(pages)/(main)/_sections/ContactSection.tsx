@@ -50,7 +50,8 @@ export default function ContactSection() {
 
     // Structure data according to Web3Forms documentation
     const data = {
-      access_key: process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY,
+      from_name: "Wisp Mission Control",
+      access_key: "963323f3-440a-4d4f-842b-a71f7c9cb6c1",
       name: `${formData.get("firstName")} ${formData.get("lastName")}`,
       email: formData.get("email"),
       phone: formData.get("phone"),
