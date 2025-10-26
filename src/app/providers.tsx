@@ -1,6 +1,7 @@
 "use client";
 
 import Loading from "@/components/Loading";
+import { Toaster } from "@/components/ui/sonner";
 import { gsap } from "gsap";
 import { TransitionRouter } from "next-transition-router";
 import { useEffect, useRef, useState } from "react";
@@ -28,7 +29,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
         const tl = gsap.timeline({
           onComplete: () => {
             next();
-          }
+          },
         });
 
         if (contentRef.current) {
@@ -52,7 +53,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
         const tl = gsap.timeline({
           onComplete: () => {
             next();
-          }
+          },
         });
 
         if (contentRef.current) {
@@ -78,6 +79,9 @@ export function Providers({ children }: { children: React.ReactNode }) {
       <div ref={contentRef} className="relative z-40 mt-12">
         <main>{children}</main>
       </div>
+
+      {/* Toast notifications */}
+      <Toaster />
     </TransitionRouter>
   );
 }
