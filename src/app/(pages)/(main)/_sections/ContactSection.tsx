@@ -1,8 +1,9 @@
 "use client";
 import { useIntersectionReveal } from "@/hooks/useIntersectionReveal";
-import { FormEvent } from "react";
+import { FormEvent, useState } from "react";
 
 export default function ContactSection() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const sectionTitleRef = useIntersectionReveal<HTMLHeadingElement>({
     delay: 0.2,
     duration: 0.8,
@@ -28,10 +29,41 @@ export default function ContactSection() {
     reverse: true,
   });
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log("Form submitted");
+    setIsSubmitting(true);
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY,
+          ...data,
+        }),
+      });
+
+      const result = await response.json();
+      
+      if (result.success) {
+        alert("Message sent successfully! We'll get back to you soon.");
+        form.reset();
+      } else {
+        alert("Failed to send message. Please try again.");
+      }
+    } catch (error) {
+      console.error("Form submission error:", error);
+      alert("An error occurred. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -311,9 +343,12 @@ export default function ContactSection() {
               <div className="pt-4">
                 <button
                   type="submit"
-                  className="group relative px-8 py-4 bg-foreground text-background font-medium tracking-wide transition-all duration-300 hover:bg-foreground/90 hover:scale-105 w-full md:w-auto"
+                  disabled={isSubmitting}
+                  className="group relative px-8 py-4 bg-foreground text-background font-medium tracking-wide transition-all duration-300 hover:bg-foreground/90 hover:scale-105 w-full md:w-auto disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                 >
-                  <span className="relative z-10">SEND MESSAGE</span>
+                  <span className="relative z-10">
+                    {isSubmitting ? "SENDING..." : "SEND MESSAGE"}
+                  </span>
                   <div className="absolute inset-0 hidden lg:block bg-gradient-to-r from-foreground to-foreground/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </button>
               </div>
