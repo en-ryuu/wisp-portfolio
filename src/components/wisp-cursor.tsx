@@ -399,6 +399,7 @@ const WispCursor: React.FC<WispCursorProps> = ({
     hideDefaultCursor,
     stage,
     theme,
+    isDark,
   ]);
 
   if (!shouldShow || !mounted) return null;
