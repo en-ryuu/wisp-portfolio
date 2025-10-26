@@ -75,6 +75,9 @@ const WispCursor: React.FC<WispCursorProps> = ({
   // Show only on desktop and when no errors
   const shouldShow = mounted && !isMobile && !hasError;
 
+  // Calculate isDark before useEffect to use in animations
+  const isDark = theme === "dark";
+
   const moveCursor = useCallback((x: number, y: number) => {
     if (!cursorRef.current) return;
     gsap.to(cursorRef.current, {
@@ -395,12 +398,12 @@ const WispCursor: React.FC<WispCursorProps> = ({
     moveCursor,
     hideDefaultCursor,
     stage,
+    theme,
   ]);
 
   if (!shouldShow || !mounted) return null;
 
   // Use consistent styles to prevent hydration mismatch
-  const isDark = theme === "dark";
 
   return (
     <div

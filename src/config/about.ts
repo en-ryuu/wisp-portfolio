@@ -1,6 +1,6 @@
 // About page configuration data
 
-interface Resume {
+export interface Resume {
   location: string;
   phone: string;
   email: string;
@@ -27,7 +27,7 @@ interface Resume {
   certifications: string[];
 }
 
-interface TeamMember {
+export interface TeamMember {
   id: string;
   initials: string;
   name: string;

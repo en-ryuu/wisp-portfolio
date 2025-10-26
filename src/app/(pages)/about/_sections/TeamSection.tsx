@@ -1,24 +1,13 @@
 "use client";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { teamMembers } from "@/config/about";
+import { teamMembers, type TeamMember } from "@/config/about";
 import { useIntersectionReveal } from "@/hooks/useIntersectionReveal";
 import { Link as TransitionLink } from "next-transition-router";
 import Image from "next/image";
 
 // Reusable Team Member Card Component
-interface TeamMemberCardProps {
-  member: {
-    id: string;
-    name: string;
-    title: string;
-    description: string;
-    image?: string;
-    initials: string;
-    resume?: object; // Can be Resume object or undefined
-  };
-  ref: React.RefObject<HTMLDivElement | null>;
-}
+interface TeamMemberCardProps {  member: TeamMember;  ref: React.RefObject<HTMLDivElement | null>;}
 
 function TeamMemberCard({ member, ref }: TeamMemberCardProps) {
   return (
