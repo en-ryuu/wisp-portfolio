@@ -108,7 +108,8 @@ export const teamMembers: TeamMember[] = [
         },
         {
           name: "Teeny: LLM Quantization Research",
-          description: "Research project focused on LLM quantization techniques.",
+          description:
+            "Research project focused on LLM quantization techniques.",
         },
       ],
       awards: [
@@ -117,20 +118,18 @@ export const teamMembers: TeamMember[] = [
         "Esteemed Contributor to Financial Innovation Award",
         "COMPEX Scholarship Scheme Awardee",
       ],
-      certifications: [
-        "Full-Stack Java Developer - 3 Months - Bajaj Finserv",
-      ],
+      certifications: ["Full-Stack Java Developer - 3 Months - Bajaj Finserv"],
     },
   },
   {
     id: "cto",
     initials: "AP",
-    name: "Abhishek Pandey",
+    name: "Abhishek",
     title: "Chief Technology Officer",
     description: "Leading technical architecture and development excellence",
     isCEO: false,
     isCoFounder: true,
-    image: "/abhisekh.jpg",
+    image: "",
   },
   {
     id: "marketing",
@@ -249,7 +248,8 @@ export const teamMembers: TeamMember[] = [
       education: [
         {
           degree: "MBA (General)",
-          institution: "Asian Institute of Management, Satdobato, Lalitpur, Nepal",
+          institution:
+            "Asian Institute of Management, Satdobato, Lalitpur, Nepal",
           period: "2022 – 2024",
           gpa: "3.6",
         },
@@ -302,7 +302,8 @@ export const teamMembers: TeamMember[] = [
         },
         {
           name: "Entrepreneurship Development Project",
-          description: "Master Mind - Business development and strategy project",
+          description:
+            "Master Mind - Business development and strategy project",
         },
       ],
       awards: [],
