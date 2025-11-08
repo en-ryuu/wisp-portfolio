@@ -389,23 +389,23 @@ export const teamMembers: TeamMember[] = [
 
 export const stats = [
   {
-    value: "50+",
-    label: "Projects Completed",
-    description: "Successfully delivered across various industries",
+    value: "5",
+    label: "Expert Team Members",
+    description: "Dedicated professionals with diverse expertise",
   },
   {
-    value: "25+",
-    label: "Happy Clients",
-    description: "Long-term partnerships and repeat business",
+    value: "10+",
+    label: "Technologies Mastered",
+    description: "Modern stack from frontend to AI/ML",
   },
   {
-    value: "5+",
-    label: "Years Experience",
-    description: "Deep expertise in modern technologies",
+    value: "100%",
+    label: "Commitment to Quality",
+    description: "Dedicated to delivering excellence",
   },
   {
-    value: "99%",
-    label: "Client Satisfaction",
-    description: "Consistent quality and reliable delivery",
+    value: "24/7",
+    label: "Support Available",
+    description: "Always here when you need us",
   },
 ];

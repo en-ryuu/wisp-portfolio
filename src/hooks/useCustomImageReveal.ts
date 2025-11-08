@@ -27,28 +27,55 @@ export function useCustomImageReveal<T extends HTMLElement = HTMLElement>(
 
     const element = ref.current;
 
-    // Set initial state - image starts as a thin line at the top
-    gsap.set(element, {
-      clipPath: "inset(0% 0% 100% 0%)", // Start with only top visible
-      opacity: 1,
-    });
+    // Check if mobile device (screen width < 768px)
+    const isMobile = () => window.innerWidth < 768;
+
+    // Set initial state based on device type
+    if (isMobile()) {
+      // Mobile: use fade-in
+      gsap.set(element, {
+        opacity: 0,
+      });
+    } else {
+      // Desktop: use clipPath reveal
+      gsap.set(element, {
+        clipPath: "inset(0% 0% 100% 0%)", // Start with only top visible
+        opacity: 1,
+      });
+    }
 
     const animateIn = () => {
       if (animationRef.current) {
         animationRef.current.kill();
       }
 
-      animationRef.current = gsap.to(element, {
-        clipPath: "inset(0% 0% 0% 0%)", // Expand to fill entire container
-        duration,
-        delay,
-        ease,
-        onComplete: () => {
-          if (!reverse) {
-            gsap.set(element, { clearProps: "all" });
-          }
-        },
-      });
+      if (isMobile()) {
+        // Mobile: simple fade-in
+        animationRef.current = gsap.to(element, {
+          opacity: 1,
+          duration,
+          delay,
+          ease,
+          onComplete: () => {
+            if (!reverse) {
+              gsap.set(element, { clearProps: "opacity" });
+            }
+          },
+        });
+      } else {
+        // Desktop: clipPath reveal
+        animationRef.current = gsap.to(element, {
+          clipPath: "inset(0% 0% 0% 0%)", // Expand to fill entire container
+          duration,
+          delay,
+          ease,
+          onComplete: () => {
+            if (!reverse) {
+              gsap.set(element, { clearProps: "all" });
+            }
+          },
+        });
+      }
     };
 
     const animateOut = () => {
@@ -56,12 +83,23 @@ export function useCustomImageReveal<T extends HTMLElement = HTMLElement>(
         animationRef.current.kill();
       }
 
-      animationRef.current = gsap.to(element, {
-        clipPath: "inset(0% 0% 100% 0%)", // Collapse back to thin line
-        duration,
-        delay,
-        ease,
-      });
+      if (isMobile()) {
+        // Mobile: fade-out
+        animationRef.current = gsap.to(element, {
+          opacity: 0,
+          duration,
+          delay,
+          ease,
+        });
+      } else {
+        // Desktop: clipPath collapse
+        animationRef.current = gsap.to(element, {
+          clipPath: "inset(0% 0% 100% 0%)", // Collapse back to thin line
+          duration,
+          delay,
+          ease,
+        });
+      }
     };
 
     const observer = new IntersectionObserver(

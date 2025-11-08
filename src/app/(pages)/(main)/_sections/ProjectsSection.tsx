@@ -40,7 +40,7 @@ export default function ProjectsSection() {
           }`}
         >
           {/* Sticky Image Container */}
-          <div className="w-full lg:w-1/2 sticky top-0 h-screen overflow-hidden">
+          <div className="w-full lg:w-1/2 lg:sticky lg:top-0 h-[60vh] lg:h-screen overflow-hidden">
             <div
               ref={(el) => {
                 imageRefs.current[index] = el;
